@@ -1,0 +1,19 @@
+.cards-field {
+  width: 100%;
+  padding: 150px 120px 106px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+}
+/*# sourceMappingURL=cards-field.css.map */

@@ -1,0 +1,13 @@
+@import '../../../variables.scss';
+
+.cards-field {
+  width: 100%;
+  padding: 150px 120px 106px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  background-color: $bg-color-gray;
+  border-radius: 5px;
+}

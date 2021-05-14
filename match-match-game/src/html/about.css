@@ -562,6 +562,14 @@ a:hover {
   margin: 0 auto;
 }
 
+.main-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  color: #333333;
+}
+
 .modal-content {
   max-width: 640px;
 }
@@ -619,11 +627,6 @@ a:hover {
 }
 
 .about__title {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  letter-spacing: 0.15px;
-  color: #333333;
   margin-bottom: 20px;
 }
 

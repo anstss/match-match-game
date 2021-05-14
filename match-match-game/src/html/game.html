@@ -42,7 +42,7 @@
                 </li>
             </ul>
         </nav>
-        <button type="button" class="btn button button_white">Register new player</button>
+        <button type="button" class="btn button button_white" data-toggle="modal" data-target="#register-modal">Register new player</button>
         <div class="registered hidden">
             <button type="button" class="btn button button_white">Start game</button>
             <div class="avatar-bg">
@@ -50,6 +50,35 @@
             </div>
         </div>
     </header>
+
+    <div class="modal" id="register-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="#" class="register-form">
+                    <div class="register-form__title">Registr new Player</div>
+                    <div class="register-form__body">
+                        <div class="form-group">
+                            <label for="first-name" class="first-name">First Name</label>
+                            <input type="text" class="form-control" id="first-name" placeholder="Enter your First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name" class="first-name">Last Name</label>
+                            <input type="text" class="form-control" id="last-name" placeholder="Enter your Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="first-name">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                    </div>
+                    <img src="icons/avatar.png" alt="Avatar" class="register-form__avatar">
+                    <div class="form-buttons">
+                        <button type="submit" class="btn button button_blue button_add-user">Add user</button>
+                        <button type="button" class="btn button" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="game">
         <div class="container">

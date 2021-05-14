@@ -570,6 +570,10 @@ a:hover {
   color: #333333;
 }
 
+.modal-dialog {
+  min-width: 640px;
+}
+
 .modal-content {
   max-width: 640px;
 }

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+    <title>Game</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-link_logo">
+                        <div class="logo">
+                            <div class="logo__match">Match</div>
+                            <div class="logo__match logo__match_highlighted">Match</div>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <img class="nav-icon" src="icons/about-icon.svg" alt="About Game Icon">
+                        About Game
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <img class="nav-icon" src="icons/best-score-icon.svg" alt="Best Score Icon">
+                        Best Score
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <img class="nav-icon" src="icons/setting-icon.svg" alt="Setting Icon">
+                        Game Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <button type="button" class="btn button button_white">Register new player</button>
+        <div class="registered hidden">
+            <button type="button" class="btn button button_white">Start game</button>
+            <div class="avatar-bg">
+                <img class="avatar" src="icons/avatar.png" alt="Avatar">
+            </div>
+        </div>
+    </header>
+
+    <div class="game">
+        <div class="container">
+            <div class="game__field">
+                <form class="game__timer">
+                    <input class="timer" value="00:00" disabled>
+                </form>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+                <div class="card__container">
+                    <div class="card">
+                        <div class="card__front"></div>
+                        <div class="card__back"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

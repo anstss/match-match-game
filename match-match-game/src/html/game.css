@@ -462,11 +462,15 @@ a:hover {
 }
 
 .nav-link:hover {
-  background-color: #1E88E5;
+  opacity: 0.5;
 }
 
 .nav-link:hover.nav-link_logo {
-  background-color: transparent;
+  opacity: 1;
+}
+
+.nav-link.active-link {
+  background-color: #1E88E5;
 }
 
 .nav-icon {
@@ -494,9 +498,18 @@ a:hover {
   transition: all 0.2s linear;
 }
 
+.button_blue {
+  background-color: #2196F3;
+  color: #F2F9FE;
+}
+
+.button_add-user {
+  margin-right: 20px;
+}
+
 .button:hover {
   color: #fff;
-  border: 3px solid #fff;
+  border: 1px solid #fff;
   background-color: #2196F3;
 }
 
@@ -525,6 +538,19 @@ a:hover {
   height: inherit;
 }
 
+.form-buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 30px;
+}
+
 .hidden {
   display: none;
 }
@@ -534,6 +560,54 @@ a:hover {
   width: 100%;
   padding: 0;
   margin: 0 auto;
+}
+
+.modal-content {
+  max-width: 640px;
+}
+
+.register-form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  width: 640px;
+  height: auto;
+  background-color: #F2F9FE;
+  padding: 20px;
+}
+
+.register-form__title {
+  width: 100%;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  width: 328px;
+  padding: 20px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.first-name {
+  font-size: 12px;
+  line-height: 16px;
+  color: #757575;
+}
+
+.register-form__avatar {
+  width: 198px;
+  height: 198px;
+  margin: auto;
 }
 
 .game__field {

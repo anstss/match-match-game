@@ -110,8 +110,12 @@ a:hover {
 
 .nav-link:hover {
   &.nav-link_logo {
-    background-color: transparent;
+    opacity: 1;
   }
+  opacity: 0.5;
+}
+
+.nav-link.active-link {
   background-color: $primary-color-dark;
 }
 
@@ -137,9 +141,18 @@ a:hover {
   transition: all 0.2s linear;
 }
 
+.button_blue {
+  background-color: $primary-color;
+  color: $primary-lightest;
+}
+
+.button_add-user {
+  margin-right: 20px;
+}
+
 .button:hover {
   color: #fff;
-  border: 3px solid #fff;
+  border: 1px solid #fff;
   background-color: $primary-color;
 }
 
@@ -161,6 +174,13 @@ a:hover {
   height: inherit;
 }
 
+.form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
 .hidden {
   display: none;
 }
@@ -175,3 +195,48 @@ a:hover {
   margin: 0 auto;
 }
 
+
+// Register-form
+// ==============================================
+
+.modal-content {
+  max-width: 640px;
+}
+
+.register-form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 640px;
+  height: auto;
+  background-color: $primary-lightest;
+  padding: 20px;
+}
+
+.register-form__title {
+  width: 100%;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  color: $text-color;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  width: 328px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: $bg-color-gray;
+}
+
+.first-name {
+  font-size: 12px;
+  line-height: 16px;
+  color: $text-color-light;
+}
+
+.register-form__avatar {
+  width: 198px;
+  height: 198px;
+  margin: auto;
+}

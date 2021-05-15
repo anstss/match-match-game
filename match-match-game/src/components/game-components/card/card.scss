@@ -1,3 +1,5 @@
+@import '../../../variables.scss';
+
 .card__container {
   perspective: 500px;
   cursor: pointer;
@@ -33,14 +35,16 @@
     height: 100%;
     border-radius: inherit;
     backface-visibility: hidden;
+    background-position: center;
+    background-size: cover;
   }
 
   &__front {
-    background-color: darkcyan;
+    background-color: $primary-color-dark;
   }
 
   &__back {
-    background: no-repeat center url(./assets/card-back.jpg) $primary-color-dark;
+    background: no-repeat center url(../../../assets/card-back.jpg) $primary-color-dark;
     transform: rotateY(180deg);
   }
 }

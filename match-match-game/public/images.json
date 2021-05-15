@@ -1,0 +1,25 @@
+[
+  {
+    "category": "animals",
+    "images": [
+      "001-bee.png",
+      "002-whale.png",
+      "003-platypus.png",
+      "004-frog.png",
+      "005-chicken.png",
+      "006-crab.png",
+      "007-ladybug.png",
+      "008-spider.png",
+      "009-shark.png",
+      "010-beetle.png",
+      "011-stingray.png",
+      "012-rhino.png",
+      "013-squid.png",
+      "014-giraffe.png",
+      "015-turtle.png",
+      "016-snake.png",
+      "017-elephant.png",
+      "018-parrot.png"
+    ]
+  }
+]

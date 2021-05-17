@@ -1,7 +1,6 @@
-import { BaseComponent } from "../../shared/base-component";
+import { BaseComponent } from '../../shared/base-component';
 
 export class Card extends BaseComponent {
-
   isFlipped = false;
 
   constructor(readonly image: string) {

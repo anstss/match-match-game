@@ -1,4 +1,4 @@
-import { BaseComponent } from "../../shared/base-component";
+import { BaseComponent } from '../../shared/base-component';
 
 export class AboutElem extends BaseComponent {
   constructor(step: string, info: string) {

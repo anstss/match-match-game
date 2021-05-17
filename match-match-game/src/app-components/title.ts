@@ -1,4 +1,4 @@
-import { BaseComponent } from "../shared/base-component";
+import { BaseComponent } from '../shared/base-component';
 
 export class Title extends BaseComponent {
   constructor(title: string, style: string[]) {

@@ -1,6 +1,4 @@
 import { AboutPage } from '../app-components/about-page';
-import { GamePage } from '../app-components/game-page';
-import { delay } from '../shared/delay';
 import { GameControllers } from './game-controllers';
 
 export class Router {
@@ -41,7 +39,6 @@ export class Router {
         const gameController = new GameControllers(this.page);
         this.page.appendChild(gameController.gamePage.render());
         gameController.startGame();
-        // setTimeout(() => gameController.startGame(), 1000);
       },
     },
   ];

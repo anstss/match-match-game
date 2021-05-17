@@ -1,5 +1,5 @@
 import './cards-field.scss';
-import { BaseComponent } from '../../base-component';
+import { BaseComponent } from '../../../shared/base-component';
 import { Card } from '../card/card';
 
 const TIME_SHOW_CARDS_BEFORE_GAME = 5000;
@@ -18,9 +18,9 @@ export class CardsField extends BaseComponent {
 
   addCards(cards: Card[]) {
     this.cards = cards;
-    this.cards.forEach(card => this.element.appendChild(card.element));
+    this.cards.forEach((card) => this.element.appendChild(card.element));
     setTimeout(() => {
-      this.cards.forEach((card) => card.flipToBack())
+      this.cards.forEach((card) => card.flipToBack());
     }, TIME_SHOW_CARDS_BEFORE_GAME);
   }
 }

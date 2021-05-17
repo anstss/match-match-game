@@ -21,5 +21,28 @@
       "017-elephant.png",
       "018-parrot.png"
     ]
+  },
+  {
+    "category": "nature",
+    "images": [
+      "001-fields.png",
+      "002-cactus.png",
+      "003-sunflower.png",
+      "004-world.png",
+      "005-mushroom.png",
+      "006-tree.png",
+      "007-bee.png",
+      "008-wood.png",
+      "009-acorn.png",
+      "010-moon.png",
+      "011-beach.png",
+      "012-fish.png",
+      "013-ladybug.png",
+      "014-mountain.png",
+      "015-rain.png",
+      "016-rainbow.png",
+      "017-snow.png",
+      "018-volcano.png"
+    ]
   }
 ]

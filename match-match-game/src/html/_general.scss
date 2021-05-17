@@ -1,4 +1,4 @@
-@import '../normalize.scss';
+@import '../_normalize.scss';
 
 $primary-color: #2196F3;
 $primary-color-dark: #1E88E5;
@@ -7,6 +7,8 @@ $primary-lightest: #F2F9FE;
 $bg-color-gray: rgba(0, 0, 0, 0.05);
 $text-color: #333333;
 $text-color-light: #757575;
+$card-green: #0ACF83;
+$card-red: #F24E1E;
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -155,23 +157,23 @@ a:hover {
   background-color: $primary-color;
 }
 
-.registered {
-  display: flex;
-  align-items: center;
-}
+// .registered { !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   display: flex;
+//   align-items: center;
+// }
 
-.avatar-bg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  margin-left: 30px;
-}
+// .avatar-bg { !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   background-color: #fff;
+//   margin-left: 30px;
+// }
 
-.avatar {
-  width: inherit;
-  height: inherit;
-}
+// .avatar { !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   width: inherit;
+//   height: inherit;
+// }
 
 .form-buttons {
   width: 100%;

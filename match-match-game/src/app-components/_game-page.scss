@@ -1,0 +1,109 @@
+@import '../_variables';
+
+.game__field {
+  width: 100%;
+  max-height: 1000px;
+  height: 100%;
+  padding: 28px 120px 106px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  background-color: $bg-color-gray;
+  border-radius: 5px;
+
+  margin: 33px 0;
+}
+
+.game__timer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 256px;
+  height: 65px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 30px;
+  color: $text-color-light;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24);
+  border: none;
+}
+
+.card__container {
+  perspective: 500px;
+  cursor: pointer;
+
+  &:hover > .card {
+    transform: translateZ(35px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+  }
+
+  &.flipped > .card {
+    transform: rotateY(180deg) translateX(-100%);
+    transform-origin: left;
+  }
+}
+
+.card {
+  position: relative;
+  width: 168px;
+  height: 168px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+  transform-style: preserve-3d;
+  transform-origin: right;
+  transition: all 0.3s linear;
+
+  &__front,
+  &__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    backface-visibility: hidden;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__front {
+    background-color: $primary-color-dark;
+  }
+
+  &__back {
+    background: no-repeat center url(../assets/card-back.jpg) $primary-color-dark;
+    transform: rotateY(180deg);
+  }
+}
+
+.card_small {
+  width: 120px;
+  height: 120px;
+}
+
+.correct,
+.incorrect {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  opacity: 0.5;
+}
+
+.correct {
+  background: no-repeat right 10px top 10px url(../assets/correct.png) $card-green;
+}
+
+.incorrect {
+  background: no-repeat right 10px top 10px url(../assets/incorrect.png) $card-red;
+}

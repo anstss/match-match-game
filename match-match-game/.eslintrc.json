@@ -18,6 +18,15 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "import/extensions": "off",
+    "import/prefer-default-export": "off"
     // "no-console": "warn"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    }
   }
 }

@@ -88,3 +88,18 @@
   width: 120px;
   height: 120px;
 }
+
+.correct,
+.incorrect {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+}
+
+.correct {
+  background: no-repeat right 10px top 10px url(../html/icons/correct.png) $card-green;
+}
+
+.incorrect {
+  background: no-repeat right 10px top 10px url(../html/icons/incorrect.png) $card-red;
+}

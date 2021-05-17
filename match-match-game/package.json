@@ -8,8 +8,10 @@
     "checkPrettier": "prettier --check src"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.169",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
+    "bootstrap": "^5.0.1",
     "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.4",
     "eslint": "^7.26.0",
@@ -31,5 +33,11 @@
     "webpack": "^5.36.2",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@types/popper.js": "^1.11.0",
+    "lodash": "^4.17.21",
+    "popper.js": "^1.16.1",
+    "underscore": "^1.13.1"
   }
 }

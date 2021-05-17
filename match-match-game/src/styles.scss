@@ -1,11 +1,11 @@
-@import 'normalize';
-@import 'variables';
-
+@import "~bootstrap/scss/bootstrap";
+@import './_normalize.scss';
+@import './_variables.scss';
 
 body {
+  font-family: 'Roboto', sans-serif;
   min-height: 100vh;
-  background-color: $bg-color;
-  // background-image: url('./assets/translate.png');
+  background-color: #fff;
 }
 
 *,
@@ -23,34 +23,24 @@ h6 {
   margin: 0;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 p {
   margin: 0;
 }
 
-
-// Container
-// ============================================
-
-.container {
-  width: 100%;
-  max-width: 1000px; //1512
-  margin: 0 auto;
+a {
+  text-decoration: none;
 }
 
-
-// Header
-// ============================================
-
-.header {
-  height: 64px;
-  width: 100%;
-  background-color: $primary-color;
+a:hover {
+  color: #fff;
 }
 
-
-// Cards field
-// ============================================
-
-
-
-
+a, button {
+  cursor: pointer;
+}

@@ -1,7 +1,6 @@
 import './_game-page.scss';
 import { BaseComponent } from '../shared/base-component';
 import { Component } from '../shared/component';
-import { Timer } from './game-page-components/timer';
 import { CardsField } from './game-page-components/cards-field';
 
 export class GamePage extends BaseComponent implements Component {

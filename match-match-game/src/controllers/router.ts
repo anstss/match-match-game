@@ -1,4 +1,5 @@
 import { AboutPage } from '../app-components/about-page';
+import { SettingPage } from '../app-components/setting-page';
 import { GameControllers } from './game-controllers';
 
 export class Router {
@@ -27,7 +28,10 @@ export class Router {
     {
       routeName: 'settings',
       component: () => {
-        this.page.innerHTML = 'settings page';
+        // this.page.innerHTML = 'settings page';
+        this.page.innerHTML = '';
+        const settingPage = new SettingPage(this.page);
+        this.page.appendChild(settingPage.render());
       },
     },
     {

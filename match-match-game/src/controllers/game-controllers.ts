@@ -7,6 +7,7 @@ import { Component } from '../shared/component';
 import { delay } from '../shared/delay';
 import { BaseComponent } from '../shared/base-component';
 import { Timer } from '../app-components/game-page-components/timer';
+import { SettingsController } from './settings-controller';
 
 const TIME_SHOW_CARDS_BEFORE_GAME = 5000;
 const FLIP_CLASS = 'flipped';
@@ -31,9 +32,11 @@ export class GameControllers implements Component {
   isAnimation = false;
 
   activeCard?: Card;
+  cardsCategory: string;
 
-  constructor(private readonly page: HTMLElement) {
+  constructor(private readonly page: HTMLElement, private readonly settingsController: SettingsController) {
     this.gamePage = new GamePage(page);
+    this.cardsCategory = settingsController.category;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
     this.gameTimer = new BaseComponent('div', ['game__timer']);
@@ -77,7 +80,7 @@ export class GameControllers implements Component {
     this.cards = cards;
     this.cardsField.element.appendChild(this.gameTimer.element);
     this.gameTimer.element.appendChild(this.timer.element);
-    this.cards.forEach((card) => this.cardsField.element.appendChild(card.element));
+    this.cards.forEach((card) => this.cardsField.element.appendChild(card.render()));
     setTimeout(() => {
       // this => GameControllers because of static eslint
       this.cards.forEach((card) => GameControllers.flipCardToBack(card));
@@ -158,33 +161,54 @@ export class GameControllers implements Component {
 
   // add static for eslint
   static match(activeCard: Card, card: Card) {
-    const activeMatch = activeCard.element.querySelector('.correct');
-    const cardMath = card.element.querySelector('.correct');
-    activeMatch?.classList.remove('hidden');
-    cardMath?.classList.remove('hidden');
+    const activeMatch = activeCard.correct;
+    const cardMath = card.correct;
+    activeMatch?.element.classList.remove('hidden');
+    cardMath?.element.classList.remove('hidden');
+    // const activeMatch = activeCard.element.querySelector('.correct');
+    // const cardMath = card.element.querySelector('.correct');
+    // activeMatch?.classList.remove('hidden');
+    // cardMath?.classList.remove('hidden');
   }
 
   // add static for eslint
   static notMatch(activeCard: Card, card: Card) {
-    const activeMatch = activeCard.element.querySelector('.incorrect');
-    const cardMath = card.element.querySelector('.incorrect');
-    activeMatch?.classList.remove('hidden');
-    cardMath?.classList.remove('hidden');
+    const activeMatch = activeCard.incorrect;
+    const cardMath = card.incorrect;
+    activeMatch?.element.classList.remove('hidden');
+    cardMath?.element.classList.remove('hidden');
+    // const activeMatch = activeCard.element.querySelector('.incorrect');
+    // const cardMath = card.element.querySelector('.incorrect');
+    // activeMatch?.classList.remove('hidden');
+    // cardMath?.classList.remove('hidden');
   }
 
   // add static for eslint
   static removeClassIncorrect(activeCard: Card, card: Card) {
-    const activeMatch = activeCard.element.querySelector('.incorrect');
-    const cardMath = card.element.querySelector('.incorrect');
-    activeMatch?.classList.add('hidden');
-    cardMath?.classList.add('hidden');
+    const activeMatch = activeCard.incorrect;
+    const cardMath = card.incorrect;
+    activeMatch?.element.classList.add('hidden');
+    cardMath?.element.classList.add('hidden');
+    // const activeMatch = activeCard.element.querySelector('.incorrect');
+    // const cardMath = card.element.querySelector('.incorrect');
+    // activeMatch?.classList.add('hidden');
+    // cardMath?.classList.add('hidden');
   }
-
-  async startGame(categor = 0, difficulty = 8) {
+// !TODO: difficulty to const
+  async startGame(currentCategory = this.cardsCategory, difficulty = 8) {
+    // const currentCategory = categor;
     const response = await fetch('./images.json');
     const imagesJson: ImageCategoryModel[] = await response.json();
-    const selectedCategory = imagesJson[categor];
+    console.log(imagesJson);
+    
+    const selectedCategory = imagesJson.find(elem => elem.category === currentCategory.toLowerCase());
+    if(!selectedCategory) throw new Error('Category not found');
+    console.log(selectedCategory);
+    
+    // const selectedCategory = imagesJson[categor];
     const selectedCategoryWithDifficulty = selectedCategory.images.slice(0, difficulty);
+    // console.log(selectedCategory.category);
+    
     const images = selectedCategoryWithDifficulty.map((fileName) => `${selectedCategory.category}/${fileName}`);
     this.createNewGame(images);
   }

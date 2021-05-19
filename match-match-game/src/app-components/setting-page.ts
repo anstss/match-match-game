@@ -6,8 +6,12 @@ import { Setting } from './setting-page-components/setting';
 import './_setting-page.scss';
 
 export class SettingPage extends BaseComponent implements Component {
+  settingGameCards: Setting;
+  dropdownMenuGameCards: DropMenuGameCards;
   constructor(private readonly page: HTMLElement) {
     super('div', ['settings']);
+    this.settingGameCards = new Setting('Game cards', 'Select game cards type');
+    this.dropdownMenuGameCards = new DropMenuGameCards(['Animals', 'Nature']);
   }
 
   render() {
@@ -16,10 +20,10 @@ export class SettingPage extends BaseComponent implements Component {
     this.element.appendChild(container);
     const settingsInner = new BaseComponent('div', ['settings__inner']).element;
     container.appendChild(settingsInner);
-    const settingGameCards = new Setting('Game cards', 'Select game cards type').render();
-    settingsInner.appendChild(settingGameCards);
-    const dropdownMenuGameCards = new DropMenuGameCards(['Animals', 'Nature']).render();
-    settingGameCards.appendChild(dropdownMenuGameCards);
+    // const settingGameCards = new Setting('Game cards', 'Select game cards type').render();
+    settingsInner.appendChild(this.settingGameCards.render());
+    // const dropdownMenuGameCards = new DropMenuGameCards(['Animals', 'Nature']).render();
+    this.settingGameCards.element.appendChild(this.dropdownMenuGameCards.render());
     const settingDifficulty = new Setting('Difficulty', 'Select game type').render();
     settingsInner.appendChild(settingDifficulty);
     const dropdownMenuDifficulty = new DropMenuDifficulty(['4x4', '6x6']).render();

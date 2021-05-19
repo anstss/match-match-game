@@ -1,18 +1,38 @@
 import { BaseComponent } from '../../shared/base-component';
+import { Component } from '../../shared/component';
 
-export class Card extends BaseComponent {
+export class Card extends BaseComponent implements Component {
   isFlipped = false;
+  correct: BaseComponent;
+  incorrect: BaseComponent;
+  card: BaseComponent;
+  cardFrontSide: BaseComponent;
+  cardBackSide: BaseComponent;
 
   constructor(readonly image: string) {
     super('div', ['card__container']);
+    this.correct = new BaseComponent('div', ['correct', 'hidden']);
+    this.incorrect = new BaseComponent('div', ['incorrect', 'hidden']);
+    this.card = new BaseComponent('div', ['card']);
+    this.cardFrontSide = new BaseComponent('div', ['card__front']);
+    this.cardFrontSide.element.setAttribute('style', `background-image: url('./images/${image}')`);
+    this.cardBackSide = new BaseComponent('div', ['card__back']);
+    // this.element.innerHTML = `
+    // <div class="card">
+    //   <div class="card__front" style="background-image: url('./images/${image}')">
+    //   ${this.correct.element}
+    //   ${this.incorrect.element}
+    //   </div>
+    //   <div class="card__back"></div>
+    // </div>
+    // `;
+  }
 
-    this.element.innerHTML = `
-    <div class="card">
-      <div class="card__front" style="background-image: url('./images/${image}')">
-        <div class="correct hidden"></div>
-        <div class="incorrect hidden"></div></div>
-      <div class="card__back"></div>
-    </div>
-    `;
+  render() {
+    this.element.appendChild(this.card.element);
+    this.card.element.append(this.cardFrontSide.element, this.cardBackSide.element);
+    this.cardFrontSide.element.append(this.correct.element, this.incorrect.element)
+    // this.card.element.append(this.correct.element, this.incorrect.element);
+    return this.element;
   }
 }

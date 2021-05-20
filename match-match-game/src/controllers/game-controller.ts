@@ -8,6 +8,7 @@ import { delay } from '../shared/delay';
 import { BaseComponent } from '../shared/base-component';
 import { Timer } from '../app-components/game-page-components/timer';
 import { SettingsController } from './settings-controller';
+import { DEFAULT_DIFFICULTY } from '../shared/constans';
 
 const TIME_SHOW_CARDS_BEFORE_GAME = 5000;
 const FLIP_CLASS = 'flipped';
@@ -34,10 +35,12 @@ export class GameController {
   activeCard?: Card;
   cardsCategory: string;
   timeTick: NodeJS.Timeout;
+  gameDifficulty: number;
 
   constructor(readonly gamePage: GamePage, private readonly settingsController: SettingsController) {
     this.gamePage = gamePage;
     this.cardsCategory = settingsController.category;
+    this.gameDifficulty = settingsController.difficulty;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
     this.gameTimer = new BaseComponent('div', ['game__timer']);
@@ -69,18 +72,7 @@ export class GameController {
       this.timer.sec = `${this.sec}`;
     }
     this.timer.element.innerHTML = `${this.timer.min}:${this.timer.sec}`;
-
-    // this.timeTick = setTimeout(() => {
-    //   this.startTimer();
-    // }, 1000);
-    // this.timeTick;
   }
-
-  // timeTick() {
-  //   setTimeout(() => {
-  //     this.startTimer();
-  //   }, 1000);
-  // }
 
   clearTimer() {
     this.sec = -1;
@@ -131,10 +123,15 @@ export class GameController {
     });
   }
 
-  createNewGame(images: string[]) {
+  createNewGame(images: string[], currentDifficulty: number) {
     this.clearTimer();
     this.clearField();
     let cards = images.concat(images).map((url) => new Card(url));
+    if (currentDifficulty !== DEFAULT_DIFFICULTY) {
+      cards.forEach((card) => card.card.element.classList.add('card_small'));
+    } else {
+      cards.forEach((card) => card.card.element.classList.remove('card_small'));
+    }
     cards = _.shuffle(cards);
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));
 
@@ -211,9 +208,10 @@ export class GameController {
     // activeMatch?.classList.add('hidden');
     // cardMath?.classList.add('hidden');
   }
-// !TODO: difficulty to const
-  async startGame(currentCategory = this.cardsCategory, difficulty = 8) {
+
+  async startGame(currentCategory = this.cardsCategory, currentDifficulty = this.gameDifficulty) {
     currentCategory = this.settingsController.category;
+    currentDifficulty = this.settingsController.difficulty;
     // console.log(this.settingsController.category);
     
     // const currentCategory = categor;
@@ -226,15 +224,10 @@ export class GameController {
     // console.log(selectedCategory);
     
     // const selectedCategory = imagesJson[categor];
-    const selectedCategoryWithDifficulty = selectedCategory.images.slice(0, difficulty);
+    const selectedCategoryWithDifficulty = selectedCategory.images.slice(0, currentDifficulty);
     // console.log(selectedCategory.category);
     
     const images = selectedCategoryWithDifficulty.map((fileName) => `${selectedCategory.category}/${fileName}`);
-    this.createNewGame(images);
+    this.createNewGame(images, currentDifficulty);
   }
-
-  // render(): HTMLElement {
-  //   this.page.appendChild(this.gamePage.element);
-  //   return this.page;
-  // }
 }

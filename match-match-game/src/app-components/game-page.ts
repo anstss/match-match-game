@@ -5,18 +5,20 @@ import { CardsField } from './game-page-components/cards-field';
 
 export class GamePage extends BaseComponent implements Component {
   cardsField: CardsField;
+  container: BaseComponent;
 
   constructor(private readonly page: HTMLElement) {
     super('div', ['game']);
     this.cardsField = new CardsField();
+    this.container = new BaseComponent('div', ['container']);
   }
 
   render(): HTMLElement {
     this.page.appendChild(this.element);
-    const container = new BaseComponent('div', ['container']).element;
-    this.element.appendChild(container);
+    // const container = new BaseComponent('div', ['container']).element;
+    this.element.appendChild(this.container.element);
     // const gameFiled = new BaseComponent('div', ['game__field']).element;
-    container.appendChild(this.cardsField.element);
+    this.container.element.appendChild(this.cardsField.element);
     // const gameTimer = new BaseComponent('div', ['game__timer']).element;
     // this.cardsField.element.appendChild(gameTimer);
     // const timer = new Timer().element;

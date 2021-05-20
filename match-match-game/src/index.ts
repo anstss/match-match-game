@@ -14,6 +14,7 @@ import { AboutPage } from './app-components/about-page';
 import { GamePage } from './app-components/game-page';
 import { GameController } from './controllers/game-controller';
 import { SettingPage } from './app-components/setting-page';
+import { DIFFICULTY_REGEXP } from './shared/constans';
 
 window.onload = () => {
   const rootElement = document.getElementById('app');
@@ -32,14 +33,27 @@ window.onload = () => {
 
   settingsController.dropItemsGameCards.forEach((option) => {
     option.element.addEventListener('click', () => {
+      settingsController.buttonGameCards.element.innerHTML = option.element.innerText;
       settingsController.setGameCards(option.element.innerText);
+      // console.log(option.element.innerText);
+      
+    });
+  });
+
+  settingsController.dropItemsDifficulty.forEach((option) => {
+    option.element.addEventListener('click', () => {
+      settingsController.buttonDifficulty.element.innerHTML = option.element.innerText;
+      let selectedDifficulty = Number(option.element.innerText.match(DIFFICULTY_REGEXP));
+      selectedDifficulty = selectedDifficulty * selectedDifficulty / 2;
+      // console.log(selectedDifficulty);
+      settingsController.setDifficulty(selectedDifficulty);
       // console.log(option.element.innerText);
       
     });
   });
   // console.log(settingsController.category);
   
-  settingsController.test();
+  // settingsController.test();
   const router = new Router(page, aboutPage, settingsController, gameController);
   router.updateRoute();
   window.onpopstate = () => router.updateRoute();

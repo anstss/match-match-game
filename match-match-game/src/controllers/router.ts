@@ -1,23 +1,27 @@
 import { AboutPage } from '../app-components/about-page';
 import { SettingPage } from '../app-components/setting-page';
-import { GameControllers } from './game-controllers';
+import { GameController } from './game-controller';
 import { SettingsController } from './settings-controller';
 
 export class Router {
   page: HTMLElement;
   settingsController: SettingsController;
+  aboutPage: AboutPage;
+  gameController: GameController;
 
-  constructor(page: HTMLElement, settingsController: SettingsController) {
+  constructor(page: HTMLElement, aboutPage: AboutPage, settingsController: SettingsController, gameController: GameController) {
     this.page = page;
+    this.aboutPage = aboutPage;
     this.settingsController = settingsController;
+    this.gameController = gameController;
   }
 
   startPageRoute = {
     routeName: 'about',
     component: () => {
       this.page.innerHTML = '';
-      const aboutPage = new AboutPage(this.page);
-      this.page.appendChild(aboutPage.render());
+      // const aboutPage = new AboutPage(this.page);
+      this.page.appendChild(this.aboutPage.render());
     },
   };
 
@@ -54,9 +58,10 @@ export class Router {
         this.page.innerHTML = '';
         // const gamePage = new GamePage(this.page);
         // this.page.appendChild(gamePage.render());
-        const gameController = new GameControllers(this.page, this.settingsController);
-        this.page.appendChild(gameController.gamePage.render());
-        gameController.startGame();
+        // const gameController = new GameController(this.page, this.settingsController);
+        this.page.appendChild(this.gameController.gamePage.render());
+        // this.gameController.stopGame();
+        this.gameController.startGame();
       },
     },
   ];

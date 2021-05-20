@@ -10,6 +10,10 @@ import './styles.scss';
 import { App } from './app';
 import { Router } from './controllers/router';
 import { SettingsController } from './controllers/settings-controller';
+import { AboutPage } from './app-components/about-page';
+import { GamePage } from './app-components/game-page';
+import { GameController } from './controllers/game-controller';
+import { SettingPage } from './app-components/setting-page';
 
 window.onload = () => {
   const rootElement = document.getElementById('app');
@@ -17,17 +21,26 @@ window.onload = () => {
   new App(rootElement).render();
   const page = document.getElementById('page');
   if (!page) throw new Error('No page');
-  const settingsController = new SettingsController(page);
-  settingsController.setGameCards(settingsController.category);
+  const aboutPage = new AboutPage(page);
+  const gamePage = new GamePage(page);
+  const settingPage = new SettingPage(page);
+
+  const settingsController = new SettingsController(settingPage);
+    // settingsController.setGameCards(settingsController.category);
+  const gameController = new GameController(gamePage, settingsController);
+
+
   settingsController.dropItemsGameCards.forEach((option) => {
     option.element.addEventListener('click', () => {
       settingsController.setGameCards(option.element.innerText);
+      // console.log(option.element.innerText);
+      
     });
   });
   // console.log(settingsController.category);
   
   settingsController.test();
-  const router = new Router(page, settingsController);
+  const router = new Router(page, aboutPage, settingsController, gameController);
   router.updateRoute();
   window.onpopstate = () => router.updateRoute();
 };

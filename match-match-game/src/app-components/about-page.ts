@@ -5,21 +5,35 @@ import { AboutElem } from './about-page-components/about-elem';
 import { Title } from './title';
 
 export class AboutPage extends BaseComponent implements Component {
+  container: HTMLElement;
+  aboutInner: HTMLElement;
+  aboutTitle: HTMLElement;
+  stepOne: HTMLElement;
+  stepTwo: HTMLElement;
+  stepThree: HTMLElement;
+
   constructor(private readonly page: HTMLElement) {
     super('div', ['about']);
+    this.container = new BaseComponent('div', ['container']).element;
+    this.aboutInner = new BaseComponent('div', ['about__inner']).element;
+    this.aboutTitle = new Title('How to play?', ['about__title']).element;
+    this.stepOne = new AboutElem('1', 'Register new player in game').element;
+    this.stepTwo = new AboutElem('2', 'Configure your game settings').element;
+    this.stepThree = new AboutElem('3', 'Configure your game settings').element;
+    
   }
 
   render(): HTMLElement {
     this.page.appendChild(this.element);
-    const container = new BaseComponent('div', ['container']).element;
-    this.element.appendChild(container);
-    const aboutInner = new BaseComponent('div', ['about__inner']).element;
-    container.appendChild(aboutInner);
-    const aboutTitle = new Title('How to play?', ['about__title']).element;
-    const stepOne = new AboutElem('1', 'Register new player in game').element;
-    const stepTwo = new AboutElem('2', 'Configure your game settings').element;
-    const stepThree = new AboutElem('3', 'Configure your game settings').element;
-    aboutInner.append(aboutTitle, stepOne, stepTwo, stepThree);
+    // const container = new BaseComponent('div', ['container']).element;
+    this.element.appendChild(this.container);
+    // const aboutInner = new BaseComponent('div', ['about__inner']).element;
+    this.container.appendChild(this.aboutInner);
+    // const aboutTitle = new Title('How to play?', ['about__title']).element;
+    // const stepOne = new AboutElem('1', 'Register new player in game').element;
+    // const stepTwo = new AboutElem('2', 'Configure your game settings').element;
+    // const stepThree = new AboutElem('3', 'Configure your game settings').element;
+    this.aboutInner.append(this.aboutTitle, this.stepOne, this.stepTwo, this.stepThree);
     return this.element;
   }
 }

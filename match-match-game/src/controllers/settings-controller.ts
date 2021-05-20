@@ -5,14 +5,14 @@ import { DropdownItem } from "../app-components/setting-page-components/dropdown
 import { Component } from "../shared/component";
 
 export class SettingsController /*implements Component*/ {
-  readonly settingsPage: SettingPage;
+  settingsPage: SettingPage;
   buttonGameCards: DropdownButton;
   dropMenuGameCards: DropMenuGameCards;
   dropItemsGameCards: DropdownItem[];
   category: string;
 
-  constructor(private readonly page: HTMLElement) {
-    this.settingsPage = new SettingPage(this.page);
+  constructor(readonly settingPage: SettingPage) {
+    this.settingsPage = settingPage;
     this.buttonGameCards = this.settingsPage.settingGameCards.button;
     this.dropMenuGameCards = this.settingsPage.dropdownMenuGameCards;
     this.dropItemsGameCards = this.dropMenuGameCards.dropItems;
@@ -28,8 +28,8 @@ export class SettingsController /*implements Component*/ {
     // });
     // this.category = cat;
     this.category = newCategory;
-    console.log(this.category);
-    return this.category;
+    // console.log(this.category);
+    // return this.category;
   }
 
 

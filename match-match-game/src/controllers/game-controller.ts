@@ -14,8 +14,8 @@ const FLIP_CLASS = 'flipped';
 const FLIP_DELAY = 1000;
 const TIME_DELAY_BEFORE_SHOW_CORRECTNESS = 300;
 
-export class GameControllers implements Component {
-  readonly gamePage: GamePage;
+export class GameController {
+  // readonly gamePage: GamePage;
 
   cardsField: CardsField;
 
@@ -33,9 +33,10 @@ export class GameControllers implements Component {
 
   activeCard?: Card;
   cardsCategory: string;
+  timeTick: NodeJS.Timeout;
 
-  constructor(private readonly page: HTMLElement, private readonly settingsController: SettingsController) {
-    this.gamePage = new GamePage(page);
+  constructor(readonly gamePage: GamePage, private readonly settingsController: SettingsController) {
+    this.gamePage = gamePage;
     this.cardsCategory = settingsController.category;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
@@ -43,6 +44,9 @@ export class GameControllers implements Component {
     this.timer = new Timer();
     this.min = 0;
     this.sec = -1;
+    this.timeTick = setInterval(() => {
+      this.startTimer();
+    }, 1000);
   }
 
   startTimer() {
@@ -66,9 +70,21 @@ export class GameControllers implements Component {
     }
     this.timer.element.innerHTML = `${this.timer.min}:${this.timer.sec}`;
 
-    setTimeout(() => {
-      this.startTimer();
-    }, 1000);
+    // this.timeTick = setTimeout(() => {
+    //   this.startTimer();
+    // }, 1000);
+    // this.timeTick;
+  }
+
+  // timeTick() {
+  //   setTimeout(() => {
+  //     this.startTimer();
+  //   }, 1000);
+  // }
+
+  clearTimer() {
+    this.sec = -1;
+    this.min = 0;
   }
 
   clearField() {
@@ -83,7 +99,7 @@ export class GameControllers implements Component {
     this.cards.forEach((card) => this.cardsField.element.appendChild(card.render()));
     setTimeout(() => {
       // this => GameControllers because of static eslint
-      this.cards.forEach((card) => GameControllers.flipCardToBack(card));
+      this.cards.forEach((card) => GameController.flipCardToBack(card));
     }, TIME_SHOW_CARDS_BEFORE_GAME);
   }
 
@@ -93,7 +109,7 @@ export class GameControllers implements Component {
     currentCard.isFlipped = true; // card => currentCard because of no-param-reassign
     // this => GameControllers because of static eslint
     // card => currentCard because of no-param-reassign
-    return GameControllers.flipCard(currentCard, true);
+    return GameController.flipCard(currentCard, true);
   }
 
   // add static for eslint
@@ -102,7 +118,7 @@ export class GameControllers implements Component {
     currentCard.isFlipped = false; // card => currentCard because of no-param-reassign
     // this => GameControllers because of static eslint
     // card => currentCard because of no-param-reassign
-    return GameControllers.flipCard(currentCard);
+    return GameController.flipCard(currentCard);
   }
 
   // add static for eslint
@@ -116,6 +132,7 @@ export class GameControllers implements Component {
   }
 
   createNewGame(images: string[]) {
+    this.clearTimer();
     this.clearField();
     let cards = images.concat(images).map((url) => new Card(url));
     cards = _.shuffle(cards);
@@ -130,7 +147,7 @@ export class GameControllers implements Component {
     if (!card.isFlipped) return;
     this.isAnimation = true;
     // this => GameControllers because of static eslint
-    await GameControllers.flipCardToFront(card);
+    await GameController.flipCardToFront(card);
     if (!this.activeCard) {
       this.activeCard = card;
       this.isAnimation = false;
@@ -139,17 +156,17 @@ export class GameControllers implements Component {
     if (this.activeCard.image !== card.image) {
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       // this => GameControllers because of static eslint
-      GameControllers.notMatch(this.activeCard, card);
+      GameController.notMatch(this.activeCard, card);
       await delay(FLIP_DELAY);
       // this => GameControllers because of static eslint !!!BOTH!!!!
-      await Promise.all([GameControllers.flipCardToBack(this.activeCard),
-        GameControllers.flipCardToBack(card)]);
+      await Promise.all([GameController.flipCardToBack(this.activeCard),
+        GameController.flipCardToBack(card)]);
       // this => GameControllers because of static eslint
-      GameControllers.removeClassIncorrect(this.activeCard, card);
+      GameController.removeClassIncorrect(this.activeCard, card);
     } else {
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       // this => GameControllers because of static eslint
-      GameControllers.match(this.activeCard, card);
+      GameController.match(this.activeCard, card);
       await delay(FLIP_DELAY);
       // console.log("YES");
       this.activeCard = undefined;
@@ -196,14 +213,17 @@ export class GameControllers implements Component {
   }
 // !TODO: difficulty to const
   async startGame(currentCategory = this.cardsCategory, difficulty = 8) {
+    currentCategory = this.settingsController.category;
+    // console.log(this.settingsController.category);
+    
     // const currentCategory = categor;
     const response = await fetch('./images.json');
     const imagesJson: ImageCategoryModel[] = await response.json();
-    console.log(imagesJson);
+    // console.log(imagesJson);
     
     const selectedCategory = imagesJson.find(elem => elem.category === currentCategory.toLowerCase());
     if(!selectedCategory) throw new Error('Category not found');
-    console.log(selectedCategory);
+    // console.log(selectedCategory);
     
     // const selectedCategory = imagesJson[categor];
     const selectedCategoryWithDifficulty = selectedCategory.images.slice(0, difficulty);
@@ -213,8 +233,8 @@ export class GameControllers implements Component {
     this.createNewGame(images);
   }
 
-  render(): HTMLElement {
-    this.page.appendChild(this.gamePage.element);
-    return this.page;
-  }
+  // render(): HTMLElement {
+  //   this.page.appendChild(this.gamePage.element);
+  //   return this.page;
+  // }
 }

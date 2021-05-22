@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import './_normalize.scss';
 @import './_variables.scss';
+@import './shared/modals/_modals.scss';
 
 body {
   font-family: 'Roboto', sans-serif;

@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
+import $ from 'jquery';
 import { GamePage } from '../app-components/game-page';
 import { Card } from '../app-components/game-page-components/card';
 import { CardsField } from '../app-components/game-page-components/cards-field';
 import { ImageCategoryModel } from '../models/image-category-model';
-import { Component } from '../shared/component';
 import { delay } from '../shared/delay';
 import { BaseComponent } from '../shared/base-component';
 import { Timer } from '../app-components/game-page-components/timer';
@@ -16,8 +16,6 @@ const FLIP_DELAY = 1000;
 const TIME_DELAY_BEFORE_SHOW_CORRECTNESS = 300;
 
 export class GameController {
-  // readonly gamePage: GamePage;
-
   cardsField: CardsField;
 
   cards: Card[] = [];
@@ -33,13 +31,27 @@ export class GameController {
   isAnimation = false;
 
   activeCard?: Card;
-  cardsCategory: string;
-  timeTick: NodeJS.Timeout;
+
+  // cardsCategory: string;
+
   gameDifficulty: number;
 
-  constructor(readonly gamePage: GamePage, private readonly settingsController: SettingsController) {
+  timerId: number;
+
+  totalTime: number;
+
+  score: number;
+
+  amountMismatches: number;
+
+  amountMatches: number;
+
+  comparisonsAmount: number;
+
+  constructor(readonly gamePage: GamePage,
+    private readonly settingsController: SettingsController) {
     this.gamePage = gamePage;
-    this.cardsCategory = settingsController.category;
+    // this.cardsCategory = settingsController.category;
     this.gameDifficulty = settingsController.difficulty;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
@@ -47,12 +59,16 @@ export class GameController {
     this.timer = new Timer();
     this.min = 0;
     this.sec = -1;
-    this.timeTick = setInterval(() => {
-      this.startTimer();
-    }, 1000);
+    this.timerId = 0;
+    this.totalTime = 0;
+    this.score = 0;
+    this.amountMismatches = 0;
+    this.amountMatches = 0;
+    this.comparisonsAmount = 0;
   }
 
   startTimer() {
+    this.totalTime += 1;
     this.sec += 1;
     if (this.sec === 60) {
       this.min += 1;
@@ -74,9 +90,51 @@ export class GameController {
     this.timer.element.innerHTML = `${this.timer.min}:${this.timer.sec}`;
   }
 
+  // FIXME: redo timer
+  // !=====================================
+
+  timeTick() {
+    this.timerId = window.setInterval(() => {
+      this.startTimer();
+    }, 1000);
+  }
+
   clearTimer() {
     this.sec = -1;
     this.min = 0;
+    clearInterval(this.timerId);
+  }
+
+  stopGame() {
+    this.clearGameInfo();
+    this.clearField();
+    this.clearTimer();
+  }
+
+  clearGameInfo() {
+    this.totalTime = 0;
+    this.score = 0;
+    this.amountMismatches = 0;
+    this.amountMatches = 0;
+    this.comparisonsAmount = 0;
+  }
+
+  finishGame() {
+    this.countScore();
+    this.gamePage.modalWin.modalText.element.innerHTML = `Congratulations!
+    You successfully found all matches on ${this.min}.${this.sec} minutes.
+    Your score is ${this.score}.<br>Do you want to add your result to the high score table?`;
+    this.clearTimer();
+    console.log(this.score);
+    console.log(this.totalTime);
+    $('#modal-win').modal('show');
+  }
+
+  countScore() {
+    this.score = (this.comparisonsAmount - this.amountMismatches) * 100 - this.totalTime * 10;
+    if (this.score < 0) {
+      this.score = 0;
+    }
   }
 
   clearField() {
@@ -86,6 +144,7 @@ export class GameController {
 
   fillField(cards: Card[]) {
     this.cards = cards;
+    this.cardsField.element.innerHTML = '';
     this.cardsField.element.appendChild(this.gameTimer.element);
     this.gameTimer.element.appendChild(this.timer.element);
     this.cards.forEach((card) => this.cardsField.element.appendChild(card.render()));
@@ -124,8 +183,10 @@ export class GameController {
   }
 
   createNewGame(images: string[], currentDifficulty: number) {
-    this.clearTimer();
-    this.clearField();
+    // this.clearGameInfo();
+    // this.clearTimer();
+    // this.clearField();
+    this.stopGame();
     let cards = images.concat(images).map((url) => new Card(url));
     if (currentDifficulty !== DEFAULT_DIFFICULTY) {
       cards.forEach((card) => card.card.element.classList.add('card_small'));
@@ -136,7 +197,7 @@ export class GameController {
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));
 
     this.fillField(cards);
-    this.startTimer();
+    this.timeTick();
   }
 
   async cardHandler(card: Card) {
@@ -151,6 +212,8 @@ export class GameController {
       return;
     }
     if (this.activeCard.image !== card.image) {
+      this.comparisonsAmount += 1;
+      this.amountMismatches += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       // this => GameControllers because of static eslint
       GameController.notMatch(this.activeCard, card);
@@ -161,6 +224,8 @@ export class GameController {
       // this => GameControllers because of static eslint
       GameController.removeClassIncorrect(this.activeCard, card);
     } else {
+      this.amountMatches += 1;
+      this.comparisonsAmount += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       // this => GameControllers because of static eslint
       GameController.match(this.activeCard, card);
@@ -171,6 +236,9 @@ export class GameController {
     }
     this.activeCard = undefined;
     this.isAnimation = false;
+    if (this.amountMatches === this.gameDifficulty) {
+      this.finishGame();
+    }
   }
 
   // add static for eslint
@@ -209,24 +277,25 @@ export class GameController {
     // cardMath?.classList.add('hidden');
   }
 
-  async startGame(currentCategory = this.cardsCategory, currentDifficulty = this.gameDifficulty) {
-    currentCategory = this.settingsController.category;
-    currentDifficulty = this.settingsController.difficulty;
+  async startGame(currentCategory = this.settingsController.category,
+    currentDifficulty = this.settingsController.difficulty) {
+    // currentCategory = this.settingsController.category;
+    // currentDifficulty = this.settingsController.difficulty;
     // console.log(this.settingsController.category);
-    
+
     // const currentCategory = categor;
     const response = await fetch('./images.json');
     const imagesJson: ImageCategoryModel[] = await response.json();
     // console.log(imagesJson);
-    
-    const selectedCategory = imagesJson.find(elem => elem.category === currentCategory.toLowerCase());
-    if(!selectedCategory) throw new Error('Category not found');
+
+    const selectedCategory = imagesJson.find((elem) => elem.category === currentCategory.toLowerCase());
+    if (!selectedCategory) throw new Error('Category not found');
     // console.log(selectedCategory);
-    
+
     // const selectedCategory = imagesJson[categor];
     const selectedCategoryWithDifficulty = selectedCategory.images.slice(0, currentDifficulty);
     // console.log(selectedCategory.category);
-    
+
     const images = selectedCategoryWithDifficulty.map((fileName) => `${selectedCategory.category}/${fileName}`);
     this.createNewGame(images, currentDifficulty);
   }

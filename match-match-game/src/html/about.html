@@ -11,6 +11,7 @@
     <title>About</title>
 </head>
 <body>
+    <!-- class="modal-open" -->
     <header class="header">
         <nav class="nav">
             <ul class="nav-list">
@@ -51,31 +52,54 @@
         </div>
     </header>
 
-    <div class="modal" id="register-modal">
+    <div class="modal" id="register-modal" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <form action="#" class="register-form">
-                    <div class="register-form__title">Registr new Player</div>
+                    <div class="register-form__title">Register new Player</div>
                     <div class="register-form__body">
                         <div class="form-group">
-                            <label for="first-name" class="first-name">First Name</label>
+                            <label for="first-name" class="label-name">First Name</label>
                             <input type="text" class="form-control" id="first-name" placeholder="Enter your First Name">
+                            <div class="input-error">Error</div>
                         </div>
                         <div class="form-group">
-                            <label for="last-name" class="first-name">Last Name</label>
+                            <label for="last-name" class="label-name">Last Name</label>
                             <input type="text" class="form-control" id="last-name" placeholder="Enter your Last Name">
                         </div>
                         <div class="form-group">
-                            <label for="email" class="first-name">Email</label>
+                            <label for="email" class="label-name">Email</label>
                             <input type="email" class="form-control" id="email" placeholder="Enter your email">
                         </div>
                     </div>
-                    <img src="icons/avatar.png" alt="Avatar" class="register-form__avatar">
+                    <!-- <div class="custom-file">
+                        <input type="file" class="custom-file-input add-user-photo">
+                    </div> -->
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="add-user-photo">
+                        <label class="custom-file-label" for="add-user-photo"></label>
+                    </div>
+                    <!-- <div class="test"></div> -->
+                    <!-- <img src="icons/avatar.png" alt="Avatar" class="register-form__avatar"> -->
                     <div class="form-buttons">
                         <button type="submit" class="btn button button_blue button_add-user">Add user</button>
                         <button type="button" class="btn button" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-win" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-win">
+                    <div class="modal-win__text">Congratulations! You successfully found all matches on 1.21 minutes.<br>Do you want to add your result to the high score table?</div>
+                    <div class="modal-win__buttons">
+                        <button type="button" class="btn button" data-dismiss="modal">No, thanks</button>
+                        <button type="button" class="btn button button_blue" data-toggle="modal" data-target="#register-modal">Yes, register me</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,97 @@
+.modal-win {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.modal-win__buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-dialog {
+  min-width: 640px;
+}
+
+.modal-content {
+  max-width: 640px;
+}
+
+.register-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 640px;
+  height: auto;
+  background-color: $primary-lightest;
+  padding: 20px;
+}
+
+.register-form__title {
+  width: 100%;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  color: $text-color;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  width: 328px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: $bg-color-gray;
+}
+
+.label-name {
+  font-size: 12px;
+  line-height: 16px;
+  color: $text-color-light;
+}
+
+.input-error {
+  font-size: 12px;
+  line-height: 16px;
+  color: #f00;
+  padding: 5px;
+}
+
+.custom-file {
+  width: 198px;
+  height: 198px;
+  margin: auto;
+}
+
+.custom-file-input::after,
+.custom-file-label::after {
+  content: none !important;
+}
+
+.custom-file-input,
+.custom-file-label {
+  width: inherit;
+  height: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-file-label {
+  background: no-repeat center url(./assets/add-user-photo.png);
+  transition: all 0.2s linear;
+}
+
+.custom-file:hover {
+  .custom-file-label{
+    background: no-repeat center url(./assets/add-user-photo2.png);
+  }
+}
+
+.form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}

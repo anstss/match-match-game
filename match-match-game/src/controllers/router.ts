@@ -1,19 +1,24 @@
 import { AboutPage } from '../app-components/about-page';
+import { GamePage } from '../app-components/game-page';
 import { SettingPage } from '../app-components/setting-page';
 import { GameController } from './game-controller';
 import { SettingsController } from './settings-controller';
 
 export class Router {
   page: HTMLElement;
-  settingsController: SettingsController;
-  aboutPage: AboutPage;
-  gameController: GameController;
 
-  constructor(page: HTMLElement, aboutPage: AboutPage, settingsController: SettingsController, gameController: GameController) {
+  aboutPage: AboutPage;
+
+  gamePage: GamePage;
+
+  settingPage: SettingPage;
+
+  constructor(page: HTMLElement, aboutPage: AboutPage,
+    gamePage: GamePage, settingPage: SettingPage) {
     this.page = page;
     this.aboutPage = aboutPage;
-    this.settingsController = settingsController;
-    this.gameController = gameController;
+    this.gamePage = gamePage;
+    this.settingPage = settingPage;
   }
 
   startPageRoute = {
@@ -38,10 +43,10 @@ export class Router {
         // this.page.innerHTML = 'settings page';
         this.page.innerHTML = '';
         // const settingPage = new SettingsController(this.page).settingsPage.render;
-        this.settingsController.settingsPage.element.innerHTML = '';
-        this.settingsController.settingsPage.render();
+        // this.settingsController.settingsPage.element.innerHTML = '';
+        this.page.appendChild(this.settingPage.render());
         // console.log(this.settingsController.category + " result");
-        
+
         // settingsController.setGameCards(settingsController.category);
         // settingsController.dropItemsGameCards.forEach((option) => {
         //   option.element.addEventListener('click', () => {
@@ -59,9 +64,9 @@ export class Router {
         // const gamePage = new GamePage(this.page);
         // this.page.appendChild(gamePage.render());
         // const gameController = new GameController(this.page, this.settingsController);
-        this.page.appendChild(this.gameController.gamePage.render());
+        this.page.appendChild(this.gamePage.render());
         // this.gameController.stopGame();
-        this.gameController.startGame();
+        // this.gameController.startGame();
       },
     },
   ];

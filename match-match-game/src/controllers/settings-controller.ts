@@ -1,19 +1,27 @@
-import { SettingPage } from "../app-components/setting-page";
-import { DropMenuDifficulty } from "../app-components/setting-page-components/drop-menu-difficulty";
-import { DropMenuGameCards } from "../app-components/setting-page-components/drop-menu-game-cards";
-import { DropdownButton } from "../app-components/setting-page-components/dropdown-button";
-import { DropdownItem } from "../app-components/setting-page-components/dropdown-item";
-import { DEFAULT_CATEGORY, DEFAULT_DIFFICULTY } from "../shared/constans";
+import { SettingPage } from '../app-components/setting-page';
+import { DropMenuDifficulty } from '../app-components/setting-page-components/drop-menu-difficulty';
+import { DropMenuGameCards } from '../app-components/setting-page-components/drop-menu-game-cards';
+import { DropdownButton } from '../app-components/setting-page-components/dropdown-button';
+import { DropdownItem } from '../app-components/setting-page-components/dropdown-item';
+import { DEFAULT_CATEGORY, DEFAULT_DIFFICULTY } from '../shared/constans';
 
-export class SettingsController /*implements Component*/ {
+export class SettingsController /* implements Component */ {
   settingsPage: SettingPage;
+
   buttonGameCards: DropdownButton;
+
   dropMenuGameCards: DropMenuGameCards;
+
   dropItemsGameCards: DropdownItem[];
+
   category: string;
+
   difficulty: number;
+
   buttonDifficulty: DropdownButton;
+
   dropMenuDifficulty: DropMenuDifficulty;
+
   dropItemsDifficulty: DropdownItem[];
 
   constructor(readonly settingPage: SettingPage) {
@@ -38,7 +46,7 @@ export class SettingsController /*implements Component*/ {
     // this.category = cat;
     // this.buttonGameCards.element.innerHTML = this.dropItemsGameCards;
     // console.log(this.dropItemsGameCards);
-    
+
     this.category = newCategory;
     // console.log(this.category);
     // return this.category;
@@ -48,11 +56,9 @@ export class SettingsController /*implements Component*/ {
     this.difficulty = newDifficulty;
   }
 
-
-
   // test() {
   //   console.log(this.dropItemsGameCards);
-    
+
   // }
   // render() {
   //   this.page.appendChild(this.settingsPage.element);

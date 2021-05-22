@@ -1,28 +1,23 @@
 import './app-components/_header.scss';
-// import './app-components/_about-page.scss';
-// import './app-components/_game-page.scss';
 import { Component } from './shared/component';
 import { Header } from './app-components/header';
 import { Page } from './app-components/page';
+import { ModalRegister } from './shared/modals/modal-register';
 
 export class App implements Component {
   private readonly header: HTMLElement;
-  // aboutPage: HTMLElement;
+
+  registerModal: HTMLElement;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header(rootElement).render();
-    // this.aboutPage = new AboutPage(rootElement).render();
+    this.registerModal = new ModalRegister().render();
   }
 
   render(): HTMLElement {
-    this.rootElement.appendChild(this.header);
+    this.rootElement.append(this.header, this.registerModal);
     const page = new Page();
     this.rootElement.appendChild(page.element);
-    // page.element.appendChild(this.aboutPage);
-    // this.element.appendChild(new BaseComponent('ul', ['nav-list']).element);
-    // this.element.appendChild(new BaseComponent('li', ['nav-item']).element);
-    // let mainPage = new MainPage(this.element).render();
-    // this.element.appendChild(mainPage);
 
     return this.rootElement;
   }

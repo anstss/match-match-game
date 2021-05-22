@@ -106,3 +106,14 @@
 .incorrect {
   background: no-repeat right 10px top 10px url(../assets/incorrect.png) $card-red;
 }
+
+.text-message {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  color: $primary-color;
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+

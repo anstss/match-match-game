@@ -6,10 +6,15 @@ import { Title } from './title';
 
 export class AboutPage extends BaseComponent implements Component {
   container: HTMLElement;
+
   aboutInner: HTMLElement;
+
   aboutTitle: HTMLElement;
+
   stepOne: HTMLElement;
+
   stepTwo: HTMLElement;
+
   stepThree: HTMLElement;
 
   constructor(private readonly page: HTMLElement) {
@@ -20,7 +25,6 @@ export class AboutPage extends BaseComponent implements Component {
     this.stepOne = new AboutElem('1', 'Register new player in game').element;
     this.stepTwo = new AboutElem('2', 'Configure your game settings').element;
     this.stepThree = new AboutElem('3', 'Configure your game settings').element;
-    
   }
 
   render(): HTMLElement {

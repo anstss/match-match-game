@@ -4,8 +4,11 @@ import { DropdownMenu } from './dropdown-menu';
 
 export class DropMenuDifficulty extends DropdownMenu implements Component {
   options: string[];
+
   dropItems: DropdownItem[];
+
   dropItemEasy: DropdownItem;
+
   dropItemNormal: DropdownItem;
 
   constructor(options: string[]) {

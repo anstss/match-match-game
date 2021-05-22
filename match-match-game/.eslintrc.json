@@ -19,7 +19,9 @@
   ],
   "rules": {
     "import/extensions": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "max-len": ["error", { "code": 120 }],
+    "no-mixed-operators": "off"
     // "no-console": "warn"
   },
   "settings": {

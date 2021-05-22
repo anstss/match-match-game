@@ -3,10 +3,15 @@ import { Component } from '../../shared/component';
 
 export class Card extends BaseComponent implements Component {
   isFlipped = false;
+
   correct: BaseComponent;
+
   incorrect: BaseComponent;
+
   card: BaseComponent;
+
   cardFrontSide: BaseComponent;
+
   cardBackSide: BaseComponent;
 
   constructor(readonly image: string) {
@@ -31,7 +36,7 @@ export class Card extends BaseComponent implements Component {
   render() {
     this.element.appendChild(this.card.element);
     this.card.element.append(this.cardFrontSide.element, this.cardBackSide.element);
-    this.cardFrontSide.element.append(this.correct.element, this.incorrect.element)
+    this.cardFrontSide.element.append(this.correct.element, this.incorrect.element);
     // this.card.element.append(this.correct.element, this.incorrect.element);
     return this.element;
   }

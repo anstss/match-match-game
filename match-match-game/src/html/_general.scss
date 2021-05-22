@@ -222,6 +222,8 @@ a:hover {
 
 .register-form {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   width: 640px;
   height: auto;
@@ -246,14 +248,37 @@ a:hover {
   background-color: $bg-color-gray;
 }
 
-.first-name {
+.label-name {
   font-size: 12px;
   line-height: 16px;
   color: $text-color-light;
 }
 
-.register-form__avatar {
+.input-error {
+  font-size: 12px;
+  line-height: 16px;
+  color: #f00;
+  padding: 5px;
+}
+
+.custom-file {
   width: 198px;
   height: 198px;
   margin: auto;
+}
+
+.custom-file-input::after,
+.custom-file-label::after {
+  content: none;
+}
+
+.custom-file-input,
+.custom-file-label {
+  width: inherit;
+  height: inherit;
+  border: none;
+}
+
+.custom-file-label {
+  background: no-repeat center url('icons/add-user-photo.png');
 }

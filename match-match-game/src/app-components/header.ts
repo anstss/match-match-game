@@ -1,6 +1,7 @@
 import { BaseComponent } from '../shared/base-component';
 import { Component } from '../shared/component';
 import { ButtonStart } from './header-components/button-start';
+import { ButtonStop } from './header-components/button-stop';
 import { Logo } from './header-components/logo';
 import { NavLink } from './header-components/nav-link';
 
@@ -29,7 +30,8 @@ export class Header extends BaseComponent implements Component {
     const gameSettings = new NavLink('Game Settings', 'setting-icon.svg', '#settings').element;
     navItemSettings.appendChild(gameSettings);
     const buttonStart = new ButtonStart().element;
-    this.element.appendChild(buttonStart);
+    const buttonStop = new ButtonStop().element;
+    this.element.append(buttonStart, buttonStop);
 
     return this.element;
   }

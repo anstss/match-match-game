@@ -4,8 +4,11 @@ import { DropdownMenu } from './dropdown-menu';
 
 export class DropMenuGameCards extends DropdownMenu implements Component {
   options: string[];
+
   dropItems: DropdownItem[];
+
   dropItemAnimals: DropdownItem;
+
   dropItemNature: DropdownItem;
 
   constructor(options: string[]) {

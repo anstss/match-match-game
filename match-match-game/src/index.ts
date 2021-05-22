@@ -3,7 +3,8 @@
 // import 'popper.js';
 // import 'jquery';
 // import '@popperjs/core';
-// import 'bootstrap';
+// import bootstrap from 'bootstrap';
+import 'bootstrap';
 // import "~bootstrap/scss/bootstrap.scss";
 import './styles.scss';
 
@@ -25,18 +26,19 @@ window.onload = () => {
   const aboutPage = new AboutPage(page);
   const gamePage = new GamePage(page);
   const settingPage = new SettingPage(page);
+  const router = new Router(page, aboutPage, gamePage, settingPage);
+  router.updateRoute();
+  window.onpopstate = () => router.updateRoute();
 
   const settingsController = new SettingsController(settingPage);
-    // settingsController.setGameCards(settingsController.category);
+  // settingsController.setGameCards(settingsController.category);
   const gameController = new GameController(gamePage, settingsController);
-
 
   settingsController.dropItemsGameCards.forEach((option) => {
     option.element.addEventListener('click', () => {
       settingsController.buttonGameCards.element.innerHTML = option.element.innerText;
       settingsController.setGameCards(option.element.innerText);
       // console.log(option.element.innerText);
-      
     });
   });
 
@@ -48,13 +50,25 @@ window.onload = () => {
       // console.log(selectedDifficulty);
       settingsController.setDifficulty(selectedDifficulty);
       // console.log(option.element.innerText);
-      
     });
   });
   // console.log(settingsController.category);
-  
+
+  const buttonStart = document.getElementById('button-start');
+  const buttonStop = document.getElementById('button-stop');
+
+  buttonStart?.addEventListener('click', () => {
+    gameController.startGame();
+    buttonStart?.classList.add('hidden');
+    buttonStop?.classList.remove('hidden');
+  });
+
+  buttonStop?.addEventListener('click', () => {
+    gameController.stopGame();
+    buttonStop?.classList.add('hidden');
+    buttonStart?.classList.remove('hidden');
+    gameController.cardsField.element.innerHTML = '<div class="text-message">Click START GAME for a new game<div>';
+  });
+
   // settingsController.test();
-  const router = new Router(page, aboutPage, settingsController, gameController);
-  router.updateRoute();
-  window.onpopstate = () => router.updateRoute();
 };

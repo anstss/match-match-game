@@ -46,3 +46,16 @@
   letter-spacing: 0.25px;
   color: $text-color-light;
 }
+
+.modal-win {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.modal-win__buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+

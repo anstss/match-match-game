@@ -8,6 +8,7 @@
     "checkPrettier": "prettier --check src"
   },
   "devDependencies": {
+    "@types/bootstrap": "^4.6.0",
     "@types/jquery": "^3.5.5",
     "@types/lodash": "^4.14.169",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
@@ -36,6 +37,7 @@
   },
   "dependencies": {
     "@types/popper.js": "^1.11.0",
+    "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "popper.js": "^1.16.1",

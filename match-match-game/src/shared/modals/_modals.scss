@@ -95,3 +95,22 @@
   justify-content: flex-end;
   margin-top: 30px;
 }
+
+.form-control {
+  padding-right: 40px;
+}
+
+.valid {
+  border: 1px solid green;
+  background: no-repeat center right 10px url(./assets/correct.png) !important;
+}
+
+.btn.disabled {
+  &:hover {
+    // color: #fff;
+    border: 1px solid gray;
+    background-color: gray;
+  }
+  cursor: default;
+  background-color: gray;
+}

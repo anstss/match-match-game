@@ -708,3 +708,13 @@ a:hover {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+
+.valid {
+  border: 1px solid green;
+  background: no-repeat center right 10px url(../html/icons/correct.png);
+}
+
+.disabled {
+  cursor: none;
+  background: gray;
+}

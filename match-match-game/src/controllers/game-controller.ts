@@ -32,8 +32,6 @@ export class GameController {
 
   activeCard?: Card;
 
-  // cardsCategory: string;
-
   gameDifficulty: number;
 
   timerId: number;
@@ -51,7 +49,6 @@ export class GameController {
   constructor(readonly gamePage: GamePage,
     private readonly settingsController: SettingsController) {
     this.gamePage = gamePage;
-    // this.cardsCategory = settingsController.category;
     this.gameDifficulty = settingsController.difficulty;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
@@ -125,8 +122,6 @@ export class GameController {
     You successfully found all matches on ${this.min}.${this.sec} minutes.
     Your score is ${this.score}.<br>Do you want to add your result to the high score table?`;
     this.clearTimer();
-    console.log(this.score);
-    console.log(this.totalTime);
     $('#modal-win').modal('show');
   }
 
@@ -149,7 +144,6 @@ export class GameController {
     this.gameTimer.element.appendChild(this.timer.element);
     this.cards.forEach((card) => this.cardsField.element.appendChild(card.render()));
     setTimeout(() => {
-      // this => GameControllers because of static eslint
       this.cards.forEach((card) => GameController.flipCardToBack(card));
     }, TIME_SHOW_CARDS_BEFORE_GAME);
   }
@@ -157,18 +151,14 @@ export class GameController {
   // add static for eslint
   static flipCardToBack(card: Card) {
     const currentCard = card; // add no-param-reassign special for eslint
-    currentCard.isFlipped = true; // card => currentCard because of no-param-reassign
-    // this => GameControllers because of static eslint
-    // card => currentCard because of no-param-reassign
+    currentCard.isFlipped = true;
     return GameController.flipCard(currentCard, true);
   }
 
   // add static for eslint
   static flipCardToFront(card: Card) {
     const currentCard = card; // add no-param-reassign special for eslint
-    currentCard.isFlipped = false; // card => currentCard because of no-param-reassign
-    // this => GameControllers because of static eslint
-    // card => currentCard because of no-param-reassign
+    currentCard.isFlipped = false;
     return GameController.flipCard(currentCard);
   }
 
@@ -183,9 +173,6 @@ export class GameController {
   }
 
   createNewGame(images: string[], currentDifficulty: number) {
-    // this.clearGameInfo();
-    // this.clearTimer();
-    // this.clearField();
     this.stopGame();
     let cards = images.concat(images).map((url) => new Card(url));
     if (currentDifficulty !== DEFAULT_DIFFICULTY) {
@@ -204,7 +191,6 @@ export class GameController {
     if (this.isAnimation) return;
     if (!card.isFlipped) return;
     this.isAnimation = true;
-    // this => GameControllers because of static eslint
     await GameController.flipCardToFront(card);
     if (!this.activeCard) {
       this.activeCard = card;
@@ -215,22 +201,17 @@ export class GameController {
       this.comparisonsAmount += 1;
       this.amountMismatches += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
-      // this => GameControllers because of static eslint
       GameController.notMatch(this.activeCard, card);
       await delay(FLIP_DELAY);
-      // this => GameControllers because of static eslint !!!BOTH!!!!
       await Promise.all([GameController.flipCardToBack(this.activeCard),
         GameController.flipCardToBack(card)]);
-      // this => GameControllers because of static eslint
       GameController.removeClassIncorrect(this.activeCard, card);
     } else {
       this.amountMatches += 1;
       this.comparisonsAmount += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
-      // this => GameControllers because of static eslint
       GameController.match(this.activeCard, card);
       await delay(FLIP_DELAY);
-      // console.log("YES");
       this.activeCard = undefined;
       this.isAnimation = false;
     }
@@ -247,10 +228,6 @@ export class GameController {
     const cardMath = card.correct;
     activeMatch?.element.classList.remove('hidden');
     cardMath?.element.classList.remove('hidden');
-    // const activeMatch = activeCard.element.querySelector('.correct');
-    // const cardMath = card.element.querySelector('.correct');
-    // activeMatch?.classList.remove('hidden');
-    // cardMath?.classList.remove('hidden');
   }
 
   // add static for eslint
@@ -259,10 +236,6 @@ export class GameController {
     const cardMath = card.incorrect;
     activeMatch?.element.classList.remove('hidden');
     cardMath?.element.classList.remove('hidden');
-    // const activeMatch = activeCard.element.querySelector('.incorrect');
-    // const cardMath = card.element.querySelector('.incorrect');
-    // activeMatch?.classList.remove('hidden');
-    // cardMath?.classList.remove('hidden');
   }
 
   // add static for eslint
@@ -271,30 +244,17 @@ export class GameController {
     const cardMath = card.incorrect;
     activeMatch?.element.classList.add('hidden');
     cardMath?.element.classList.add('hidden');
-    // const activeMatch = activeCard.element.querySelector('.incorrect');
-    // const cardMath = card.element.querySelector('.incorrect');
-    // activeMatch?.classList.add('hidden');
-    // cardMath?.classList.add('hidden');
   }
 
   async startGame(currentCategory = this.settingsController.category,
     currentDifficulty = this.settingsController.difficulty) {
-    // currentCategory = this.settingsController.category;
-    // currentDifficulty = this.settingsController.difficulty;
-    // console.log(this.settingsController.category);
-
-    // const currentCategory = categor;
     const response = await fetch('./images.json');
     const imagesJson: ImageCategoryModel[] = await response.json();
-    // console.log(imagesJson);
 
     const selectedCategory = imagesJson.find((elem) => elem.category === currentCategory.toLowerCase());
     if (!selectedCategory) throw new Error('Category not found');
-    // console.log(selectedCategory);
 
-    // const selectedCategory = imagesJson[categor];
     const selectedCategoryWithDifficulty = selectedCategory.images.slice(0, currentDifficulty);
-    // console.log(selectedCategory.category);
 
     const images = selectedCategoryWithDifficulty.map((fileName) => `${selectedCategory.category}/${fileName}`);
     this.createNewGame(images, currentDifficulty);

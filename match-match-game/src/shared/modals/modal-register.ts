@@ -30,6 +30,8 @@ export class ModalRegister extends BaseComponent implements Component {
 
   buttonCancel: BaseComponent;
 
+  inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[];
+
   constructor() {
     super('div', ['modal']);
     this.element.setAttribute('id', 'register-modal');
@@ -45,13 +47,15 @@ export class ModalRegister extends BaseComponent implements Component {
     this.inputEmail = new InputEmail();
     this.inputUserPhoto = new InputPhoto();
     this.formButtons = new BaseComponent('div', ['form-buttons']);
-    this.buttonAddUser = new BaseComponent('button', ['btn', 'button', 'button_blue', 'button_add-user']);
+    this.buttonAddUser = new BaseComponent('button', ['btn', 'button', 'button_blue', 'button_add-user', 'disabled']);
     this.buttonAddUser.element.setAttribute('type', 'submit');
+    this.buttonAddUser.element.setAttribute('disabled', 'disabled');
     this.buttonAddUser.element.innerText = 'Add user';
     this.buttonCancel = new BaseComponent('button', ['btn', 'button']);
     this.buttonCancel.element.setAttribute('type', 'button');
     this.buttonCancel.element.setAttribute('data-dismiss', 'modal');
     this.buttonCancel.element.innerText = 'Cancel';
+    this.inputs = [this.inputFirstName, this.inputLastName, this.inputEmail, this.inputUserPhoto];
   }
 
   render() {

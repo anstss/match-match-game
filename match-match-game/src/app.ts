@@ -5,19 +5,23 @@ import { Page } from './app-components/page';
 import { ModalRegister } from './shared/modals/modal-register';
 
 export class App implements Component {
-  private readonly header: HTMLElement;
+  // private readonly header:
+  header: Header;
 
-  registerModal: HTMLElement;
+  page: Page;
+
+  registerModal: ModalRegister;
 
   constructor(private readonly rootElement: HTMLElement) {
-    this.header = new Header(rootElement).render();
-    this.registerModal = new ModalRegister().render();
+    this.header = new Header(rootElement);
+    this.registerModal = new ModalRegister();
+    this.page = new Page();
   }
 
   render(): HTMLElement {
-    this.rootElement.append(this.header, this.registerModal);
-    const page = new Page();
-    this.rootElement.appendChild(page.element);
+    this.rootElement.append(this.header.render(), this.registerModal.render(), this.page.element);
+    // const page = new Page();
+    // this.rootElement.appendChild(page.element);
 
     return this.rootElement;
   }

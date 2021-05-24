@@ -106,6 +106,8 @@ export class GameController {
     this.clearGameInfo();
     this.clearField();
     this.clearTimer();
+    // $('#modal-win').modal('show');
+    // // TODO: DELETE THIS
   }
 
   clearGameInfo() {

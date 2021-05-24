@@ -17,7 +17,11 @@ export class Validator {
       inputElem.input.addEventListener('input', () => Validator.validate(inputElem));
       inputElem.input.addEventListener('input', () => this.checkValidityForm(this.inputs));
     });
-    this.registerForm.buttonCancel.element.addEventListener('click', () => Validator.clearForm(this.inputs));
+    this.registerForm.buttonCancel.element.addEventListener('click', () => {
+      Validator.clearForm(this.inputs);
+      this.checkValidityForm(this.inputs);
+    });
+    // this.registerForm.buttonAddUser.element.addEventListener('click', () => this.getUser());
   }
 
   // static for eslint Expected 'this' to be used by class method 'validate'     class-methods-use-this
@@ -57,27 +61,34 @@ export class Validator {
         currentInput.error.element.innerText = ``;
       } */
     }
-    /* if (currentInpuName === 'user-photo') {
-      if (currentInputValue !== '' ||
-        currentInputValue.match(/\.(png|jpg|jpeg)$/i) === null) {
-          console.log(currentInputValue);
-
-        currentInput.isValid = false;
-        currentInput.error.element.innerText = `Allowed extensions: .png .jpg .jpeg`;
-        return;
-      }/* else {
-        currentInput.isValid = true;
-        currentInput.error.element.innerText = ``;
-      } */
 
     currentInput.isValid = true;
     currentInput.input.classList.add('valid');
     currentInput.error.element.innerText = '';
+
+    // if (currentInpuName === 'user-photo') {
+    //   console.log();
+
+    //   if (currentInput.input.size > 209715) {
+
+    //     currentInput.isValid = false;
+    //     currentInput.error.element.innerText = `Allowed extensions: .png .jpg .jpeg. Max file size is 0.2MB`;
+    //     return;
+    //   } else {
+    //     currentInput.isValid = true;
+    //     currentInput.input.classList.add('valid');
+    //     currentInput.error.element.innerText = ``;
+    //   }
+    // }
+    // currentInput.isValid = true;
+    // currentInput.input.classList.add('valid');
+    // currentInput.error.element.innerText = '';
   }
 
   checkValidityForm(inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[]) {
     const validationValues: boolean[] = [];
     inputs.forEach((inputElem) => validationValues.push(inputElem.isValid));
+    // console.log(validationValues);
     if (validationValues.includes(false)) {
       this.registerForm.buttonAddUser.element.setAttribute('disabled', 'disabled');
       this.registerForm.buttonAddUser.element.classList.add('disabled');
@@ -91,15 +102,27 @@ export class Validator {
   static clearForm(inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[]) {
     inputs.forEach((inputElem) => {
       const currentInput = inputElem;
-      currentInput.input.value = '';
-      currentInput.input.classList.remove('valid');
-      currentInput.error.element.innerText = '';
+      currentInput.isValid = false;
+      // currentInput.input.name === 'user-photo'
+      if (currentInput instanceof InputPhoto) {
+        currentInput.isValid = true;
+        currentInput.input.removeAttribute('data-URL');
+        currentInput.userImg.element.removeAttribute('src');
+        currentInput.error.element.innerText = '';
+      } else {
+        currentInput.input.value = '';
+        currentInput.input.classList.remove('valid');
+        currentInput.error.element.innerText = '';
+      }
     });
+    // console.log();
   }
 
   // getUser() {
   //   const user: { [key: string] : string} = {};
   //   this.inputs.forEach((inputElem) => user[inputElem.input.name] = inputElem.input.value);
+  //   console.log(user);
+
   //   return user;
   // }
 }

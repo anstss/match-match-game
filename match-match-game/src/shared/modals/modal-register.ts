@@ -39,6 +39,8 @@ export class ModalRegister extends BaseComponent implements Component {
     this.modalDialog = new BaseComponent('div', ['modal-dialog', 'modal-dialog-centered']);
     this.modalContent = new BaseComponent('div', ['modal-content']);
     this.form = new BaseComponent('form', ['register-form']);
+    // this.form.element.setAttribute('onsubmit', 'submitForm()');
+    this.form.element.setAttribute('id', 'register-form');
     this.formTitle = new BaseComponent('div', ['register-form__title']);
     this.formTitle.element.innerText = 'Register new Player';
     this.formBody = new BaseComponent('div', ['register-form__body']);
@@ -49,6 +51,7 @@ export class ModalRegister extends BaseComponent implements Component {
     this.formButtons = new BaseComponent('div', ['form-buttons']);
     this.buttonAddUser = new BaseComponent('button', ['btn', 'button', 'button_blue', 'button_add-user', 'disabled']);
     this.buttonAddUser.element.setAttribute('type', 'submit');
+    // this.buttonAddUser.element.setAttribute('id', 'add-user-button');
     this.buttonAddUser.element.setAttribute('disabled', 'disabled');
     this.buttonAddUser.element.innerText = 'Add user';
     this.buttonCancel = new BaseComponent('button', ['btn', 'button']);

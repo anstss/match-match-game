@@ -70,6 +70,7 @@
   content: none !important;
 }
 
+
 .custom-file-input,
 .custom-file-label {
   width: inherit;
@@ -79,14 +80,26 @@
 }
 
 .custom-file-label {
-  background: no-repeat center url(./assets/add-user-photo.png);
-  transition: all 0.2s linear;
+  background: no-repeat center url(./assets/add-user-photo-plus.svg),
+  no-repeat center url(./assets/add-user-photo-bg.png);
 }
 
 .custom-file:hover {
-  .custom-file-label{
-    background: no-repeat center url(./assets/add-user-photo2.png);
+  .custom-file-label {
+    background: no-repeat center url(./assets/add-user-photo-plus-hover.svg),
+    no-repeat center url(./assets/add-user-photo-bg.png);
   }
+}
+
+.selected-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  overflow: hidden;
+  // background-color: $primary-color;
 }
 
 .form-buttons {

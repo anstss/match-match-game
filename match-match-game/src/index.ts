@@ -4,6 +4,7 @@
 // import 'jquery';
 // import '@popperjs/core';
 // import bootstrap from 'bootstrap';
+import $ from 'jquery';
 import 'bootstrap';
 // import "~bootstrap/scss/bootstrap.scss";
 import './styles.scss';
@@ -17,6 +18,7 @@ import { GameController } from './controllers/game-controller';
 import { SettingPage } from './app-components/setting-page';
 import { DIFFICULTY_REGEXP } from './shared/constans';
 import { Validator } from './controllers/validator';
+import { UsersData } from './controllers/users-data';
 
 window.onload = () => {
   const rootElement = document.getElementById('app');
@@ -68,7 +70,20 @@ window.onload = () => {
   });
 
   const registerForm = app.registerModal;
+  // const usersData = new UsersData(registerForm, gameController);
   const validator = new Validator(registerForm);
+  const usersData = new UsersData(registerForm, gameController);
+
+  $('#register-form').on('submit', (event) => {
+    event.preventDefault();
+    usersData.addUser();
+    // validator.getUser();
+  });
+
+  // function submitForm(event: MouseEvent) {
+  //   event.preventDefault();
+  //   validator.getUser();
+  // }
 
   // registerForm.buttonCancel.element.addEventListener('click', () => {
   //   registerForm.inputs.forEach((inputElem) => {

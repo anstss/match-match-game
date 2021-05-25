@@ -1,8 +1,10 @@
 import { AboutPage } from '../app-components/about-page';
 import { GamePage } from '../app-components/game-page';
+import { ScorePage } from '../app-components/score-page';
 import { SettingPage } from '../app-components/setting-page';
 import { GameController } from './game-controller';
 import { SettingsController } from './settings-controller';
+import { UsersData } from './users-data';
 
 export class Router {
   page: HTMLElement;
@@ -12,13 +14,17 @@ export class Router {
   gamePage: GamePage;
 
   settingPage: SettingPage;
+  usersData: UsersData;
+  // scorePage: ScorePage;
 
   constructor(page: HTMLElement, aboutPage: AboutPage,
-    gamePage: GamePage, settingPage: SettingPage) {
+    gamePage: GamePage, settingPage: SettingPage, usersData: UsersData) {
     this.page = page;
     this.aboutPage = aboutPage;
     this.gamePage = gamePage;
     this.settingPage = settingPage;
+    this.usersData = usersData;
+    // this.scorePage = scorePage;
   }
 
   startPageRoute = {
@@ -34,7 +40,10 @@ export class Router {
     {
       routeName: 'score',
       component: () => {
-        this.page.innerHTML = 'score page';
+        this.page.innerHTML = '';
+        const scorePage = new ScorePage(this.page, this.usersData);
+        this.page.appendChild(scorePage.render());
+        // console.log('test');
       },
     },
     {

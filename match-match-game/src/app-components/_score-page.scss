@@ -1,0 +1,72 @@
+@import '../variables';
+// Best players
+// ===================================
+
+.best-players__inner {
+  padding: 50px;
+  background-color: $bg-color-gray;
+  margin: 33px 0;
+}
+
+.best-players__title {
+  margin-bottom: 24px;
+}
+
+.player {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);;
+  margin-bottom: 15px;
+}
+
+.player__avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+
+.player__info {
+  width: 100%;
+}
+
+.player__name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.1px;
+  color: $text-color;
+}
+
+.player__email {
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.4px;
+  color: $text-color-light;
+}
+
+.player__score {
+  display: flex;
+  width: auto;
+  padding: 0;
+  background-color: transparent;
+  margin-bottom: 0;
+}
+
+.score-label,
+.score-value {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: $text-color;
+  margin-bottom: 0;
+}
+
+.score-value {
+  width: 30px;
+  border: none;
+  color: $primary-color;
+}

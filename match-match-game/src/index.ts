@@ -19,6 +19,7 @@ import { SettingPage } from './app-components/setting-page';
 import { DIFFICULTY_REGEXP } from './shared/constans';
 import { Validator } from './controllers/validator';
 import { UsersData } from './controllers/users-data';
+// import { ScorePage } from './app-components/score-page';
 
 window.onload = () => {
   const rootElement = document.getElementById('app');
@@ -30,12 +31,24 @@ window.onload = () => {
   const aboutPage = new AboutPage(page);
   const gamePage = new GamePage(page);
   const settingPage = new SettingPage(page);
-  const router = new Router(page, aboutPage, gamePage, settingPage);
-  router.updateRoute();
-  window.onpopstate = () => router.updateRoute();
 
+  const registerForm = app.registerModal;
   const settingsController = new SettingsController(settingPage);
   const gameController = new GameController(gamePage, settingsController);
+  // const usersData = new UsersData(registerForm, gameController);
+  const validator = new Validator(registerForm);
+  const usersData = new UsersData(registerForm, gameController);
+
+  // const scorePage = new ScorePage(page, usersData);
+
+  const router = new Router(page, aboutPage, gamePage, settingPage, usersData);
+  router.updateRoute();
+  window.onpopstate = () => {
+    // scorePage.topTen = usersData.getTopTen();
+    router.updateRoute();
+  } 
+
+
 
   settingsController.dropItemsGameCards.forEach((option) => {
     option.element.addEventListener('click', () => {
@@ -69,14 +82,11 @@ window.onload = () => {
     gameController.cardsField.element.innerHTML = '<div class="text-message">Click START GAME for a new game<div>';
   });
 
-  const registerForm = app.registerModal;
-  // const usersData = new UsersData(registerForm, gameController);
-  const validator = new Validator(registerForm);
-  const usersData = new UsersData(registerForm, gameController);
-
   $('#register-form').on('submit', (event) => {
     event.preventDefault();
     usersData.addUser();
+    $('#register-modal').modal('hide');
+    // usersData.getTopTen();
     // validator.getUser();
   });
 

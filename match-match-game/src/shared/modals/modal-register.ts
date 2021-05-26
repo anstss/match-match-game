@@ -67,9 +67,9 @@ export class ModalRegister extends BaseComponent implements Component {
     this.modalDialog.element.appendChild(this.modalContent.element);
     this.modalContent.element.appendChild(this.form.element);
     this.form.element.append(this.formTitle.element, this.formBody.element,
-    this.inputUserPhoto.render(), this.formButtons.element);
+      this.inputUserPhoto.render(), this.formButtons.element);
     this.formBody.element.append(this.inputFirstName.render(),
-    this.inputLastName.render(), this.inputEmail.render());
+      this.inputLastName.render(), this.inputEmail.render());
     this.formButtons.element.append(this.buttonAddUser.element, this.buttonCancel.element);
 
     return this.element;

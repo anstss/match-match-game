@@ -8,23 +8,38 @@ import { delay } from '../shared/delay';
 import { BaseComponent } from '../shared/base-component';
 import { Timer } from '../app-components/game-page-components/timer';
 import { SettingsController } from './settings-controller';
-import { DEFAULT_DIFFICULTY, FLIP_CLASS, FLIP_DELAY, TIME_DELAY_BEFORE_SHOW_CORRECTNESS, TIME_SHOW_CARDS_BEFORE_GAME } from '../shared/constans';
+import {
+  DEFAULT_DIFFICULTY, FLIP_CLASS, FLIP_DELAY, TIME_DELAY_BEFORE_SHOW_CORRECTNESS, TIME_SHOW_CARDS_BEFORE_GAME,
+} from '../shared/constans';
 import { App } from '../app';
 
 export class GameController {
   cardsField: CardsField;
+
   cards: Card[] = [];
+
   gameTimer: BaseComponent;
+
   timer: Timer;
+
   isAnimation = false;
+
   activeCard?: Card;
+
   gameDifficulty: number;
+
   timerId: number;
+
   totalTime: number;
+
   score: number;
+
   amountMismatches: number;
+
   amountMatches: number;
+
   comparisonsAmount: number;
+
   startTime: number;
 
   constructor(readonly gamePage: GamePage,
@@ -46,8 +61,8 @@ export class GameController {
   }
 
   showTime() {
-    let min = Math.floor((this.totalTime / 60));
-    let sec = Math.floor(this.totalTime % 60);
+    const min = Math.floor((this.totalTime / 60));
+    const sec = Math.floor(this.totalTime % 60);
     if (min === 100) {
       throw new Error('Too long');
     }
@@ -67,7 +82,7 @@ export class GameController {
   startTimer() {
     let prevTime = 0;
     this.timerId = window.setInterval(() => {
-      let currentTime = Date.now();
+      const currentTime = Date.now();
       this.totalTime = Math.floor((currentTime - this.startTime) / 1000);
       if (prevTime !== this.totalTime) {
         this.showTime();
@@ -160,7 +175,7 @@ export class GameController {
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));
 
     this.fillField(cards);
-    this.timer.element.innerHTML = `00:00`;
+    this.timer.element.innerHTML = '00:00';
     this.startTime = Date.now();
     this.startTimer();
   }

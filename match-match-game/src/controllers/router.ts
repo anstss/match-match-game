@@ -14,16 +14,17 @@ export class Router {
   gamePage: GamePage;
 
   settingPage: SettingPage;
-  usersData: UsersData;
+
+  // usersData: UsersData;
   // scorePage: ScorePage;
 
   constructor(page: HTMLElement, aboutPage: AboutPage,
-    gamePage: GamePage, settingPage: SettingPage, usersData: UsersData) {
+    gamePage: GamePage, settingPage: SettingPage) {
     this.page = page;
     this.aboutPage = aboutPage;
     this.gamePage = gamePage;
     this.settingPage = settingPage;
-    this.usersData = usersData;
+    // this.usersData = usersData;
     // this.scorePage = scorePage;
   }
 
@@ -41,7 +42,7 @@ export class Router {
       routeName: 'score',
       component: () => {
         this.page.innerHTML = '';
-        const scorePage = new ScorePage(this.page, this.usersData);
+        const scorePage = new ScorePage(this.page);
         this.page.appendChild(scorePage.render());
         // console.log('test');
       },

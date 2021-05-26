@@ -29,6 +29,7 @@ export class Header extends BaseComponent implements Component {
   buttonStart: ButtonStart;
 
   buttonStop: ButtonStop;
+
   navItems: BaseComponent[];
 
   constructor(private readonly rootElement: HTMLElement) {

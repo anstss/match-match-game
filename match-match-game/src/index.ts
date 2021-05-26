@@ -27,18 +27,20 @@ window.onload = () => {
   const app = new App(rootElement);
   app.render();
 
-  app.header.navItems.forEach((item) => {
-    item.element.addEventListener('click', () => {
+  // app.header.navItemAbout.element.classList.add('active-link')
+
+  app.header.navItems.forEach((navItem) => {
+    navItem.element.addEventListener('click', () => {
       app.header.navItems.forEach((item) => {
         item.element.classList.remove('active-link');
       });
-      if (item.element.getAttribute('id') === 'logo') {
+      if (navItem.element.getAttribute('id') === 'logo') {
         app.header.navItemAbout.element.classList.add('active-link');
       } else {
-        item.element.classList.add('active-link');
+        navItem.element.classList.add('active-link');
       }
-    })
-  })
+    });
+  });
 
   const page = app.page.element;
   // if (!page) throw new Error('No page');
@@ -50,7 +52,7 @@ window.onload = () => {
 
   registerForm.buttonCancel.element.addEventListener('click', () => {
     registerForm.inputUserPhoto.label.element.classList.remove('no-bg');
-  })
+  });
 
   const settingsController = new SettingsController(settingPage);
   const gameController = new GameController(gamePage, settingsController, app);
@@ -60,14 +62,12 @@ window.onload = () => {
 
   // const scorePage = new ScorePage(page, usersData);
 
-  const router = new Router(page, aboutPage, gamePage, settingPage, usersData);
+  const router = new Router(page, aboutPage, gamePage, settingPage);
   router.updateRoute();
   window.onpopstate = () => {
     // scorePage.topTen = usersData.getTopTen();
     router.updateRoute();
-  } 
-
-
+  };
 
   settingsController.dropItemsGameCards.forEach((option) => {
     option.element.addEventListener('click', () => {
@@ -105,8 +105,8 @@ window.onload = () => {
     event.preventDefault();
     try {
       usersData.addUser();
-    } catch(e) {
-      usersData.clearStorage();
+    } catch (e) {
+      UsersData.clearStorage();
       usersData.addUser();
     }
     $('#register-modal').modal('hide');

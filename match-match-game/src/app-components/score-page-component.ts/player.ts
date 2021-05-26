@@ -1,14 +1,21 @@
-import { BaseComponent } from "../../shared/base-component";
-import { Component } from "../../shared/component";
+import { BaseComponent } from '../../shared/base-component';
+import { Component } from '../../shared/component';
 
 export class Player extends BaseComponent implements Component {
   playerPhoto: BaseComponent;
+
   playerInfo: BaseComponent;
+
   playerName: BaseComponent;
+
   playerEmail: BaseComponent;
+
   playerScore: BaseComponent;
+
   scoreLabel: BaseComponent;
+
   scoreValue: BaseComponent;
+
   constructor(playerPhotoSRC: string, playerFirstName: string,
     playerLastName: string, playerEmail: string, playerScore: string) {
     super('div', ['player']);
@@ -22,7 +29,7 @@ export class Player extends BaseComponent implements Component {
     this.playerEmail.element.innerText = `${playerEmail}`;
     this.playerScore = new BaseComponent('div', ['player__score']);
     this.scoreLabel = new BaseComponent('div', ['score-label']);
-    this.scoreLabel.element.innerText = `Score: `;
+    this.scoreLabel.element.innerText = 'Score: ';
     this.scoreValue = new BaseComponent('div', ['score-value']);
     this.scoreValue.element.innerText = `${playerScore}`;
   }

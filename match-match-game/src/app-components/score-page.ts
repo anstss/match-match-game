@@ -8,11 +8,16 @@ import './_score-page.scss';
 
 export class ScorePage extends BaseComponent implements Component {
   container: HTMLElement;
+
   scorePageInner: HTMLElement;
+
   scoreTitle: HTMLElement;
+
   topTen: UsersDataInterface[];
+
   top: BaseComponent;
-  constructor(private readonly page: HTMLElement, usersData: UsersData) {
+
+  constructor(private readonly page: HTMLElement) {
     super('div', ['best-players']);
     this.container = new BaseComponent('div', ['container']).element;
     this.scorePageInner = new BaseComponent('div', ['best-players__inner']).element;
@@ -22,19 +27,20 @@ export class ScorePage extends BaseComponent implements Component {
     // window.onload = () => {
 
     // }
-    this.topTen = usersData.getTopTen();
+    this.topTen = UsersData.getTopTen();
     this.topTen.forEach((user) => {
-      if (user['user-photo'] === null) {
-        user['user-photo'] = `./icons/avatar.png`;
+      const player = user; // no-param-reassign special for eslint
+      if (player['user-photo'] === null) {
+        player['user-photo'] = './icons/avatar.png';
       }
       // console.log(user['first-name']);
-      
+
       // for (let key in user) {
       //   console.log(key);
-        
+
       // }
-      this.top.element.appendChild(new Player(user['user-photo'], user['first-name'],
-      user['last-name'], user['email'], user['score']).render());
+      this.top.element.appendChild(new Player(player['user-photo'], player['first-name'],
+        player['last-name'], player.email, player.score).render());
     });
   }
 

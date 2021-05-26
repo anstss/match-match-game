@@ -73,19 +73,24 @@ export class UsersData {
     // console.log(user);
   }
 
-  clearStorage() {
-    const topTen = this.getTopTen();
+  static clearStorage() {
+    const topTen = UsersData.getTopTen();
     window.localStorage.clear();
     topTen.forEach((player) => {
       localStorage.setItem(Date.now().toString(), JSON.stringify(player));
     });
   }
 
-  getTopTen() {
-    let allUsers = [];
-    let keys = Object.keys(window.localStorage);
-    for (let key of keys) {
-      allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
+  static getTopTen() {
+    const allUsers = [];
+    // const keys = Object.keys(window.localStorage);
+    // for (const key of keys) {
+    //   allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
+    // }
+    // special for eslint "no-restricted-syntax"
+    for (let i = 0; i < window.localStorage.length; i += 1) {
+      const key = window.localStorage.key(i);
+      allUsers.push(JSON.parse(window.localStorage.getItem(key!)!));
     }
     const topTen = _.sortBy(allUsers, 'score').reverse().slice(0, 10);
     return topTen;

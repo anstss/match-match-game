@@ -26,6 +26,20 @@ window.onload = () => {
   if (!rootElement) throw new Error('No root element');
   const app = new App(rootElement);
   app.render();
+
+  app.header.navItems.forEach((item) => {
+    item.element.addEventListener('click', () => {
+      app.header.navItems.forEach((item) => {
+        item.element.classList.remove('active-link');
+      });
+      if (item.element.getAttribute('id') === 'logo') {
+        app.header.navItemAbout.element.classList.add('active-link');
+      } else {
+        item.element.classList.add('active-link');
+      }
+    })
+  })
+
   const page = app.page.element;
   // if (!page) throw new Error('No page');
   const aboutPage = new AboutPage(page);
@@ -34,7 +48,7 @@ window.onload = () => {
 
   const registerForm = app.registerModal;
   const settingsController = new SettingsController(settingPage);
-  const gameController = new GameController(gamePage, settingsController);
+  const gameController = new GameController(gamePage, settingsController, app);
   // const usersData = new UsersData(registerForm, gameController);
   const validator = new Validator(registerForm);
   const usersData = new UsersData(registerForm, gameController);
@@ -88,6 +102,10 @@ window.onload = () => {
     $('#register-modal').modal('hide');
     // usersData.getTopTen();
     // validator.getUser();
+  });
+
+  gamePage.modalWin.buttonNo.element.addEventListener('click', () => {
+    $('#modal-win').modal('hide');
   });
 
   // function submitForm(event: MouseEvent) {

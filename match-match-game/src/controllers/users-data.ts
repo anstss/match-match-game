@@ -27,6 +27,8 @@ export class UsersData {
     // this.registerForm = registerForm;
   }
 
+  // TODO: TRY CATCH?
+  // FIXME: FIX BG PREVIEW?
   readImg() {
     const file = this.registerForm.inputUserPhoto.input.files![0];
     if (file === undefined) return;

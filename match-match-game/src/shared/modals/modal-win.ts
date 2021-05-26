@@ -24,9 +24,9 @@ export class ModalWin extends BaseComponent implements Component {
     this.modalWin = new BaseComponent('div', ['modal-win']);
     this.modalText = new BaseComponent('div', ['modal-win__text']);
     this.modalButtons = new BaseComponent('div', ['modal-win__buttons']);
-    this.buttonNo = new BaseComponent('button', ['btn', 'button']);
-    this.buttonNo.element.setAttribute('type', 'button');
-    this.buttonNo.element.setAttribute('data-dismiss', 'modal');
+    this.buttonNo = new BaseComponent('a', ['btn', 'button']);
+    this.buttonNo.element.setAttribute('href', '#score');
+    // this.buttonNo.element.setAttribute('data-dismiss', 'modal');
     this.buttonNo.element.innerText = 'No, thanks';
     this.buttonYes = new BaseComponent('button', ['btn', 'button', 'button_blue']);
     this.buttonYes.element.setAttribute('type', 'button');

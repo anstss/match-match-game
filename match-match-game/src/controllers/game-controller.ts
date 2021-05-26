@@ -8,106 +8,78 @@ import { delay } from '../shared/delay';
 import { BaseComponent } from '../shared/base-component';
 import { Timer } from '../app-components/game-page-components/timer';
 import { SettingsController } from './settings-controller';
-import { DEFAULT_DIFFICULTY } from '../shared/constans';
-
-const TIME_SHOW_CARDS_BEFORE_GAME = 5000;
-const FLIP_CLASS = 'flipped';
-const FLIP_DELAY = 1000;
-const TIME_DELAY_BEFORE_SHOW_CORRECTNESS = 300;
+import { DEFAULT_DIFFICULTY, FLIP_CLASS, FLIP_DELAY, TIME_DELAY_BEFORE_SHOW_CORRECTNESS, TIME_SHOW_CARDS_BEFORE_GAME } from '../shared/constans';
+import { App } from '../app';
 
 export class GameController {
   cardsField: CardsField;
-
   cards: Card[] = [];
-
   gameTimer: BaseComponent;
-
   timer: Timer;
-
-  min: number;
-
-  sec: number;
-
   isAnimation = false;
-
   activeCard?: Card;
-
   gameDifficulty: number;
-
   timerId: number;
-
   totalTime: number;
-
   score: number;
-
   amountMismatches: number;
-
   amountMatches: number;
-
   comparisonsAmount: number;
+  startTime: number;
 
   constructor(readonly gamePage: GamePage,
-    private readonly settingsController: SettingsController) {
+    private readonly settingsController: SettingsController,
+    private app: App) {
     this.gamePage = gamePage;
     this.gameDifficulty = settingsController.difficulty;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
     this.gameTimer = new BaseComponent('div', ['game__timer']);
     this.timer = new Timer();
-    this.min = 0;
-    this.sec = -1;
     this.timerId = 0;
     this.totalTime = 0;
     this.score = 0;
     this.amountMismatches = 0;
     this.amountMatches = 0;
     this.comparisonsAmount = 0;
+    this.startTime = 0;
   }
 
-  startTimer() {
-    this.totalTime += 1;
-    this.sec += 1;
-    if (this.sec === 60) {
-      this.min += 1;
-      this.sec = 0;
-      if (this.min === 100) {
-        throw new Error('Too long');
-      }
+  showTime() {
+    let min = Math.floor((this.totalTime / 60));
+    let sec = Math.floor(this.totalTime % 60);
+    if (min === 100) {
+      throw new Error('Too long');
     }
-    if (this.min < 10) {
-      this.timer.min = `0${this.min}`;
+    if (min < 10) {
+      this.timer.min = `0${min}`;
     } else {
-      this.timer.min = `${this.min}`;
+      this.timer.min = `${min}`;
     }
-    if (this.sec < 10) {
-      this.timer.sec = `0${this.sec}`;
+    if (sec < 10) {
+      this.timer.sec = `0${sec}`;
     } else {
-      this.timer.sec = `${this.sec}`;
+      this.timer.sec = `${sec}`;
     }
     this.timer.element.innerHTML = `${this.timer.min}:${this.timer.sec}`;
   }
 
-  // FIXME: redo timer
-  // !=====================================
-
-  timeTick() {
+  startTimer() {
+    let prevTime = 0;
     this.timerId = window.setInterval(() => {
-      this.startTimer();
-    }, 1000);
-  }
-
-  clearTimer() {
-    this.sec = -1;
-    this.min = 0;
-    clearInterval(this.timerId);
+      let currentTime = Date.now();
+      this.totalTime = Math.floor((currentTime - this.startTime) / 1000);
+      if (prevTime !== this.totalTime) {
+        this.showTime();
+        prevTime = this.totalTime;
+      }
+    }, 500);
   }
 
   stopGame() {
     this.clearGameInfo();
     this.clearField();
-    this.clearTimer();
-    // $('#modal-win').modal('show');
-    // // TODO: DELETE THIS
+    clearInterval(this.timerId);
   }
 
   clearGameInfo() {
@@ -121,10 +93,12 @@ export class GameController {
   finishGame() {
     this.countScore();
     this.gamePage.modalWin.modalText.element.innerHTML = `Congratulations!
-    You successfully found all matches on ${this.min}.${this.sec} minutes.
+    You successfully found all matches on ${this.timer.min}.${this.timer.sec} minutes.
     Your score is ${this.score}.<br>Do you want to add your result to the high score table?`;
-    this.clearTimer();
+    clearInterval(this.timerId);
     $('#modal-win').modal('show');
+    this.app.header.buttonStop.element.classList.add('hidden');
+    this.app.header.buttonStart.element.classList.remove('hidden');
   }
 
   countScore() {
@@ -186,7 +160,9 @@ export class GameController {
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));
 
     this.fillField(cards);
-    this.timeTick();
+    this.timer.element.innerHTML = `00:00`;
+    this.startTime = Date.now();
+    this.startTimer();
   }
 
   async cardHandler(card: Card) {

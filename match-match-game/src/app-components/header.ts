@@ -29,12 +29,14 @@ export class Header extends BaseComponent implements Component {
   buttonStart: ButtonStart;
 
   buttonStop: ButtonStop;
+  navItems: BaseComponent[];
 
   constructor(private readonly rootElement: HTMLElement) {
     super('header', ['header']);
     this.nav = new BaseComponent('nav', ['nav']);
     this.navList = new BaseComponent('ul', ['nav-list']);
     this.navItemLogo = new BaseComponent('li', ['nav-item']);
+    this.navItemLogo.element.setAttribute('id', 'logo');
     this.navItemAbout = new BaseComponent('li', ['nav-item']);
     this.navItemScore = new BaseComponent('li', ['nav-item']);
     this.navItemSettings = new BaseComponent('li', ['nav-item']);
@@ -44,6 +46,7 @@ export class Header extends BaseComponent implements Component {
     this.gameSettings = new NavLink('Game Settings', 'setting-icon.svg', '#settings');
     this.buttonStart = new ButtonStart();
     this.buttonStop = new ButtonStop();
+    this.navItems = [this.navItemLogo, this.navItemAbout, this.navItemScore, this.navItemSettings];
   }
 
   render(): HTMLElement {

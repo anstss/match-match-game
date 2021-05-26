@@ -89,6 +89,13 @@
     background: no-repeat center url(./assets/add-user-photo-plus-hover.svg),
     no-repeat center url(./assets/add-user-photo-bg.png);
   }
+  .custom-file-label.no-bg {
+    background: none;
+  }
+}
+
+.custom-file-label.no-bg {
+  background: none;
 }
 
 .selected-img {

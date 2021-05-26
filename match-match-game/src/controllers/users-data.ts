@@ -27,7 +27,6 @@ export class UsersData {
     // this.registerForm = registerForm;
   }
 
-  // TODO: TRY CATCH?
   // FIXME: FIX BG PREVIEW?
   readImg() {
     const file = this.registerForm.inputUserPhoto.input.files![0];
@@ -43,6 +42,7 @@ export class UsersData {
     reader.addEventListener('load', () => {
       // this.registerForm.inputUserPhoto.inputValue = reader.result!.toString();
       this.registerForm.inputUserPhoto.input.setAttribute('data-URL', reader.result!.toString());
+      this.registerForm.inputUserPhoto.label.element.classList.add('no-bg');
       this.registerForm.inputUserPhoto.userImg.element.setAttribute('src', reader.result!.toString());
       // value = reader.result!.toString();
       // console.log(typeof reader.result);
@@ -71,6 +71,14 @@ export class UsersData {
     const userID = Date.now();
     window.localStorage.setItem(userID.toString(), user);
     // console.log(user);
+  }
+
+  clearStorage() {
+    const topTen = this.getTopTen();
+    window.localStorage.clear();
+    topTen.forEach((player) => {
+      localStorage.setItem(Date.now().toString(), JSON.stringify(player));
+    });
   }
 
   getTopTen() {

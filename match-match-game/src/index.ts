@@ -47,6 +47,11 @@ window.onload = () => {
   const settingPage = new SettingPage(page);
 
   const registerForm = app.registerModal;
+
+  registerForm.buttonCancel.element.addEventListener('click', () => {
+    registerForm.inputUserPhoto.label.element.classList.remove('no-bg');
+  })
+
   const settingsController = new SettingsController(settingPage);
   const gameController = new GameController(gamePage, settingsController, app);
   // const usersData = new UsersData(registerForm, gameController);
@@ -98,7 +103,12 @@ window.onload = () => {
 
   $('#register-form').on('submit', (event) => {
     event.preventDefault();
-    usersData.addUser();
+    try {
+      usersData.addUser();
+    } catch(e) {
+      usersData.clearStorage();
+      usersData.addUser();
+    }
     $('#register-modal').modal('hide');
     // usersData.getTopTen();
     // validator.getUser();

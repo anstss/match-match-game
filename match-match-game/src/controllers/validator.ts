@@ -32,7 +32,7 @@ export class Validator {
     if (currentInputValue.length > 30) {
       currentInput.isValid = false;
       currentInput.input.classList.remove('valid');
-      currentInput.error.element.innerText = 'The value cannot be longer than 30 characters.';
+      currentInput.error.element.innerText = 'The value or name cannot be longer than 30 characters.';
       return;
     }
     if (currentInpuName === 'first-name' || currentInpuName === 'last-name') {

@@ -1,3 +1,4 @@
+import { App } from '../app';
 import { AboutPage } from '../app-components/about-page';
 import { GamePage } from '../app-components/game-page';
 import { ScorePage } from '../app-components/score-page';
@@ -12,9 +13,12 @@ export class Router {
 
   settingPage: SettingPage;
 
-  constructor(page: HTMLElement, aboutPage: AboutPage,
+  app: App;
+
+  constructor(app: App, aboutPage: AboutPage,
     gamePage: GamePage, settingPage: SettingPage) {
-    this.page = page;
+    this.app = app;
+    this.page = app.page.element;
     this.aboutPage = aboutPage;
     this.gamePage = gamePage;
     this.settingPage = settingPage;
@@ -25,6 +29,8 @@ export class Router {
     component: () => {
       this.page.innerHTML = '';
       this.page.appendChild(this.aboutPage.render());
+      this.clearActiveRoute();
+      this.app.header.navItemAbout.element.classList.add('active-link');
     },
   };
 
@@ -35,6 +41,8 @@ export class Router {
         this.page.innerHTML = '';
         const scorePage = new ScorePage(this.page);
         this.page.appendChild(scorePage.render());
+        this.clearActiveRoute();
+        this.app.header.navItemScore.element.classList.add('active-link');
       },
     },
     {
@@ -42,6 +50,8 @@ export class Router {
       component: () => {
         this.page.innerHTML = '';
         this.page.appendChild(this.settingPage.render());
+        this.clearActiveRoute();
+        this.app.header.navItemSettings.element.classList.add('active-link');
       },
     },
     {
@@ -49,6 +59,7 @@ export class Router {
       component: () => {
         this.page.innerHTML = '';
         this.page.appendChild(this.gamePage.render());
+        this.clearActiveRoute();
       },
     },
   ];
@@ -61,5 +72,11 @@ export class Router {
     } else {
       this.startPageRoute.component();
     }
+  }
+
+  clearActiveRoute() {
+    this.app.header.navItems.forEach((navItem) => {
+      navItem.element.classList.remove('active-link');
+    });
   }
 }

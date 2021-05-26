@@ -19,19 +19,6 @@ window.onload = () => {
   const app = new App(rootElement);
   app.render();
 
-  app.header.navItems.forEach((navItem) => {
-    navItem.element.addEventListener('click', () => {
-      app.header.navItems.forEach((item) => {
-        item.element.classList.remove('active-link');
-      });
-      if (navItem.element.getAttribute('id') === 'logo') {
-        app.header.navItemAbout.element.classList.add('active-link');
-      } else {
-        navItem.element.classList.add('active-link');
-      }
-    });
-  });
-
   const page = app.page.element;
 
   const aboutPage = new AboutPage(page);
@@ -49,7 +36,7 @@ window.onload = () => {
   const validator = new Validator(registerForm);
   const usersData = new UsersData(registerForm, gameController);
 
-  const router = new Router(page, aboutPage, gamePage, settingPage);
+  const router = new Router(app, aboutPage, gamePage, settingPage);
   router.updateRoute();
   window.onpopstate = () => {
     router.updateRoute();

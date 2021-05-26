@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { UsersDataInterface } from '../models/users-data-interface';
-import { MAX_SIZE_IMG_BYTES } from '../shared/constans';
+import { MATCH_USER_ID, MAX_SIZE_IMG_BYTES } from '../shared/constans';
 import { ModalRegister } from '../shared/modals/modal-register';
 import { GameController } from './game-controller';
 
@@ -50,15 +50,15 @@ export class UsersData {
 
   addUser() {
     const user = JSON.stringify(this.getUserInfo());
-    const userID = Date.now();
-    window.localStorage.setItem(userID.toString(), user);
+    const userID = MATCH_USER_ID + Date.now();
+    window.localStorage.setItem(userID, user);
   }
 
   static clearStorage() {
     const topTen = UsersData.getTopTen();
     window.localStorage.clear();
     topTen.forEach((player) => {
-      localStorage.setItem(Date.now().toString(), JSON.stringify(player));
+      localStorage.setItem(MATCH_USER_ID + Date.now(), JSON.stringify(player));
     });
   }
 
@@ -71,7 +71,9 @@ export class UsersData {
     // special for eslint "no-restricted-syntax"
     for (let i = 0; i < window.localStorage.length; i += 1) {
       const key = window.localStorage.key(i);
-      allUsers.push(JSON.parse(window.localStorage.getItem(key!)!));
+      if (key?.includes(MATCH_USER_ID)) {
+        allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
+      }
     }
     const topTen = _.sortBy(allUsers, 'score').reverse().slice(0, 10);
     return topTen;

@@ -23,22 +23,13 @@ export class ScorePage extends BaseComponent implements Component {
     this.scorePageInner = new BaseComponent('div', ['best-players__inner']).element;
     this.scoreTitle = new Title('Best players', ['best-players__title']).element;
     this.top = new BaseComponent('div', ['top-ten']);
-    // this.top.element.innerText = `No registered players`;
-    // window.onload = () => {
 
-    // }
     this.topTen = UsersData.getTopTen();
     this.topTen.forEach((user) => {
       const player = user; // no-param-reassign special for eslint
       if (player['user-photo'] === null) {
         player['user-photo'] = './icons/avatar.png';
       }
-      // console.log(user['first-name']);
-
-      // for (let key in user) {
-      //   console.log(key);
-
-      // }
       this.top.element.appendChild(new Player(player['user-photo'], player['first-name'],
         player['last-name'], player.email, player.score).render());
     });

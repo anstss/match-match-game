@@ -17,12 +17,10 @@ export class InputFirstName extends BaseComponent implements Component {
     this.label.element.innerText = 'First Name';
     this.input = document.createElement('input');
     this.input.classList.add('form-control');
-    // this.input = new BaseComponent('input', ['form-control']);
     this.input.setAttribute('type', 'text');
     this.input.setAttribute('id', 'first-name');
     this.input.setAttribute('placeholder', 'Enter your First Name');
     this.input.setAttribute('name', 'first-name');
-    // this.input.value = (<HTMLInputElement>this.input.element).value;
     this.error = new BaseComponent('div', ['input-error']);
     this.isValid = false;
   }

@@ -1,12 +1,5 @@
-// import 'popper.js';
-// require('bootstrap');
-// import 'popper.js';
-// import 'jquery';
-// import '@popperjs/core';
-// import bootstrap from 'bootstrap';
 import $ from 'jquery';
 import 'bootstrap';
-// import "~bootstrap/scss/bootstrap.scss";
 import './styles.scss';
 
 import { App } from './app';
@@ -19,15 +12,12 @@ import { SettingPage } from './app-components/setting-page';
 import { DIFFICULTY_REGEXP } from './shared/constans';
 import { Validator } from './controllers/validator';
 import { UsersData } from './controllers/users-data';
-// import { ScorePage } from './app-components/score-page';
 
 window.onload = () => {
   const rootElement = document.getElementById('app');
   if (!rootElement) throw new Error('No root element');
   const app = new App(rootElement);
   app.render();
-
-  // app.header.navItemAbout.element.classList.add('active-link')
 
   app.header.navItems.forEach((navItem) => {
     navItem.element.addEventListener('click', () => {
@@ -43,7 +33,7 @@ window.onload = () => {
   });
 
   const page = app.page.element;
-  // if (!page) throw new Error('No page');
+
   const aboutPage = new AboutPage(page);
   const gamePage = new GamePage(page);
   const settingPage = new SettingPage(page);
@@ -56,16 +46,12 @@ window.onload = () => {
 
   const settingsController = new SettingsController(settingPage);
   const gameController = new GameController(gamePage, settingsController, app);
-  // const usersData = new UsersData(registerForm, gameController);
   const validator = new Validator(registerForm);
   const usersData = new UsersData(registerForm, gameController);
-
-  // const scorePage = new ScorePage(page, usersData);
 
   const router = new Router(page, aboutPage, gamePage, settingPage);
   router.updateRoute();
   window.onpopstate = () => {
-    // scorePage.topTen = usersData.getTopTen();
     router.updateRoute();
   };
 
@@ -110,39 +96,9 @@ window.onload = () => {
       usersData.addUser();
     }
     $('#register-modal').modal('hide');
-    // usersData.getTopTen();
-    // validator.getUser();
   });
 
   gamePage.modalWin.buttonNo.element.addEventListener('click', () => {
     $('#modal-win').modal('hide');
   });
-
-  // function submitForm(event: MouseEvent) {
-  //   event.preventDefault();
-  //   validator.getUser();
-  // }
-
-  // registerForm.buttonCancel.element.addEventListener('click', () => {
-  //   registerForm.inputs.forEach((inputElem) => {
-  //     inputElem.input.value = '';
-  //     inputElem.input.classList.remove('valid');
-  //     inputElem.error.element.innerText = '';
-  //     // input.value = '';
-  //     // input.element.innerText = '';
-  //   });
-  // });
-
-  // inputs.forEach((inputElem) => {
-  //   inputElem.input.addEventListener('change', () => {
-  //     console.log(inputElem.input.value);
-  //   });
-  // });
-
-  // inputs.forEach((input) => {
-  //   input.input.element.addEventListener('change', () => {
-  //     console.log(input.input.element.nodeValue);
-  //   });
-
-  // });
 };

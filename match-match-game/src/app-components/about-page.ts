@@ -29,15 +29,10 @@ export class AboutPage extends BaseComponent implements Component {
 
   render(): HTMLElement {
     this.page.appendChild(this.element);
-    // const container = new BaseComponent('div', ['container']).element;
     this.element.appendChild(this.container);
-    // const aboutInner = new BaseComponent('div', ['about__inner']).element;
     this.container.appendChild(this.aboutInner);
-    // const aboutTitle = new Title('How to play?', ['about__title']).element;
-    // const stepOne = new AboutElem('1', 'Register new player in game').element;
-    // const stepTwo = new AboutElem('2', 'Configure your game settings').element;
-    // const stepThree = new AboutElem('3', 'Configure your game settings').element;
     this.aboutInner.append(this.aboutTitle, this.stepOne, this.stepTwo, this.stepThree);
+
     return this.element;
   }
 }

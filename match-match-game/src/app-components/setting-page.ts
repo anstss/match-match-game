@@ -30,17 +30,11 @@ export class SettingPage extends BaseComponent implements Component {
 
   render() {
     this.page.appendChild(this.element);
-    // const container = new BaseComponent('div', ['container']).element;
     this.element.appendChild(this.container);
-    // const settingsInner = new BaseComponent('div', ['settings__inner']).element;
     this.container.appendChild(this.settingsInner);
-    // const settingGameCards = new Setting('Game cards', 'Select game cards type').render();
     this.settingsInner.appendChild(this.settingGameCards.render());
-    // const dropdownMenuGameCards = new DropMenuGameCards(['Animals', 'Nature']).render();
     this.settingGameCards.element.appendChild(this.dropdownMenuGameCards.render());
-    // const settingDifficulty = new Setting('Difficulty', 'Select game type').render();
     this.settingsInner.appendChild(this.settingDifficulty.render());
-    // const dropdownMenuDifficulty = new DropMenuDifficulty(['4x4', '6x6']).render();
     this.settingDifficulty.element.appendChild(this.dropdownMenuDifficulty.render());
 
     return this.element;

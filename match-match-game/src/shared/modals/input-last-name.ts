@@ -17,7 +17,6 @@ export class InputLastName extends BaseComponent implements Component {
     this.label.element.innerText = 'Last Name';
     this.input = document.createElement('input');
     this.input.classList.add('form-control');
-    // this.input = new BaseComponent('input', ['form-control']);
     this.input.setAttribute('type', 'text');
     this.input.setAttribute('id', 'last-name');
     this.input.setAttribute('placeholder', 'Enter your Last Name');

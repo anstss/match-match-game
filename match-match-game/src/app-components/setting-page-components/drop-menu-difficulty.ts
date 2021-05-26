@@ -20,8 +20,6 @@ export class DropMenuDifficulty extends DropdownMenu implements Component {
   }
 
   render() {
-    // const dropItemEasy = new DropdownItem(this.options[0]);
-    // const dropItemNormal = new DropdownItem(this.options[1]);
     this.element.appendChild(this.dropItemEasy.element);
     this.element.appendChild(this.dropItemNormal.element);
 

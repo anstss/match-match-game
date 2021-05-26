@@ -17,7 +17,6 @@ export class InputEmail extends BaseComponent implements Component {
     this.label.element.innerText = 'Email';
     this.input = document.createElement('input');
     this.input.classList.add('form-control');
-    // this.input = new BaseComponent('input', ['form-control']);
     this.input.setAttribute('type', 'email');
     this.input.setAttribute('id', 'email');
     this.input.setAttribute('placeholder', 'Enter your email');

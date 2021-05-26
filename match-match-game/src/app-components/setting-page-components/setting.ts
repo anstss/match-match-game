@@ -1,7 +1,6 @@
 import { BaseComponent } from '../../shared/base-component';
 import { Component } from '../../shared/component';
 import { Title } from '../title';
-import { DropMenuGameCards } from './drop-menu-game-cards';
 import { DropdownButton } from './dropdown-button';
 
 export class Setting extends BaseComponent implements Component {
@@ -22,7 +21,6 @@ export class Setting extends BaseComponent implements Component {
   }
 
   render() {
-    // const title = new Title(this.settingTitle, ['setting-title']).element;
     this.element.appendChild(this.settingTitle.element);
     this.element.appendChild(this.button.element);
 

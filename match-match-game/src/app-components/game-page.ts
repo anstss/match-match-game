@@ -10,7 +10,6 @@ export class GamePage extends BaseComponent implements Component {
   container: BaseComponent;
 
   modalWin: ModalWin;
-  // triggerModal: BaseComponent;
 
   constructor(private readonly page: HTMLElement) {
     super('div', ['game']);
@@ -21,15 +20,9 @@ export class GamePage extends BaseComponent implements Component {
 
   render(): HTMLElement {
     this.page.append(this.element, this.modalWin.render());
-    // const container = new BaseComponent('div', ['container']).element;
     this.element.appendChild(this.container.element);
-    // const gameFiled = new BaseComponent('div', ['game__field']).element;
     this.container.element.appendChild(this.cardsField.element);
-    // const gameTimer = new BaseComponent('div', ['game__timer']).element;
-    // this.cardsField.element.appendChild(gameTimer);
-    // const timer = new Timer().element;
-    // gameTimer.appendChild(timer);
-    // const cards = new Card('001-bee.png').element;
+
     return this.element;
   }
 }

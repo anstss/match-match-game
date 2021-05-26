@@ -22,22 +22,13 @@ export class Card extends BaseComponent implements Component {
     this.cardFrontSide = new BaseComponent('div', ['card__front']);
     this.cardFrontSide.element.setAttribute('style', `background-image: url('./images/${image}')`);
     this.cardBackSide = new BaseComponent('div', ['card__back']);
-    // this.element.innerHTML = `
-    // <div class="card">
-    //   <div class="card__front" style="background-image: url('./images/${image}')">
-    //   ${this.correct.element}
-    //   ${this.incorrect.element}
-    //   </div>
-    //   <div class="card__back"></div>
-    // </div>
-    // `;
   }
 
   render() {
     this.element.appendChild(this.card.element);
     this.card.element.append(this.cardFrontSide.element, this.cardBackSide.element);
     this.cardFrontSide.element.append(this.correct.element, this.incorrect.element);
-    // this.card.element.append(this.correct.element, this.incorrect.element);
+
     return this.element;
   }
 }

@@ -20,8 +20,6 @@ export class DropMenuGameCards extends DropdownMenu implements Component {
   }
 
   render() {
-    // const dropItemAnimals = new DropdownItem(this.options[0]);
-    // const dropItemNature = new DropdownItem(this.options[1]);
     this.element.appendChild(this.dropItemAnimals.element);
     this.element.appendChild(this.dropItemNature.element);
 

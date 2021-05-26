@@ -52,26 +52,14 @@ export class Header extends BaseComponent implements Component {
 
   render(): HTMLElement {
     this.rootElement.appendChild(this.element);
-    // const nav = new BaseComponent('nav', ['nav']).element;
     this.element.appendChild(this.nav.element);
-    // const navList = new BaseComponent('ul', ['nav-list']).element;
     this.nav.element.appendChild(this.navList.element);
-    // const navItemLogo = new BaseComponent('li', ['nav-item']).element;
-    // const navItemAbout = new BaseComponent('li', ['nav-item']).element;
-    // const navItemScore = new BaseComponent('li', ['nav-item']).element;
-    // const navItemSettings = new BaseComponent('li', ['nav-item']).element;
     this.navList.element.append(this.navItemLogo.element, this.navItemAbout.element,
       this.navItemScore.element, this.navItemSettings.element);
-    // const logo = new Logo('#about').element;
     this.navItemLogo.element.appendChild(this.logo.element);
-    // const aboutGame = new NavLink('About Game', 'about-icon.svg', '#about').element;
     this.navItemAbout.element.appendChild(this.aboutGame.element);
-    // const bestScore = new NavLink('Best Score', 'best-score-icon.svg', '#score').element;
     this.navItemScore.element.appendChild(this.bestScore.element);
-    // const gameSettings = new NavLink('Game Settings', 'setting-icon.svg', '#settings').element;
     this.navItemSettings.element.appendChild(this.gameSettings.element);
-    // const buttonStart = new ButtonStart().element;
-    // const buttonStop = new ButtonStop().element;
     this.element.append(this.buttonStart.element, this.buttonStop.element);
 
     return this.element;

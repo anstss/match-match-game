@@ -42,6 +42,8 @@ export class GameController {
 
   startTime: number;
 
+  showCard?: number;
+
   constructor(readonly gamePage: GamePage,
     private readonly settingsController: SettingsController,
     private app: App) {
@@ -95,6 +97,7 @@ export class GameController {
     this.clearGameInfo();
     this.clearField();
     clearInterval(this.timerId);
+    clearTimeout(this.showCard);
   }
 
   clearGameInfo() {
@@ -134,26 +137,23 @@ export class GameController {
     this.cardsField.element.appendChild(this.gameTimer.element);
     this.gameTimer.element.appendChild(this.timer.element);
     this.cards.forEach((card) => this.cardsField.element.appendChild(card.render()));
-    setTimeout(() => {
+    this.showCard = window.setTimeout(() => {
       this.cards.forEach((card) => GameController.flipCardToBack(card));
     }, TIME_SHOW_CARDS_BEFORE_GAME);
   }
 
-  // add static for eslint
   static flipCardToBack(card: Card) {
-    const currentCard = card; // add no-param-reassign special for eslint
+    const currentCard = card;
     currentCard.isFlipped = true;
     return GameController.flipCard(currentCard, true);
   }
 
-  // add static for eslint
   static flipCardToFront(card: Card) {
-    const currentCard = card; // add no-param-reassign special for eslint
+    const currentCard = card;
     currentCard.isFlipped = false;
     return GameController.flipCard(currentCard);
   }
 
-  // add static for eslint
   static flipCard(card: Card, isBackSide = false): Promise<void> {
     return new Promise((resolve) => {
       card.element.classList.toggle(FLIP_CLASS, isBackSide);
@@ -215,7 +215,6 @@ export class GameController {
     }
   }
 
-  // add static for eslint
   static match(activeCard: Card, card: Card) {
     const activeMatch = activeCard.correct;
     const cardMath = card.correct;
@@ -223,7 +222,6 @@ export class GameController {
     cardMath?.element.classList.remove('hidden');
   }
 
-  // add static for eslint
   static notMatch(activeCard: Card, card: Card) {
     const activeMatch = activeCard.incorrect;
     const cardMath = card.incorrect;
@@ -231,7 +229,6 @@ export class GameController {
     cardMath?.element.classList.remove('hidden');
   }
 
-  // add static for eslint
   static removeClassIncorrect(activeCard: Card, card: Card) {
     const activeMatch = activeCard.incorrect;
     const cardMath = card.incorrect;

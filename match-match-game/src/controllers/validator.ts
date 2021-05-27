@@ -23,7 +23,6 @@ export class Validator {
     });
   }
 
-  // static for eslint Expected 'this' to be used by class method 'validate'     class-methods-use-this
   static validate(inputElem: InputFirstName | InputLastName | InputEmail | InputPhoto) {
     const currentInput = inputElem;
     const currentInpuName = inputElem.input.name;
@@ -72,7 +71,6 @@ export class Validator {
     this.registerForm.buttonAddUser.element.classList.remove('disabled');
   }
 
-  // static for eslint Expected 'this' to be used by class method 'clearForm'     class-methods-use-this
   static clearForm(inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[]) {
     inputs.forEach((inputElem) => {
       const currentInput = inputElem;

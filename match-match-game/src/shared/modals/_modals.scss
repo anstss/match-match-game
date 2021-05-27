@@ -80,14 +80,13 @@
 }
 
 .custom-file-label {
-  background: no-repeat center url(./assets/add-user-photo-plus.svg),
-  no-repeat center url(./assets/add-user-photo-bg.png);
+  background: no-repeat center url(./assets/add-user-photo.png);
+  transition: all 0.2s linear;
 }
 
 .custom-file:hover {
   .custom-file-label {
-    background: no-repeat center url(./assets/add-user-photo-plus-hover.svg),
-    no-repeat center url(./assets/add-user-photo-bg.png);
+    background: no-repeat center url(./assets/add-user-photo2.png);
   }
   .custom-file-label.no-bg {
     background: none;
@@ -106,7 +105,6 @@
   height: inherit;
   border-radius: 50%;
   overflow: hidden;
-  // background-color: $primary-color;
 }
 
 .form-buttons {

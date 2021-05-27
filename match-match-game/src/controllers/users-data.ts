@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import { UsersDataInterface } from '../models/users-data-interface';
 import { MATCH_USER_ID, MAX_SIZE_IMG_BYTES } from '../shared/constans';
+import { InputPhoto } from '../shared/modals/input-photo';
 import { ModalRegister } from '../shared/modals/modal-register';
 import { GameController } from './game-controller';
 
@@ -29,7 +30,8 @@ export class UsersData {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.addEventListener('load', () => {
-      this.registerForm.inputUserPhoto.input.setAttribute('data-URL', reader.result!.toString());
+      this.registerForm.inputUserPhoto.imgValue = reader.result!.toString();
+      // this.registerForm.inputUserPhoto.input.setAttribute('data-URL', reader.result!.toString());
       this.registerForm.inputUserPhoto.label.element.classList.add('no-bg');
       this.registerForm.inputUserPhoto.userImg.element.setAttribute('src', reader.result!.toString());
     });
@@ -37,8 +39,9 @@ export class UsersData {
 
   getUserInfo() {
     this.registerForm.inputs.forEach((inputElem) => {
-      if (inputElem.input.name === 'user-photo') {
-        this.user[inputElem.input.name] = inputElem.input.getAttribute('data-URL')!;
+      if (inputElem instanceof InputPhoto) {
+        this.user[inputElem.input.name] = inputElem.imgValue;
+        // this.user[inputElem.input.name] = inputElem.input.getAttribute('data-URL')!;
       } else {
         this.user[inputElem.input.name] = inputElem.input.value;
       }

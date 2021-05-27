@@ -12,6 +12,8 @@ export class InputPhoto extends BaseComponent implements Component {
 
   userImg: BaseComponent;
 
+  imgValue: string;
+
   constructor() {
     super('div', ['custom-file']);
     this.input = document.createElement('input');
@@ -20,6 +22,7 @@ export class InputPhoto extends BaseComponent implements Component {
     this.input.setAttribute('id', 'add-user-photo');
     this.input.setAttribute('name', 'user-photo');
     this.input.setAttribute('accept', 'image/jpeg,image/jpg,image/png');
+    this.imgValue = '';
     this.label = new BaseComponent('label', ['custom-file-label']);
     this.label.element.setAttribute('for', 'add-user-photo');
     this.userImg = new BaseComponent('img', ['selected-img']);

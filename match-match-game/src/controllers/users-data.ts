@@ -80,7 +80,8 @@ export class UsersData {
     }
     // eslint-disable-next-line
     allUsers.forEach((elem) => elem.score = +elem.score);
-    const topTen = _.sortBy(allUsers, 'score').reverse().slice(0, 10);
+    const topTen = _.sortBy(allUsers, 'score').slice(-10).reverse();
+
     return topTen;
   }
 }

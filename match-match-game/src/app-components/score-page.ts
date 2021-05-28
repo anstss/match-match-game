@@ -26,7 +26,7 @@ export class ScorePage extends BaseComponent {
     this.topTen = UsersData.getTopTen();
     this.topTen.forEach((user) => {
       const player = user; // no-param-reassign special for eslint
-      if (player['user-photo'] === null) {
+      if (!player['user-photo']) {
         player['user-photo'] = './icons/avatar.png';
       }
       this.top.element.appendChild(new Player(player['user-photo'], player['first-name'],

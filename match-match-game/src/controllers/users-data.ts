@@ -78,6 +78,8 @@ export class UsersData {
         allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
       }
     }
+    // eslint-disable-next-line
+    allUsers.forEach((elem) => elem.score = +elem.score);
     const topTen = _.sortBy(allUsers, 'score').reverse().slice(0, 10);
     return topTen;
   }

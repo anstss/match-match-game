@@ -26,8 +26,6 @@ export class GameController {
 
   activeCard?: Card;
 
-  gameDifficulty: number;
-
   timerId: number;
 
   totalTime: number;
@@ -48,7 +46,6 @@ export class GameController {
     private readonly settingsController: SettingsController,
     private app: App) {
     this.gamePage = gamePage;
-    this.gameDifficulty = settingsController.difficulty;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
     this.gameTimer = new BaseComponent('div', ['game__timer']);
@@ -120,7 +117,7 @@ export class GameController {
   }
 
   countScore() {
-    this.score = (this.comparisonsAmount - this.amountMismatches) * 100 - this.totalTime * 10;
+    this.score = ((this.amountMatches * 100 - this.totalTime * 10)) * this.settingsController.difficulty / 2;
     if (this.score < 0) {
       this.score = 0;
     }
@@ -210,7 +207,7 @@ export class GameController {
     }
     this.activeCard = undefined;
     this.isAnimation = false;
-    if (this.amountMatches === this.gameDifficulty) {
+    if (this.amountMatches === this.settingsController.difficulty) {
       this.finishGame();
     }
   }

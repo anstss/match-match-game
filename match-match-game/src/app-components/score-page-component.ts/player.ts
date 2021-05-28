@@ -1,7 +1,6 @@
 import { BaseComponent } from '../../shared/base-component';
-import { Component } from '../../shared/component';
 
-export class Player extends BaseComponent implements Component {
+export class Player extends BaseComponent {
   playerPhoto: BaseComponent;
 
   playerInfo: BaseComponent;

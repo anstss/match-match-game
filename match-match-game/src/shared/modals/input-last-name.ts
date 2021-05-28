@@ -1,7 +1,6 @@
 import { BaseComponent } from '../base-component';
-import { Component } from '../component';
 
-export class InputLastName extends BaseComponent implements Component {
+export class InputLastName extends BaseComponent {
   label: BaseComponent;
 
   error: BaseComponent;

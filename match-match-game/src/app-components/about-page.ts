@@ -1,10 +1,9 @@
 import './_about-page.scss';
 import { BaseComponent } from '../shared/base-component';
-import { Component } from '../shared/component';
 import { AboutElem } from './about-page-components/about-elem';
 import { Title } from './title';
 
-export class AboutPage extends BaseComponent implements Component {
+export class AboutPage extends BaseComponent {
   container: HTMLElement;
 
   aboutInner: HTMLElement;

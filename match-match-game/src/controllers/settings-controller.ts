@@ -5,7 +5,7 @@ import { DropdownButton } from '../app-components/setting-page-components/dropdo
 import { DropdownItem } from '../app-components/setting-page-components/dropdown-item';
 import { DEFAULT_CATEGORY, DEFAULT_DIFFICULTY } from '../shared/constans';
 
-export class SettingsController /* implements Component */ {
+export class SettingsController {
   settingsPage: SettingPage;
 
   buttonGameCards: DropdownButton;

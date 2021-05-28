@@ -1,11 +1,10 @@
 import { BaseComponent } from '../shared/base-component';
-import { Component } from '../shared/component';
 import { ButtonStart } from './header-components/button-start';
 import { ButtonStop } from './header-components/button-stop';
 import { Logo } from './header-components/logo';
 import { NavLink } from './header-components/nav-link';
 
-export class Header extends BaseComponent implements Component {
+export class Header extends BaseComponent {
   nav: BaseComponent;
 
   navList: BaseComponent;

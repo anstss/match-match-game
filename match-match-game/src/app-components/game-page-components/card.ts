@@ -1,7 +1,6 @@
 import { BaseComponent } from '../../shared/base-component';
-import { Component } from '../../shared/component';
 
-export class Card extends BaseComponent implements Component {
+export class Card extends BaseComponent {
   isFlipped = false;
 
   correct: BaseComponent;

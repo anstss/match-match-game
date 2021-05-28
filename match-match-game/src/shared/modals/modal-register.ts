@@ -1,11 +1,10 @@
 import { BaseComponent } from '../base-component';
-import { Component } from '../component';
 import { InputEmail } from './input-email';
 import { InputFirstName } from './input-first-name';
 import { InputLastName } from './input-last-name';
 import { InputPhoto } from './input-photo';
 
-export class ModalRegister extends BaseComponent implements Component {
+export class ModalRegister extends BaseComponent {
   modalDialog: BaseComponent;
 
   modalContent: BaseComponent;

@@ -1,10 +1,9 @@
 import './app-components/_header.scss';
-import { Component } from './shared/component';
 import { Header } from './app-components/header';
 import { Page } from './app-components/page';
 import { ModalRegister } from './shared/modals/modal-register';
 
-export class App implements Component {
+export class App {
   header: Header;
 
   page: Page;

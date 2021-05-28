@@ -1,11 +1,10 @@
 import { BaseComponent } from '../shared/base-component';
-import { Component } from '../shared/component';
 import { DropMenuDifficulty } from './setting-page-components/drop-menu-difficulty';
 import { DropMenuGameCards } from './setting-page-components/drop-menu-game-cards';
 import { Setting } from './setting-page-components/setting';
 import './_setting-page.scss';
 
-export class SettingPage extends BaseComponent implements Component {
+export class SettingPage extends BaseComponent {
   settingGameCards: Setting;
 
   dropdownMenuGameCards: DropMenuGameCards;

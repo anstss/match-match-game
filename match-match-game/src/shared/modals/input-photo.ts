@@ -1,7 +1,6 @@
 import { BaseComponent } from '../base-component';
-import { Component } from '../component';
 
-export class InputPhoto extends BaseComponent implements Component {
+export class InputPhoto extends BaseComponent {
   label: BaseComponent;
 
   input: HTMLInputElement;

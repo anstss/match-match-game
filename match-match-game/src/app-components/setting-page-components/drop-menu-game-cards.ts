@@ -1,8 +1,7 @@
-import { Component } from '../../shared/component';
 import { DropdownItem } from './dropdown-item';
 import { DropdownMenu } from './dropdown-menu';
 
-export class DropMenuGameCards extends DropdownMenu implements Component {
+export class DropMenuGameCards extends DropdownMenu {
   options: string[];
 
   dropItems: DropdownItem[];

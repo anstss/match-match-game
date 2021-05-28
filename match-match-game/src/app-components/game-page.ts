@@ -1,10 +1,9 @@
 import './_game-page.scss';
 import { BaseComponent } from '../shared/base-component';
-import { Component } from '../shared/component';
 import { CardsField } from './game-page-components/cards-field';
 import { ModalWin } from '../shared/modals/modal-win';
 
-export class GamePage extends BaseComponent implements Component {
+export class GamePage extends BaseComponent {
   cardsField: CardsField;
 
   container: BaseComponent;

@@ -1,7 +1,6 @@
 import { BaseComponent } from '../base-component';
-import { Component } from '../component';
 
-export class ModalWin extends BaseComponent implements Component {
+export class ModalWin extends BaseComponent {
   modalDialog: BaseComponent;
 
   modalContent: BaseComponent;

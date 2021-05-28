@@ -1,12 +1,11 @@
 import { UsersData } from '../controllers/users-data';
 import { UsersDataInterface } from '../models/users-data-interface';
 import { BaseComponent } from '../shared/base-component';
-import { Component } from '../shared/component';
 import { Player } from './score-page-component.ts/player';
 import { Title } from './title';
 import './_score-page.scss';
 
-export class ScorePage extends BaseComponent implements Component {
+export class ScorePage extends BaseComponent {
   container: HTMLElement;
 
   scorePageInner: HTMLElement;

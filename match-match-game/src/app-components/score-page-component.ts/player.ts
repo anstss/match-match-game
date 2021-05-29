@@ -15,12 +15,12 @@ export class Player extends BaseComponent {
 
   scoreValue: BaseComponent;
 
-  constructor(playerPhotoSRC: string, playerFirstName: string,
-    playerLastName: string, playerEmail: string, playerScore: string) {
+  constructor(playerPhotoSRC: string | number, playerFirstName: string | number,
+    playerLastName: string | number, playerEmail: string | number, playerScore: string | number) {
     super('div', ['player']);
     this.playerPhoto = new BaseComponent('img', ['player__avatar']);
     this.playerPhoto.element.setAttribute('alt', 'Avatar');
-    this.playerPhoto.element.setAttribute('src', playerPhotoSRC);
+    this.playerPhoto.element.setAttribute('src', playerPhotoSRC.toString());
     this.playerInfo = new BaseComponent('div', ['player__info']);
     this.playerName = new BaseComponent('div', ['player__name']);
     this.playerName.element.innerText = `${playerFirstName} ${playerLastName}`;

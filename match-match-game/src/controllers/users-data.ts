@@ -66,7 +66,7 @@ export class UsersData {
   }
 
   static getTopTen() {
-    const allUsers = [];
+    const allUsers: UsersDataInterface[] = [];
     // const keys = Object.keys(window.localStorage);
     // for (const key of keys) {
     //   allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
@@ -78,8 +78,13 @@ export class UsersData {
         allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
       }
     }
-    // eslint-disable-next-line
-    allUsers.forEach((elem) => elem.score = +elem.score);
+
+    // allUsers.forEach((elem) => elem.score = +elem.score);
+    // special for eslint:
+    allUsers.forEach((elem: UsersDataInterface) => {
+      const user = elem;
+      user.score = +user.score;
+    });
     const topTen = _.sortBy(allUsers, 'score').slice(-10).reverse();
 
     return topTen;

@@ -77,7 +77,8 @@ export class Validator {
       currentInput.isValid = false;
       if (currentInput instanceof InputPhoto) {
         currentInput.isValid = true;
-        currentInput.input.removeAttribute('data-URL');
+        currentInput.imgValue = '';
+        // currentInput.input.removeAttribute('data-URL');
         currentInput.userImg.element.removeAttribute('src');
         currentInput.error.element.innerText = '';
       } else {

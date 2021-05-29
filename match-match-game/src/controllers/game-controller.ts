@@ -61,9 +61,9 @@ export class GameController {
 
   showTime() {
     const min = Math.floor((this.totalTime / 60));
-    const sec = Math.floor(this.totalTime % 60);
+    const sec = this.totalTime % 60;
     if (min === 100) {
-      throw new Error('Too long');
+      this.stopGame();
     }
     if (min < 10) {
       this.timer.min = `0${min}`;

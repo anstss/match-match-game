@@ -23,7 +23,8 @@ export class AboutPage extends BaseComponent {
     this.aboutTitle = new Title('How to play?', ['about__title']).element;
     this.stepOne = new AboutElem('1', 'Register new player in game').element;
     this.stepTwo = new AboutElem('2', 'Configure your game settings').element;
-    this.stepThree = new AboutElem('3', 'Configure your game settings').element;
+    this.stepThree = new AboutElem('3',
+      'Start you new game! Remember card positions and match it before times up.').element;
   }
 
   render(): HTMLElement {

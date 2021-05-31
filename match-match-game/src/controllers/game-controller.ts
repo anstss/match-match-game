@@ -32,11 +32,7 @@ export class GameController {
 
   score: number;
 
-  amountMismatches: number;
-
   amountMatches: number;
-
-  comparisonsAmount: number;
 
   startTime: number;
 
@@ -53,9 +49,7 @@ export class GameController {
     this.timerId = 0;
     this.totalTime = 0;
     this.score = 0;
-    this.amountMismatches = 0;
     this.amountMatches = 0;
-    this.comparisonsAmount = 0;
     this.startTime = 0;
   }
 
@@ -100,9 +94,7 @@ export class GameController {
   clearGameInfo() {
     this.totalTime = 0;
     this.score = 0;
-    this.amountMismatches = 0;
     this.amountMatches = 0;
-    this.comparisonsAmount = 0;
   }
 
   finishGame() {
@@ -117,7 +109,8 @@ export class GameController {
   }
 
   countScore() {
-    this.score = ((this.amountMatches * 100 - this.totalTime * 10)) * this.settingsController.difficulty / 2;
+    this.score = ((this.settingsController.difficulty * 100 - (this.totalTime - TIME_SHOW_CARDS_BEFORE_GAME / 1000) * 10))
+    * this.settingsController.difficulty / 2;
     if (this.score < 0) {
       this.score = 0;
     }
@@ -189,8 +182,6 @@ export class GameController {
       return;
     }
     if (this.activeCard.image !== card.image) {
-      this.comparisonsAmount += 1;
-      this.amountMismatches += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       GameController.notMatch(this.activeCard, card);
       await delay(FLIP_DELAY);
@@ -199,7 +190,6 @@ export class GameController {
       GameController.removeClassIncorrect(this.activeCard, card);
     } else {
       this.amountMatches += 1;
-      this.comparisonsAmount += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       GameController.match(this.activeCard, card);
       [this.activeCard, card].forEach((card) => card.element.classList.add('card-hover-inactive'));

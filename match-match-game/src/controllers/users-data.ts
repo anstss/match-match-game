@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import { ScorePage } from '../app-components/score-page';
 import { UsersDataInterface } from '../models/users-data-interface';
 import { MATCH_USER_ID, MAX_SIZE_IMG_BYTES } from '../shared/constans';
 import { InputPhoto } from '../shared/modals/input-photo';
@@ -65,7 +66,7 @@ export class UsersData {
     });
   }
 
-  static getTopTen() {
+  static getTopTen(scorePage?: ScorePage) {
     const allUsers: UsersDataInterface[] = [];
     // const keys = Object.keys(window.localStorage);
     // for (const key of keys) {
@@ -76,6 +77,13 @@ export class UsersData {
       const key = window.localStorage.key(i);
       if (key?.includes(MATCH_USER_ID)) {
         allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
+      }
+    }
+    if (scorePage) {
+      if (allUsers.length === 0) {
+        scorePage.top.element.innerText = `No registered users`;
+      } else {
+        scorePage.top.element.innerText = ``;
       }
     }
 

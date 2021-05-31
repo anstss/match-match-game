@@ -22,11 +22,9 @@ export class ScorePage extends BaseComponent {
     this.scorePageInner = new BaseComponent('div', ['best-players__inner']).element;
     this.scoreTitle = new Title('Best players', ['best-players__title']).element;
     this.top = new BaseComponent('div', ['top-ten']);
-    this.top.element.innerText = `No registered users`;
 
-    this.topTen = UsersData.getTopTen();
+    this.topTen = UsersData.getTopTen(this);
     this.topTen.forEach((user) => {
-      this.top.element.innerText = ``;
       const player = user; // no-param-reassign special for eslint
       if (!player['user-photo']) {
         player['user-photo'] = './icons/avatar.png';

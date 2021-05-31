@@ -27,7 +27,8 @@ export class Validator {
     const currentInput = inputElem;
     const currentInpuName = inputElem.input.name;
     const currentInputValue = inputElem.input.value;
-    if (currentInputValue.length > 30) {
+    if (currentInputValue.length > 30
+      && currentInpuName !== 'user-photo') {
       currentInput.isValid = false;
       currentInput.input.classList.remove('valid');
       currentInput.error.element.innerText = 'The value or name cannot be longer than 30 characters.';

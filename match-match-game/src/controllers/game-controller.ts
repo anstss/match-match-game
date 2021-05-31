@@ -193,7 +193,6 @@ export class GameController {
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       GameController.match(this.activeCard, card);
       [this.activeCard, card].forEach((card) => card.element.classList.add('card-hover-inactive'));
-      await delay(FLIP_DELAY);
       this.activeCard = undefined;
       this.isAnimation = false;
     }

@@ -45,3 +45,7 @@ a:hover {
 a, button {
   cursor: pointer;
 }
+
+input[type="file"]:focus {
+  visibility: hidden;
+}

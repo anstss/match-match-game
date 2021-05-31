@@ -54,6 +54,7 @@ export class ModalRegister extends BaseComponent {
     this.buttonCancel = new BaseComponent('button', ['btn', 'button']);
     this.buttonCancel.element.setAttribute('type', 'button');
     this.buttonCancel.element.setAttribute('data-dismiss', 'modal');
+    this.buttonCancel.element.setAttribute('onclick', 'window.location.href="#score"');
     this.buttonCancel.element.innerText = 'Cancel';
     this.inputs = [this.inputFirstName, this.inputLastName, this.inputEmail, this.inputUserPhoto];
   }

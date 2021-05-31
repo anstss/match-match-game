@@ -83,6 +83,7 @@ window.onload = () => {
       usersData.addUser();
     }
     $('#register-modal').modal('hide');
+    window.location.href = '#score';
   });
 
   gamePage.modalWin.buttonNo.element.addEventListener('click', () => {

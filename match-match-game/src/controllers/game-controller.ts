@@ -109,7 +109,8 @@ export class GameController {
   }
 
   countScore() {
-    this.score = ((this.settingsController.difficulty * 100 - (this.totalTime - TIME_SHOW_CARDS_BEFORE_GAME / 1000) * 10))
+    this.score = ((this.settingsController.difficulty * 100
+      - (this.totalTime - TIME_SHOW_CARDS_BEFORE_GAME / 1000) * 10))
     * this.settingsController.difficulty / 2;
     if (this.score < 0) {
       this.score = 0;
@@ -192,7 +193,7 @@ export class GameController {
       this.amountMatches += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       GameController.match(this.activeCard, card);
-      [this.activeCard, card].forEach((card) => card.element.classList.add('card-hover-inactive'));
+      [this.activeCard, card].forEach((elem) => elem.element.classList.add('card-hover-inactive'));
       this.activeCard = undefined;
       this.isAnimation = false;
     }

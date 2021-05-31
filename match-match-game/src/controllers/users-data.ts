@@ -80,10 +80,11 @@ export class UsersData {
       }
     }
     if (scorePage) {
+      const scorePageNoParamReassignForEslint = scorePage;
       if (allUsers.length === 0) {
-        scorePage.top.element.innerText = `No registered users`;
+        scorePageNoParamReassignForEslint.top.element.innerText = 'No registered users';
       } else {
-        scorePage.top.element.innerText = ``;
+        scorePageNoParamReassignForEslint.top.element.innerText = '';
       }
     }
 

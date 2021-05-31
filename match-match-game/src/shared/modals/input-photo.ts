@@ -21,6 +21,7 @@ export class InputPhoto extends BaseComponent {
     this.input.setAttribute('id', 'add-user-photo');
     this.input.setAttribute('name', 'user-photo');
     this.input.setAttribute('accept', 'image/jpeg,image/jpg,image/png');
+    this.input.setAttribute('title', '');
     this.imgValue = '';
     this.label = new BaseComponent('label', ['custom-file-label']);
     this.label.element.setAttribute('for', 'add-user-photo');

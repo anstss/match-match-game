@@ -14,7 +14,7 @@ export class Card extends BaseComponent {
   cardBackSide: BaseComponent;
 
   constructor(readonly image: string) {
-    super('div', ['card__container']);
+    super('div', ['card__container', 'card-hover-inactive']);
     this.correct = new BaseComponent('div', ['correct', 'hidden']);
     this.incorrect = new BaseComponent('div', ['incorrect', 'hidden']);
     this.card = new BaseComponent('div', ['card']);

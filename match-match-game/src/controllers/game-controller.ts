@@ -136,6 +136,7 @@ export class GameController {
     this.cards.forEach((card) => this.cardsField.element.appendChild(card.render()));
     this.showCard = window.setTimeout(() => {
       this.cards.forEach((card) => GameController.flipCardToBack(card));
+      this.cards.forEach((card) => card.element.classList.remove('card-hover-inactive'));
     }, TIME_SHOW_CARDS_BEFORE_GAME);
   }
 
@@ -201,6 +202,7 @@ export class GameController {
       this.comparisonsAmount += 1;
       await delay(TIME_DELAY_BEFORE_SHOW_CORRECTNESS);
       GameController.match(this.activeCard, card);
+      [this.activeCard, card].forEach((card) => card.element.classList.add('card-hover-inactive'));
       await delay(FLIP_DELAY);
       this.activeCard = undefined;
       this.isAnimation = false;

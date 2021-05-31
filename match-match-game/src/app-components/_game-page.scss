@@ -39,9 +39,9 @@
 
 .card__container {
   perspective: 500px;
-  cursor: pointer;
 
   &:hover > .card {
+    cursor: pointer;
     transform: translateZ(35px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
   }
@@ -117,3 +117,10 @@
   margin-top: 70px;
 }
 
+.card-hover-inactive {
+  &:hover > .card {
+    cursor: default;
+    transform: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+  }
+}

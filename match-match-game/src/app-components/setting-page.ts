@@ -21,9 +21,9 @@ export class SettingPage extends BaseComponent {
     super('div', ['settings']);
     this.container = new BaseComponent('div', ['container']).element;
     this.settingsInner = new BaseComponent('div', ['settings__inner']).element;
-    this.settingGameCards = new Setting('Game cards', 'Select game cards type');
+    this.settingGameCards = new Setting('Game cards', 'Animals');
     this.dropdownMenuGameCards = new DropMenuGameCards(['Animals', 'Nature']);
-    this.settingDifficulty = new Setting('Difficulty', 'Select game type');
+    this.settingDifficulty = new Setting('Difficulty', '4x4');
     this.dropdownMenuDifficulty = new DropMenuDifficulty(['4x4', '6x6']);
   }
 

@@ -2,7 +2,7 @@ export const DEFAULT_DIFFICULTY = 8;
 export const DEFAULT_CATEGORY = 'animals';
 export const DIFFICULTY_REGEXP = /(\b[0-9]+)/g;
 
-export const TIME_SHOW_CARDS_BEFORE_GAME = 5000;
+export const TIME_SHOW_CARDS_BEFORE_GAME = 30000;
 export const FLIP_CLASS = 'flipped';
 export const FLIP_DELAY = 300;
 export const TIME_DELAY_BEFORE_SHOW_CORRECTNESS = 300;

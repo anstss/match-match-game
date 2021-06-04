@@ -1,5 +1,5 @@
 import { UsersData } from '../controllers/users-data';
-import { UsersDataInterface } from '../models/users-data-interface';
+import { UsersDataInterface } from '../interfaces/users-data-interface';
 import { BaseComponent } from '../shared/base-component';
 import { Player } from './score-page-component.ts/player';
 import { Title } from './title';
@@ -25,7 +25,7 @@ export class ScorePage extends BaseComponent {
 
     this.topTen = UsersData.getTopTen(this);
     this.topTen.forEach((user) => {
-      const player = user; // no-param-reassign special for eslint
+      const player = user;
       if (!player['user-photo']) {
         player['user-photo'] = './icons/avatar.png';
       }

@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { ScorePage } from '../app-components/score-page';
-import { UsersDataInterface } from '../models/users-data-interface';
+import { UsersDataInterface } from '../interfaces/users-data-interface';
 import { MATCH_USER_ID, MAX_SIZE_IMG_BYTES } from '../shared/constans';
 import { InputPhoto } from '../shared/modals/input-photo';
 import { ModalRegister } from '../shared/modals/modal-register';
@@ -31,10 +31,10 @@ export class UsersData {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.addEventListener('load', () => {
-      this.registerForm.inputUserPhoto.imgValue = reader.result!.toString();
-      // this.registerForm.inputUserPhoto.input.setAttribute('data-URL', reader.result!.toString());
+      const result = reader.result!.toString();
+      this.registerForm.inputUserPhoto.imgValue = result;
       this.registerForm.inputUserPhoto.label.element.classList.add('no-bg');
-      this.registerForm.inputUserPhoto.userImg.element.setAttribute('src', reader.result!.toString());
+      this.registerForm.inputUserPhoto.userImg.element.setAttribute('src', result);
     });
   }
 
@@ -42,7 +42,6 @@ export class UsersData {
     this.registerForm.inputs.forEach((inputElem) => {
       if (inputElem instanceof InputPhoto) {
         this.user[inputElem.input.name] = inputElem.imgValue;
-        // this.user[inputElem.input.name] = inputElem.input.getAttribute('data-URL')!;
       } else {
         this.user[inputElem.input.name] = inputElem.input.value;
       }
@@ -68,11 +67,6 @@ export class UsersData {
 
   static getTopTen(scorePage?: ScorePage) {
     const allUsers: UsersDataInterface[] = [];
-    // const keys = Object.keys(window.localStorage);
-    // for (const key of keys) {
-    //   allUsers.push(JSON.parse(window.localStorage.getItem(key)!));
-    // }
-    // special for eslint "no-restricted-syntax"
     for (let i = 0; i < window.localStorage.length; i += 1) {
       const key = window.localStorage.key(i);
       if (key?.includes(MATCH_USER_ID)) {
@@ -80,16 +74,14 @@ export class UsersData {
       }
     }
     if (scorePage) {
-      const scorePageNoParamReassignForEslint = scorePage;
+      const currentScorePage = scorePage;
       if (allUsers.length === 0) {
-        scorePageNoParamReassignForEslint.top.element.innerText = 'No registered users';
+        currentScorePage.top.element.innerText = 'No registered users';
       } else {
-        scorePageNoParamReassignForEslint.top.element.innerText = '';
+        currentScorePage.top.element.innerText = '';
       }
     }
 
-    // allUsers.forEach((elem) => elem.score = +elem.score);
-    // special for eslint:
     allUsers.forEach((elem: UsersDataInterface) => {
       const user = elem;
       user.score = +user.score;

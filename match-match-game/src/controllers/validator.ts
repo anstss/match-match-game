@@ -75,14 +75,13 @@ export class Validator {
   static clearForm(inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[]) {
     inputs.forEach((inputElem) => {
       const currentInput = inputElem;
-      currentInput.isValid = false;
       if (currentInput instanceof InputPhoto) {
         currentInput.isValid = true;
         currentInput.imgValue = '';
-        // currentInput.input.removeAttribute('data-URL');
         currentInput.userImg.element.removeAttribute('src');
         currentInput.error.element.innerText = '';
       } else {
+        currentInput.isValid = false;
         currentInput.input.value = '';
         currentInput.input.classList.remove('valid');
         currentInput.error.element.innerText = '';

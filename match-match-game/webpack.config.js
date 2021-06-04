@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-// const Bootstrap = require('bootstrap');
-// const PrettierPlugin = require('prettier-webpack-plugin');
 
 const devServer = (isDevMode) => !isDevMode ? {} : {
   devServer: {
@@ -59,7 +57,6 @@ module.exports = ({devMode}) => ({
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // title: 'Match-Match Game',
       template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
@@ -70,8 +67,6 @@ module.exports = ({devMode}) => ({
         { from: './public' },
       ],
     }),
-    // new Bootstrap(),
-    // new PrettierPlugin(),
     ...esLintPlugin(devMode),
   ],
   ...devServer(devMode),

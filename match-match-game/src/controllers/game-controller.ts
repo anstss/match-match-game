@@ -3,7 +3,7 @@ import $ from 'jquery';
 import { GamePage } from '../app-components/game-page';
 import { Card } from '../app-components/game-page-components/card';
 import { CardsField } from '../app-components/game-page-components/cards-field';
-import { ImageCategoryModel } from '../models/image-category-model';
+import { ImageCategoryInterface } from '../interfaces/image-category-interface';
 import { delay } from '../shared/delay';
 import { BaseComponent } from '../shared/base-component';
 import { Timer } from '../app-components/game-page-components/timer';
@@ -228,7 +228,7 @@ export class GameController {
   async startGame(currentCategory = this.settingsController.category,
     currentDifficulty = this.settingsController.difficulty) {
     const response = await fetch('./images.json');
-    const imagesJson: ImageCategoryModel[] = await response.json();
+    const imagesJson: ImageCategoryInterface[] = await response.json();
 
     const selectedCategory = imagesJson.find((elem) => elem.category === currentCategory.toLowerCase());
     if (!selectedCategory) throw new Error('Category not found');

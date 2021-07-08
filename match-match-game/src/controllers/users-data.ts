@@ -8,9 +8,7 @@ import { GameController } from './game-controller';
 
 export class UsersData {
   registerForm: ModalRegister;
-
   user: UsersDataInterface;
-
   gameController: GameController;
 
   constructor(registerForm: ModalRegister, gameController: GameController) {

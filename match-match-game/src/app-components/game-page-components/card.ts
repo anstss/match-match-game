@@ -2,15 +2,10 @@ import { BaseComponent } from '../../shared/base-component';
 
 export class Card extends BaseComponent {
   isFlipped = false;
-
   correct: BaseComponent;
-
   incorrect: BaseComponent;
-
   card: BaseComponent;
-
   cardFrontSide: BaseComponent;
-
   cardBackSide: BaseComponent;
 
   constructor(readonly image: string) {

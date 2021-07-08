@@ -6,15 +6,10 @@ import './_setting-page.scss';
 
 export class SettingPage extends BaseComponent {
   settingGameCards: Setting;
-
   dropdownMenuGameCards: DropMenuGameCards;
-
   settingDifficulty: Setting;
-
   dropdownMenuDifficulty: DropMenuDifficulty;
-
   container: HTMLElement;
-
   settingsInner: HTMLElement;
 
   constructor(private readonly page: HTMLElement) {

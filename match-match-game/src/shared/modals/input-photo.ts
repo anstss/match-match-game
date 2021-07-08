@@ -2,15 +2,10 @@ import { BaseComponent } from '../base-component';
 
 export class InputPhoto extends BaseComponent {
   label: BaseComponent;
-
   input: HTMLInputElement;
-
   isValid: boolean;
-
   error: BaseComponent;
-
   userImg: BaseComponent;
-
   imgValue: string;
 
   constructor() {

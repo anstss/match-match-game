@@ -15,27 +15,16 @@ import { App } from '../app';
 
 export class GameController {
   cardsField: CardsField;
-
   cards: Card[] = [];
-
   gameTimer: BaseComponent;
-
   timer: Timer;
-
   isAnimation = false;
-
   activeCard?: Card;
-
   timerId: number;
-
   totalTime: number;
-
   score: number;
-
   amountMatches: number;
-
   startTime: number;
-
   showCard?: number;
 
   constructor(readonly gamePage: GamePage,

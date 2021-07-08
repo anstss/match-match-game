@@ -7,13 +7,9 @@ import './_score-page.scss';
 
 export class ScorePage extends BaseComponent {
   container: HTMLElement;
-
   scorePageInner: HTMLElement;
-
   scoreTitle: HTMLElement;
-
   topTen: UsersDataInterface[];
-
   top: BaseComponent;
 
   constructor(private readonly page: HTMLElement) {

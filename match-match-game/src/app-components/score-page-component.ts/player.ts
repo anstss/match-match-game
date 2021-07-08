@@ -2,17 +2,11 @@ import { BaseComponent } from '../../shared/base-component';
 
 export class Player extends BaseComponent {
   playerPhoto: BaseComponent;
-
   playerInfo: BaseComponent;
-
   playerName: BaseComponent;
-
   playerEmail: BaseComponent;
-
   playerScore: BaseComponent;
-
   scoreLabel: BaseComponent;
-
   scoreValue: BaseComponent;
 
   constructor(playerPhotoSRC: string | number, playerFirstName: string | number,

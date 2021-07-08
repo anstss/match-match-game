@@ -5,15 +5,10 @@ import { Title } from './title';
 
 export class AboutPage extends BaseComponent {
   container: HTMLElement;
-
   aboutInner: HTMLElement;
-
   aboutTitle: HTMLElement;
-
   stepOne: HTMLElement;
-
   stepTwo: HTMLElement;
-
   stepThree: HTMLElement;
 
   constructor(private readonly page: HTMLElement) {

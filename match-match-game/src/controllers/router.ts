@@ -6,13 +6,9 @@ import { SettingPage } from '../app-components/setting-page';
 
 export class Router {
   page: HTMLElement;
-
   aboutPage: AboutPage;
-
   gamePage: GamePage;
-
   settingPage: SettingPage;
-
   app: App;
 
   constructor(app: App, aboutPage: AboutPage,

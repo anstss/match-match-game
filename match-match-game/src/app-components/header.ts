@@ -6,29 +6,17 @@ import { NavLink } from './header-components/nav-link';
 
 export class Header extends BaseComponent {
   nav: BaseComponent;
-
   navList: BaseComponent;
-
   navItemLogo: BaseComponent;
-
   navItemAbout: BaseComponent;
-
   navItemScore: BaseComponent;
-
   navItemSettings: BaseComponent;
-
   logo: Logo;
-
   aboutGame: NavLink;
-
   bestScore: NavLink;
-
   gameSettings: NavLink;
-
   buttonStart: ButtonStart;
-
   buttonStop: ButtonStop;
-
   navItems: BaseComponent[];
 
   constructor(private readonly rootElement: HTMLElement) {

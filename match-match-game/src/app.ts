@@ -5,9 +5,7 @@ import { ModalRegister } from './shared/modals/modal-register';
 
 export class App {
   header: Header;
-
   page: Page;
-
   registerModal: ModalRegister;
 
   constructor(private readonly rootElement: HTMLElement) {

@@ -7,7 +7,6 @@ import { ModalRegister } from '../shared/modals/modal-register';
 
 export class Validator {
   inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[];
-
   registerForm: ModalRegister;
 
   constructor(registerForm: ModalRegister) {

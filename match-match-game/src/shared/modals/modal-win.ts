@@ -2,17 +2,11 @@ import { BaseComponent } from '../base-component';
 
 export class ModalWin extends BaseComponent {
   modalDialog: BaseComponent;
-
   modalContent: BaseComponent;
-
   modalWin: BaseComponent;
-
   modalText: BaseComponent;
-
   modalButtons: BaseComponent;
-
   buttonNo: BaseComponent;
-
   buttonYes: BaseComponent;
 
   constructor() {

@@ -5,9 +5,7 @@ import { ModalWin } from '../shared/modals/modal-win';
 
 export class GamePage extends BaseComponent {
   cardsField: CardsField;
-
   container: BaseComponent;
-
   modalWin: ModalWin;
 
   constructor(private readonly page: HTMLElement) {

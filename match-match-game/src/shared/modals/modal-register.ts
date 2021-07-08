@@ -6,29 +6,17 @@ import { InputPhoto } from './input-photo';
 
 export class ModalRegister extends BaseComponent {
   modalDialog: BaseComponent;
-
   modalContent: BaseComponent;
-
   form: BaseComponent;
-
   formTitle: BaseComponent;
-
   formBody: BaseComponent;
-
   inputFirstName: InputFirstName;
-
   inputLastName: InputLastName;
-
   inputEmail: InputEmail;
-
   inputUserPhoto: InputPhoto;
-
   formButtons: BaseComponent;
-
   buttonAddUser: BaseComponent;
-
   buttonCancel: BaseComponent;
-
   inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[];
 
   constructor() {

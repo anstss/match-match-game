@@ -7,21 +7,13 @@ import { DEFAULT_CATEGORY, DEFAULT_DIFFICULTY } from '../shared/constans';
 
 export class SettingsController {
   settingsPage: SettingPage;
-
   buttonGameCards: DropdownButton;
-
   dropMenuGameCards: DropMenuGameCards;
-
   dropItemsGameCards: DropdownItem[];
-
   category: string;
-
   difficulty: number;
-
   buttonDifficulty: DropdownButton;
-
   dropMenuDifficulty: DropMenuDifficulty;
-
   dropItemsDifficulty: DropdownItem[];
 
   constructor(readonly settingPage: SettingPage) {

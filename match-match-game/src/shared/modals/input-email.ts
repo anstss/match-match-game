@@ -2,11 +2,8 @@ import { BaseComponent } from '../base-component';
 
 export class InputEmail extends BaseComponent {
   label: BaseComponent;
-
   error: BaseComponent;
-
   input: HTMLInputElement;
-
   isValid: boolean;
 
   constructor() {

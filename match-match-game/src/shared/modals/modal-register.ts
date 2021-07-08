@@ -47,7 +47,7 @@ export class ModalRegister extends BaseComponent {
     this.inputEmail = new InputEmail();
     this.inputUserPhoto = new InputPhoto();
     this.formButtons = new BaseComponent('div', ['form-buttons']);
-    this.buttonAddUser = new BaseComponent('button', ['btn', 'button', 'button_blue', 'button_add-user', 'disabled']);
+    this.buttonAddUser = new BaseComponent('button', ['btn', 'button', 'button--blue', 'button--add-user', 'disabled']);
     this.buttonAddUser.element.setAttribute('type', 'submit');
     this.buttonAddUser.element.setAttribute('disabled', 'disabled');
     this.buttonAddUser.element.innerText = 'Add user';

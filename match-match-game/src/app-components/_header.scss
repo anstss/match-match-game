@@ -21,7 +21,7 @@
   padding: 2px 15px;
 }
 
-.logo__match_highlighted {
+.logo__match--highlighted {
   color: $primary-color;
   background-color: #fff;
 }
@@ -93,12 +93,12 @@
   transition: all 0.2s linear;
 }
 
-.button_blue {
+.button--blue {
   background-color: $primary-color;
   color: $primary-color-lightest;
 }
 
-.button_add-user {
+.button--add-user {
   margin-right: 20px;
 }
 

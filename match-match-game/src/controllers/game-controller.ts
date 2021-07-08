@@ -159,9 +159,9 @@ export class GameController {
     this.stopGame();
     let cards = images.concat(images).map((url) => new Card(url));
     if (currentDifficulty !== DEFAULT_DIFFICULTY) {
-      cards.forEach((card) => card.card.element.classList.add('card_small'));
+      cards.forEach((card) => card.card.element.classList.add('card--small'));
     } else {
-      cards.forEach((card) => card.card.element.classList.remove('card_small'));
+      cards.forEach((card) => card.card.element.classList.remove('card--small'));
     }
     cards = _.shuffle(cards);
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));

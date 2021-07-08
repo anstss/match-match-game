@@ -6,7 +6,7 @@ export class Logo extends BaseComponent {
     this.element.innerHTML = `
     <div class="logo">
       <div class="logo__match">Match</div>
-      <div class="logo__match logo__match_highlighted">Match</div>
+      <div class="logo__match logo__match--highlighted">Match</div>
     </div>
     `;
     this.element.setAttribute('href', href);

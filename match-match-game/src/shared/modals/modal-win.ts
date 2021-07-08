@@ -26,7 +26,7 @@ export class ModalWin extends BaseComponent {
     this.buttonNo = new BaseComponent('a', ['btn', 'button']);
     this.buttonNo.element.setAttribute('href', '#score');
     this.buttonNo.element.innerText = 'No, thanks';
-    this.buttonYes = new BaseComponent('button', ['btn', 'button', 'button_blue']);
+    this.buttonYes = new BaseComponent('button', ['btn', 'button', 'button--blue']);
     this.buttonYes.element.setAttribute('type', 'button');
     this.buttonYes.element.setAttribute('data-dismiss', 'modal');
     this.buttonYes.element.setAttribute('data-toggle', 'modal');

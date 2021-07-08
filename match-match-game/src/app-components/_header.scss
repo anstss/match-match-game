@@ -38,10 +38,14 @@
 .nav-item {
   width: 96px;
   height: inherit;
-}
 
-.nav-item:first-child {
-  margin-right: 150px;
+  &:first-child {
+    margin-right: 150px;
+  }
+
+  &.active-link {
+    background-color: $primary-color-dark;
+  }
 }
 
 .nav-link {
@@ -58,17 +62,13 @@
   color: #fff;
 
   transition: all 0.2s linear;
-}
 
-.nav-link:hover {
-  &.nav-link_logo {
-    opacity: 1;
+  &:hover {
+    &.nav-link_logo {
+      opacity: 1;
+    }
+    opacity: 0.5;
   }
-  opacity: 0.5;
-}
-
-.nav-item.active-link {
-  background-color: $primary-color-dark;
 }
 
 .nav-icon {
@@ -91,6 +91,12 @@
   margin: auto 0;
 
   transition: all 0.2s linear;
+
+  &:hover {
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: $primary-color;
+  }
 }
 
 .button--blue {
@@ -100,12 +106,6 @@
 
 .button--add-user {
   margin-right: 20px;
-}
-
-.button:hover {
-  color: #fff;
-  border: 1px solid #fff;
-  background-color: $primary-color;
 }
 
 .hidden {

@@ -63,13 +63,18 @@
   width: 198px;
   height: 198px;
   margin: auto;
-}
 
-.custom-file-input::after,
-.custom-file-label::after {
-  content: none !important;
+  &:hover {
+    .custom-file-label {
+      background: no-repeat center url(./assets/add-user-photo2.png);
+    }
+    .custom-file-label {
+      &.no-bg {
+        background: none;
+      }
+    }
+  }
 }
-
 
 .custom-file-input,
 .custom-file-label {
@@ -77,24 +82,19 @@
   height: inherit;
   border: none;
   cursor: pointer;
+
+  &::after {
+    content: none !important;
+  }
 }
 
 .custom-file-label {
   background: no-repeat center url(./assets/add-user-photo.png);
   transition: all 0.2s linear;
-}
 
-.custom-file:hover {
-  .custom-file-label {
-    background: no-repeat center url(./assets/add-user-photo2.png);
-  }
-  .custom-file-label.no-bg {
+  &.no-bg {
     background: none;
   }
-}
-
-.custom-file-label.no-bg {
-  background: none;
 }
 
 .selected-img {
@@ -123,11 +123,13 @@
   background: no-repeat center right 10px url(./assets/correct.png) !important;
 }
 
-.btn.disabled {
-  &:hover {
-    border: 1px solid gray;
+.btn {
+  &.disabled {
+    &:hover {
+      border: 1px solid gray;
+      background-color: gray;
+    }
+    cursor: default;
     background-color: gray;
   }
-  cursor: default;
-  background-color: gray;
 }

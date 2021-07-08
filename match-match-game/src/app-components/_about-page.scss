@@ -1,10 +1,10 @@
-@import '../_variables';
+@import './src/_variables';
 
 // About
 // ==============================================
 
 .about__inner {
-  background-color: $bg-color-gray;
+  background-color: $gray-light;
   border-radius: 5px;
   margin: 33px 0;
   padding: 28px 36px;
@@ -44,5 +44,5 @@
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
-  color: $text-color-light;
+  color: $gray;
 }

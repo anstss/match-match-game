@@ -1,11 +1,11 @@
-@import '../variables';
+@import './src/_variables';
 
 // Best players
 // ===================================
 
 .best-players__inner {
   padding: 50px;
-  background-color: $bg-color-gray;
+  background-color: $gray-light;
   margin: 33px 0;
 }
 
@@ -38,14 +38,14 @@
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0.1px;
-  color: $text-color;
+  color: $gray-dark;
 }
 
 .player__email {
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 0.4px;
-  color: $text-color-light;
+  color: $gray;
 }
 
 .player__score {
@@ -62,7 +62,7 @@
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.15px;
-  color: $text-color;
+  color: $gray-dark;
   margin-bottom: 0;
 }
 

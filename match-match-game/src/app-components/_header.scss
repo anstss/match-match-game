@@ -1,4 +1,4 @@
-@import '../variables';
+@import './src/_variables';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -126,7 +126,7 @@ a:hover {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 6px 10px rgba(0, 0, 0, 0.14);
   border-radius: 4px;
   color: $primary-color;
-  background-color: $primary-lightest;
+  background-color: $primary-color-lightest;
   margin: auto 0;
 
   transition: all 0.2s linear;
@@ -134,7 +134,7 @@ a:hover {
 
 .button_blue {
   background-color: $primary-color;
-  color: $primary-lightest;
+  color: $primary-color-lightest;
 }
 
 .button_add-user {
@@ -170,6 +170,6 @@ a:hover {
   font-size: 20px;
   line-height: 30px;
   letter-spacing: 0.15px;
-  color: $text-color;
+  color: $gray-dark;
 }
 

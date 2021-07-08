@@ -1,51 +1,5 @@
-@import "~bootstrap/scss/bootstrap";
-@import './src/_normalize.scss';
-@import './src/_variables.scss';
-@import './src/shared/modals/_modals.scss';
-
-body {
-  font-family: 'Roboto', sans-serif;
-  min-height: 100vh;
-  background-color: #fff;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-p {
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  color: #fff;
-}
-
-a, button {
-  cursor: pointer;
-}
-
-input[type="file"]:focus {
-  visibility: hidden;
-}
+@import '~bootstrap/scss/bootstrap';
+@import './src/_normalize';
+@import './src/_variables';
+@import './src/shared/modals/_modals';
+@import './src/common';

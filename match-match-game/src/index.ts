@@ -74,7 +74,7 @@ window.onload = () => {
     gameController.cardsField.element.innerHTML = '<div class="text-message">Click START GAME for a new game<div>';
   });
 
-  $('#register-form').on('submit', (event) => {
+  registerForm.element.addEventListener('submit', (event) => {
     event.preventDefault();
     try {
       usersData.addUser();

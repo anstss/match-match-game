@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
-@import './src/_normalize';
-@import './src/_variables';
+@import './src/shared/scss/_normalize';
+@import './src/shared/scss/_variables';
 @import './src/shared/modals/_modals';
-@import './src/common';
+@import 'shared/scss/_common';
+@import 'shared/scss/_buttons';

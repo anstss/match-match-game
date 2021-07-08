@@ -1,4 +1,4 @@
-@import './src/_variables';
+@import 'variables';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -60,4 +60,8 @@ input[type="file"]:focus {
   line-height: 30px;
   letter-spacing: 0.15px;
   color: $gray-dark;
+}
+
+.hidden {
+  display: none;
 }

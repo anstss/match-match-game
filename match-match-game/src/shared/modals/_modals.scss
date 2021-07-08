@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   padding: 50px;
-}
 
-.modal-win__buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
+  &__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .modal-dialog {
@@ -27,16 +27,16 @@
   height: auto;
   background-color: $primary-color-lightest;
   padding: 20px;
-}
 
-.register-form__title {
-  width: 100%;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  letter-spacing: 0.15px;
-  color: $gray-dark;
-  margin-bottom: 20px;
+  &__title {
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+    color: $gray-dark;
+    margin-bottom: 20px;
+  }
 }
 
 .form-group {
@@ -67,8 +67,7 @@
   &:hover {
     .custom-file-label {
       background: no-repeat center url(./assets/add-user-photo2.png);
-    }
-    .custom-file-label {
+
       &.no-bg {
         background: none;
       }
@@ -123,13 +122,3 @@
   background: no-repeat center right 10px url(./assets/correct.png) !important;
 }
 
-.btn {
-  &.disabled {
-    &:hover {
-      border: 1px solid gray;
-      background-color: gray;
-    }
-    cursor: default;
-    background-color: gray;
-  }
-}

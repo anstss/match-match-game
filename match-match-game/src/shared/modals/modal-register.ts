@@ -1,8 +1,6 @@
 import { BaseComponent } from '../base-component';
-import { InputEmail } from './input-email';
-import { InputFirstName } from './input-first-name';
-import { InputLastName } from './input-last-name';
 import { InputPhoto } from './input-photo';
+import { Input } from './input';
 
 export class ModalRegister extends BaseComponent {
   modalDialog: BaseComponent;
@@ -10,14 +8,14 @@ export class ModalRegister extends BaseComponent {
   form: BaseComponent;
   formTitle: BaseComponent;
   formBody: BaseComponent;
-  inputFirstName: InputFirstName;
-  inputLastName: InputLastName;
-  inputEmail: InputEmail;
+  inputFirstName: Input;
+  inputLastName: Input;
+  inputEmail: Input;
   inputUserPhoto: InputPhoto;
   formButtons: BaseComponent;
   buttonAddUser: BaseComponent;
   buttonCancel: BaseComponent;
-  inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[];
+  inputs: (Input | InputPhoto)[];
 
   constructor() {
     super('div', ['modal']);
@@ -30,9 +28,9 @@ export class ModalRegister extends BaseComponent {
     this.formTitle = new BaseComponent('div', ['register-form__title']);
     this.formTitle.element.innerText = 'Register new Player';
     this.formBody = new BaseComponent('div', ['register-form__body']);
-    this.inputFirstName = new InputFirstName();
-    this.inputLastName = new InputLastName();
-    this.inputEmail = new InputEmail();
+    this.inputFirstName = new Input('first-name', 'First Name', 'text');
+    this.inputLastName = new Input('last-name', 'Last Name', 'text');
+    this.inputEmail = new Input('email', 'Email', 'email');
     this.inputUserPhoto = new InputPhoto();
     this.formButtons = new BaseComponent('div', ['form-buttons']);
     this.buttonAddUser = new BaseComponent('button', ['btn', 'button', 'button--blue', 'button--add-user', 'disabled']);

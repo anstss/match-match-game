@@ -1,12 +1,10 @@
 import { REGEXP_EMAIL, REGEXP_SPECIAL_CHARACTERS } from '../shared/constans';
-import { InputEmail } from '../shared/modals/input-email';
-import { InputFirstName } from '../shared/modals/input-first-name';
-import { InputLastName } from '../shared/modals/input-last-name';
 import { InputPhoto } from '../shared/modals/input-photo';
 import { ModalRegister } from '../shared/modals/modal-register';
+import { Input } from '../shared/modals/input';
 
 export class Validator {
-  inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[];
+  inputs: (Input | InputPhoto)[];
   registerForm: ModalRegister;
 
   constructor(registerForm: ModalRegister) {
@@ -22,7 +20,7 @@ export class Validator {
     });
   }
 
-  static validate(inputElem: InputFirstName | InputLastName | InputEmail | InputPhoto) {
+  static validate(inputElem: Input | InputPhoto) {
     const currentInput = inputElem;
     const currentInpuName = inputElem.input.name;
     const currentInputValue = inputElem.input.value;
@@ -59,7 +57,7 @@ export class Validator {
     currentInput.error.element.innerText = '';
   }
 
-  checkValidityForm(inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[]) {
+  checkValidityForm(inputs: (Input | InputPhoto)[]) {
     const validationValues: boolean[] = [];
     inputs.forEach((inputElem) => validationValues.push(inputElem.isValid));
     if (validationValues.includes(false)) {
@@ -71,7 +69,7 @@ export class Validator {
     this.registerForm.buttonAddUser.element.classList.remove('disabled');
   }
 
-  static clearForm(inputs: (InputFirstName | InputLastName | InputEmail | InputPhoto)[]) {
+  static clearForm(inputs: (Input | InputPhoto)[]) {
     inputs.forEach((inputElem) => {
       const currentInput = inputElem;
       if (currentInput instanceof InputPhoto) {

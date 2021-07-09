@@ -1,10 +1,14 @@
 import { BaseComponent } from '../../shared/base-component';
 
 export class NavLink extends BaseComponent {
-  constructor(pageName: string, pageIcon: string, href: string) {
+  constructor(readonly pageName: string, readonly pageIcon: string, readonly href: string) {
     super('a', ['nav-link']);
+    this.initialize();
+  }
+
+  initialize() {
     this.element.innerHTML = `
-      <img class="nav-icon" src="./icons/${pageIcon}" alt="${pageName} Icon">${pageName}`;
-    this.element.setAttribute('href', href);
+      <img class="nav-icon" src="./icons/${this.pageIcon}" alt="${this.pageName} Icon">${this.pageName}`;
+    this.element.setAttribute('href', this.href);
   }
 }

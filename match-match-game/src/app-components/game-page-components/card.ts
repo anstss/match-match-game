@@ -14,8 +14,12 @@ export class Card extends BaseComponent {
     this.incorrect = new BaseComponent('div', ['incorrect', 'hidden']);
     this.card = new BaseComponent('div', ['card']);
     this.cardFrontSide = new BaseComponent('div', ['card__front']);
-    this.cardFrontSide.element.setAttribute('style', `background-image: url('./images/${image}')`);
     this.cardBackSide = new BaseComponent('div', ['card__back']);
+    this.initialize();
+  }
+
+  initialize() {
+    this.cardFrontSide.element.setAttribute('style', `background-image: url('./images/${this.image}')`);
   }
 
   render() {

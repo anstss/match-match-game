@@ -6,19 +6,31 @@ export class Input extends BaseComponent {
   input: HTMLInputElement;
   isValid: boolean;
 
-  constructor(attributeValue: string, text: string, type: string) {
+  constructor(readonly attributeValue: string, readonly text: string, readonly type: string) {
     super('div', ['form-group']);
     this.label = new BaseComponent('label', ['label-name']);
-    this.label.element.setAttribute('for', attributeValue);
-    this.label.element.innerText = text;
     this.input = document.createElement('input');
-    this.input.classList.add('form-control');
-    this.input.setAttribute('type', type);
-    this.input.setAttribute('id', attributeValue);
-    this.input.setAttribute('placeholder', `Enter your ${text}`);
-    this.input.setAttribute('name', attributeValue);
     this.error = new BaseComponent('div', ['input-error']);
     this.isValid = false;
+    this.initialize();
+  }
+
+  initialize() {
+    this.initializeLabel();
+    this.initializeInput();
+  }
+
+  initializeLabel() {
+    this.label.element.setAttribute('for', this.attributeValue);
+    this.label.element.innerText = this.text;
+  }
+
+  initializeInput() {
+    this.input.classList.add('form-control');
+    this.input.setAttribute('type', this.type);
+    this.input.setAttribute('id', this.attributeValue);
+    this.input.setAttribute('placeholder', `Enter your ${this.text}`);
+    this.input.setAttribute('name', this.attributeValue);
   }
 
   render() {

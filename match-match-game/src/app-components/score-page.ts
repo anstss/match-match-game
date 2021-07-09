@@ -18,7 +18,6 @@ export class ScorePage extends BaseComponent {
     this.scorePageInner = new BaseComponent('div', ['best-players__inner']).element;
     this.scoreTitle = new Title('Best players', ['best-players__title']).element;
     this.top = new BaseComponent('div', ['top-ten']);
-
     this.topTen = UsersData.getTopTen(this);
     this.topTen.forEach((user) => {
       const player = user;

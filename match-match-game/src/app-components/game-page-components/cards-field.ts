@@ -6,6 +6,10 @@ export class CardsField extends BaseComponent {
 
   constructor() {
     super('div', ['game__field']);
+    this.initialize();
+  }
+
+  initialize() {
     this.element.innerHTML = '<div class="text-message">Click START GAME for a new game<div>';
   }
 }

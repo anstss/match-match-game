@@ -6,6 +6,10 @@ export class Timer extends BaseComponent {
 
   constructor() {
     super('div', ['timer']);
+    this.initialize();
+  }
+
+  initialize() {
     this.element.innerHTML = '00:00';
   }
 }

@@ -11,16 +11,28 @@ export class ModalWin extends BaseComponent {
 
   constructor() {
     super('div', ['modal']);
-    this.element.setAttribute('id', 'modal-win');
     this.modalDialog = new BaseComponent('div', ['modal-dialog', 'modal-dialog-centered']);
     this.modalContent = new BaseComponent('div', ['modal-content']);
     this.modalWin = new BaseComponent('div', ['modal-win']);
     this.modalText = new BaseComponent('div', ['modal-win__text']);
     this.modalButtons = new BaseComponent('div', ['modal-win__buttons']);
     this.buttonNo = new BaseComponent('a', ['btn', 'button']);
+    this.buttonYes = new BaseComponent('button', ['btn', 'button', 'button--blue']);
+    this.initialize();
+  }
+
+  initialize() {
+    this.element.setAttribute('id', 'modal-win');
+    this.initializeButtonNo();
+    this.initializeButtonYes();
+  }
+
+  initializeButtonNo() {
     this.buttonNo.element.setAttribute('href', '#score');
     this.buttonNo.element.innerText = 'No, thanks';
-    this.buttonYes = new BaseComponent('button', ['btn', 'button', 'button--blue']);
+  }
+
+  initializeButtonYes() {
     this.buttonYes.element.setAttribute('type', 'button');
     this.buttonYes.element.setAttribute('data-dismiss', 'modal');
     this.buttonYes.element.setAttribute('data-toggle', 'modal');

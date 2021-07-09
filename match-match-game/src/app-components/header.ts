@@ -24,7 +24,6 @@ export class Header extends BaseComponent {
     this.nav = new BaseComponent('nav', ['nav']);
     this.navList = new BaseComponent('ul', ['nav-list']);
     this.navItemLogo = new BaseComponent('li', ['nav-item']);
-    this.navItemLogo.element.setAttribute('id', 'logo');
     this.navItemAbout = new BaseComponent('li', ['nav-item']);
     this.navItemScore = new BaseComponent('li', ['nav-item']);
     this.navItemSettings = new BaseComponent('li', ['nav-item']);
@@ -35,6 +34,11 @@ export class Header extends BaseComponent {
     this.buttonStart = new ButtonStart();
     this.buttonStop = new ButtonStop();
     this.navItems = [this.navItemLogo, this.navItemAbout, this.navItemScore, this.navItemSettings];
+    this.initialize();
+  }
+
+  initialize() {
+    this.navItemLogo.element.setAttribute('id', 'logo');
   }
 
   render(): HTMLElement {

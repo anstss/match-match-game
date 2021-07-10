@@ -1,4 +1,5 @@
 import './_game-page.scss';
+import $ from 'jquery';
 import { BaseComponent } from '../shared/base-component';
 import { CardsField } from './game-page-components/cards-field';
 import { ModalWin } from '../shared/modals/modal-win';
@@ -13,6 +14,15 @@ export class GamePage extends BaseComponent {
     this.cardsField = new CardsField();
     this.container = new BaseComponent('div', ['container']);
     this.modalWin = new ModalWin();
+    this.initialize();
+  }
+
+  initialize() {
+    this.modalWin.getButtonNo().addEventListener('click', () => GamePage.hideModalHandler());
+  }
+
+  static hideModalHandler() {
+    $('#modal-win').modal('hide');
   }
 
   getCardsField() {

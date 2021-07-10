@@ -42,9 +42,7 @@ export class ModalRegister extends BaseComponent {
     this.initializeFormTitle();
     this.initializeButtonAddUser();
     this.initializeButtonCancel();
-    this.getButtonCancel().addEventListener('click', () => {
-      this.inputUserPhoto.getLabel().classList.remove('no-bg');
-    });
+    this.getButtonCancel().addEventListener('click', () => this.cancelHandler());
   }
 
   initializeForm() {
@@ -102,6 +100,10 @@ export class ModalRegister extends BaseComponent {
 
   getFormButtons() {
     return this.formButtons.element;
+  }
+
+  cancelHandler() {
+    this.inputUserPhoto.getLabel().classList.remove('no-bg');
   }
 
   render() {

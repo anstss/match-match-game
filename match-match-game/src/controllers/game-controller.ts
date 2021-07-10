@@ -11,7 +11,6 @@ import { SettingsController } from './settings-controller';
 import {
   DEFAULT_DIFFICULTY, FLIP_CLASS, FLIP_DELAY, TIME_DELAY_BEFORE_SHOW_CORRECTNESS, TIME_SHOW_CARDS_BEFORE_GAME,
 } from '../shared/constans';
-import { App } from '../app';
 import { Header } from '../app-components/header';
 
 export class GameController {
@@ -131,8 +130,10 @@ export class GameController {
     this.getGameTimer().appendChild(this.getTimer());
     this.cards.forEach((card) => this.getCardsField().appendChild(card.render()));
     this.showCard = window.setTimeout(() => {
-      this.cards.forEach((card) => GameController.flipCardToBack(card));
-      this.cards.forEach((card) => card.element.classList.remove('card-hover-inactive'));
+      this.cards.forEach((card) => {
+        GameController.flipCardToBack(card);
+        card.element.classList.remove('card-hover-inactive');
+      });
     }, TIME_SHOW_CARDS_BEFORE_GAME);
   }
 

@@ -10,15 +10,16 @@ export class Validator {
   constructor(registerForm: ModalRegister) {
     this.registerForm = registerForm;
     this.inputs = registerForm.inputs;
+    this.initialize();
+  }
+
+  initialize() {
     this.inputs.forEach((inputElem) => {
       const { input } = inputElem;
-      input.addEventListener('input', () => Validator.validate(inputElem));
-      input.addEventListener('input', () => this.checkValidityForm(this.inputs));
+      input.addEventListener('input', () => this.validateHandler(inputElem));
     });
-    this.registerForm.getButtonCancel().addEventListener('click', () => {
-      Validator.clearForm(this.inputs);
-      this.checkValidityForm(this.inputs);
-    });
+
+    this.registerForm.getButtonCancel().addEventListener('click', () => this.clearHandler());
   }
 
   static validate(inputElem: Input | InputPhoto) {
@@ -86,5 +87,15 @@ export class Validator {
       }
       currentInput.getError().innerText = '';
     });
+  }
+
+  validateHandler(inputElem: Input | InputPhoto) {
+    Validator.validate(inputElem);
+    this.checkValidityForm(this.inputs);
+  }
+
+  clearHandler() {
+    Validator.clearForm(this.inputs);
+    this.checkValidityForm(this.inputs);
   }
 }

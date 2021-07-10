@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import $ from 'jquery';
 import { ScorePage } from '../app-components/score-page';
 import { UsersDataInterface } from '../interfaces/users-data-interface';
 import { MATCH_USER_ID, MAX_SIZE_IMG_BYTES } from '../shared/constans';
@@ -15,7 +16,24 @@ export class UsersData {
     this.user = {};
     this.registerForm = registerForm;
     this.gameController = gameController;
+    this.initialize();
+  }
+
+  initialize() {
     this.registerForm.inputUserPhoto.input.addEventListener('change', () => this.readImg());
+    this.registerForm.getModalRegister().addEventListener('submit', (event) => this.registerHandler(event));
+  }
+
+  registerHandler(event: Event) {
+    event.preventDefault();
+    try {
+      this.addUser();
+    } catch (e) {
+      UsersData.clearStorage();
+      this.addUser();
+    }
+    $('#register-modal').modal('hide');
+    window.location.href = '#score';
   }
 
   readImg() {

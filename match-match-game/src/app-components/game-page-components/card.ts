@@ -19,7 +19,7 @@ export class Card extends BaseComponent {
   }
 
   initialize() {
-    this.cardFrontSide.element.setAttribute('style', `background-image: url('./images/${this.image}')`);
+    this.getCardFrontSide().setAttribute('style', `background-image: url('./images/${this.image}')`);
   }
 
   getCard() {

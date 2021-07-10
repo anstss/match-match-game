@@ -1,20 +1,20 @@
-import { App } from '../app';
 import { AboutPage } from '../app-components/about-page';
 import { GamePage } from '../app-components/game-page';
 import { ScorePage } from '../app-components/score-page';
 import { SettingPage } from '../app-components/setting-page';
+import { Header } from '../app-components/header';
 
 export class Router {
-  page: HTMLElement;
-  aboutPage: AboutPage;
-  gamePage: GamePage;
-  settingPage: SettingPage;
-  app: App;
+  private header: Header;
+  private readonly appPage: HTMLElement;
+  private aboutPage: AboutPage;
+  private gamePage: GamePage;
+  private settingPage: SettingPage;
 
-  constructor(app: App, aboutPage: AboutPage,
+  constructor(header: Header, appPage: HTMLElement, aboutPage: AboutPage,
     gamePage: GamePage, settingPage: SettingPage) {
-    this.app = app;
-    this.page = app.getPage();
+    this.header = header;
+    this.appPage = appPage;
     this.aboutPage = aboutPage;
     this.gamePage = gamePage;
     this.settingPage = settingPage;
@@ -23,10 +23,10 @@ export class Router {
   startPageRoute = {
     routeName: 'about',
     component: () => {
-      this.page.innerHTML = '';
-      this.page.appendChild(this.aboutPage.render());
+      this.appPage.innerHTML = '';
+      this.appPage.appendChild(this.aboutPage.render());
       this.clearActiveRoute();
-      this.app.header.getNavItemAbout().classList.add('active-link');
+      this.header.getNavItemAbout().classList.add('active-link');
     },
   };
 
@@ -34,27 +34,27 @@ export class Router {
     {
       routeName: 'score',
       component: () => {
-        this.page.innerHTML = '';
-        const scorePage = new ScorePage(this.page);
-        this.page.appendChild(scorePage.render());
+        this.appPage.innerHTML = '';
+        const scorePage = new ScorePage(this.appPage);
+        this.appPage.appendChild(scorePage.render());
         this.clearActiveRoute();
-        this.app.header.getNavItemScore().classList.add('active-link');
+        this.header.getNavItemScore().classList.add('active-link');
       },
     },
     {
       routeName: 'settings',
       component: () => {
-        this.page.innerHTML = '';
-        this.page.appendChild(this.settingPage.render());
+        this.appPage.innerHTML = '';
+        this.appPage.appendChild(this.settingPage.render());
         this.clearActiveRoute();
-        this.app.header.getNavItemSettings().classList.add('active-link');
+        this.header.getNavItemSettings().classList.add('active-link');
       },
     },
     {
       routeName: 'game',
       component: () => {
-        this.page.innerHTML = '';
-        this.page.appendChild(this.gamePage.render());
+        this.appPage.innerHTML = '';
+        this.appPage.appendChild(this.gamePage.render());
         this.clearActiveRoute();
       },
     },
@@ -71,7 +71,7 @@ export class Router {
   }
 
   clearActiveRoute() {
-    this.app.header.navItems.forEach((navItem) => {
+    this.header.navItems.forEach((navItem) => {
       const item = navItem.element;
       item.classList.remove('active-link');
     });

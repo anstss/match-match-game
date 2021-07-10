@@ -12,6 +12,7 @@ import {
   DEFAULT_DIFFICULTY, FLIP_CLASS, FLIP_DELAY, TIME_DELAY_BEFORE_SHOW_CORRECTNESS, TIME_SHOW_CARDS_BEFORE_GAME,
 } from '../shared/constans';
 import { App } from '../app';
+import { Header } from '../app-components/header';
 
 export class GameController {
   cardsField: CardsField;
@@ -29,7 +30,7 @@ export class GameController {
 
   constructor(readonly gamePage: GamePage,
     private readonly settingsController: SettingsController,
-    private app: App) {
+    private header: Header) {
     this.gamePage = gamePage;
     this.cardsField = this.gamePage.cardsField;
     this.cards = this.cardsField.cards;
@@ -105,8 +106,8 @@ export class GameController {
     Your score is ${this.score}.<br>Do you want to add your result to the high score table?`;
     clearInterval(this.timerId);
     $('#modal-win').modal('show');
-    this.app.header.getButtonStop().classList.add('hidden');
-    this.app.header.getButtonStart().classList.remove('hidden');
+    this.header.getButtonStop().classList.add('hidden');
+    this.header.getButtonStart().classList.remove('hidden');
   }
 
   countScore() {

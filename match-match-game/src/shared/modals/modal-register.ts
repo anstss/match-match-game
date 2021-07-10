@@ -42,6 +42,9 @@ export class ModalRegister extends BaseComponent {
     this.initializeFormTitle();
     this.initializeButtonAddUser();
     this.initializeButtonCancel();
+    this.getButtonCancel().addEventListener('click', () => {
+      this.inputUserPhoto.getLabel().classList.remove('no-bg');
+    });
   }
 
   initializeForm() {

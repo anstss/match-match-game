@@ -14,7 +14,7 @@ export class Router {
   constructor(app: App, aboutPage: AboutPage,
     gamePage: GamePage, settingPage: SettingPage) {
     this.app = app;
-    this.page = app.page.element;
+    this.page = app.getPage();
     this.aboutPage = aboutPage;
     this.gamePage = gamePage;
     this.settingPage = settingPage;
@@ -26,7 +26,7 @@ export class Router {
       this.page.innerHTML = '';
       this.page.appendChild(this.aboutPage.render());
       this.clearActiveRoute();
-      this.app.header.navItemAbout.element.classList.add('active-link');
+      this.app.header.getNavItemAbout().classList.add('active-link');
     },
   };
 
@@ -38,7 +38,7 @@ export class Router {
         const scorePage = new ScorePage(this.page);
         this.page.appendChild(scorePage.render());
         this.clearActiveRoute();
-        this.app.header.navItemScore.element.classList.add('active-link');
+        this.app.header.getNavItemScore().classList.add('active-link');
       },
     },
     {
@@ -47,7 +47,7 @@ export class Router {
         this.page.innerHTML = '';
         this.page.appendChild(this.settingPage.render());
         this.clearActiveRoute();
-        this.app.header.navItemSettings.element.classList.add('active-link');
+        this.app.header.getNavItemSettings().classList.add('active-link');
       },
     },
     {
@@ -72,7 +72,8 @@ export class Router {
 
   clearActiveRoute() {
     this.app.header.navItems.forEach((navItem) => {
-      navItem.element.classList.remove('active-link');
+      const item = navItem.element;
+      item.classList.remove('active-link');
     });
   }
 }

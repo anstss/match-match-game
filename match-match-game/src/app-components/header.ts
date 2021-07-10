@@ -41,17 +41,65 @@ export class Header extends BaseComponent {
     this.navItemLogo.element.setAttribute('id', 'logo');
   }
 
+  getNav() {
+    return this.nav.element;
+  }
+
+  getNavList() {
+    return this.navList.element;
+  }
+
+  getNavItemLogo() {
+    return this.navItemLogo.element;
+  }
+
+  getNavItemAbout() {
+    return this.navItemAbout.element;
+  }
+
+  getNavItemScore() {
+    return this.navItemScore.element;
+  }
+
+  getNavItemSettings() {
+    return this.navItemSettings.element;
+  }
+
+  getLogo() {
+    return this.logo.element;
+  }
+
+  getAboutGame() {
+    return this.aboutGame.element;
+  }
+
+  getBestScore() {
+    return this.bestScore.element;
+  }
+
+  getGameSettings() {
+    return this.gameSettings.element;
+  }
+
+  getButtonStart() {
+    return this.buttonStart.element;
+  }
+
+  getButtonStop() {
+    return this.buttonStop.element;
+  }
+
   render(): HTMLElement {
     this.rootElement.appendChild(this.element);
-    this.element.appendChild(this.nav.element);
-    this.nav.element.appendChild(this.navList.element);
-    this.navList.element.append(this.navItemLogo.element, this.navItemAbout.element,
-      this.navItemScore.element, this.navItemSettings.element);
-    this.navItemLogo.element.appendChild(this.logo.element);
-    this.navItemAbout.element.appendChild(this.aboutGame.element);
-    this.navItemScore.element.appendChild(this.bestScore.element);
-    this.navItemSettings.element.appendChild(this.gameSettings.element);
-    this.element.append(this.buttonStart.element, this.buttonStop.element);
+    this.element.appendChild(this.getNav());
+    this.getNav().appendChild(this.getNavList());
+    this.getNavList().append(this.getNavItemLogo(), this.getNavItemAbout(),
+      this.getNavItemScore(), this.getNavItemSettings());
+    this.getNavItemLogo().appendChild(this.getLogo());
+    this.getNavItemAbout().appendChild(this.getAboutGame());
+    this.getNavItemScore().appendChild(this.getBestScore());
+    this.getNavItemSettings().appendChild(this.getGameSettings());
+    this.element.append(this.getButtonStart(), this.getButtonStop());
 
     return this.element;
   }

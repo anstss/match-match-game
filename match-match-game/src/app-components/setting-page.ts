@@ -9,27 +9,43 @@ export class SettingPage extends BaseComponent {
   dropdownMenuGameCards: DropMenuGameCards;
   settingDifficulty: Setting;
   dropdownMenuDifficulty: DropMenuDifficulty;
-  container: HTMLElement;
-  settingsInner: HTMLElement;
+  container: BaseComponent;
+  settingsInner: BaseComponent;
 
   constructor(private readonly page: HTMLElement) {
     super('div', ['settings']);
-    this.container = new BaseComponent('div', ['container']).element;
-    this.settingsInner = new BaseComponent('div', ['settings__inner']).element;
+    this.container = new BaseComponent('div', ['container']);
+    this.settingsInner = new BaseComponent('div', ['settings__inner']);
     this.settingGameCards = new Setting('Game cards', 'Animals');
     this.dropdownMenuGameCards = new DropMenuGameCards(['Animals', 'Nature']);
     this.settingDifficulty = new Setting('Difficulty', '4x4');
     this.dropdownMenuDifficulty = new DropMenuDifficulty(['4x4', '6x6']);
   }
 
+  getContainer() {
+    return this.container.element;
+  }
+
+  getSettingsInner() {
+    return this.settingsInner.element;
+  }
+
+  getSettingGameCards() {
+    return this.settingGameCards.element;
+  }
+
+  getSettingDifficulty() {
+    return this.settingDifficulty.element;
+  }
+
   render() {
     this.page.appendChild(this.element);
-    this.element.appendChild(this.container);
-    this.container.appendChild(this.settingsInner);
-    this.settingsInner.appendChild(this.settingGameCards.render());
-    this.settingGameCards.element.appendChild(this.dropdownMenuGameCards.render());
-    this.settingsInner.appendChild(this.settingDifficulty.render());
-    this.settingDifficulty.element.appendChild(this.dropdownMenuDifficulty.render());
+    this.element.appendChild(this.getContainer());
+    this.getContainer().appendChild(this.getSettingsInner());
+    this.getSettingsInner().appendChild(this.settingGameCards.render());
+    this.getSettingGameCards().appendChild(this.dropdownMenuGameCards.render());
+    this.getSettingsInner().appendChild(this.settingDifficulty.render());
+    this.getSettingDifficulty().appendChild(this.dropdownMenuDifficulty.render());
 
     return this.element;
   }

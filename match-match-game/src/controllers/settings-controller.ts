@@ -28,6 +28,14 @@ export class SettingsController {
     this.difficulty = DEFAULT_DIFFICULTY;
   }
 
+  getButtonGameCards() {
+    return this.buttonGameCards.element;
+  }
+
+  getButtonDifficulty() {
+    return this.buttonDifficulty.element;
+  }
+
   setGameCards(newCategory: string) {
     this.category = newCategory;
   }

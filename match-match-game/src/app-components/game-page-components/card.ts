@@ -22,10 +22,30 @@ export class Card extends BaseComponent {
     this.cardFrontSide.element.setAttribute('style', `background-image: url('./images/${this.image}')`);
   }
 
+  getCard() {
+    return this.card.element;
+  }
+
+  getCardFrontSide() {
+    return this.cardFrontSide.element;
+  }
+
+  getCardBackSide() {
+    return this.cardBackSide.element;
+  }
+
+  getCorrect() {
+    return this.correct.element;
+  }
+
+  getIncorrect() {
+    return this.incorrect.element;
+  }
+
   render() {
-    this.element.appendChild(this.card.element);
-    this.card.element.append(this.cardFrontSide.element, this.cardBackSide.element);
-    this.cardFrontSide.element.append(this.correct.element, this.incorrect.element);
+    this.element.appendChild(this.getCard());
+    this.getCard().append(this.getCardFrontSide(), this.getCardBackSide());
+    this.getCardFrontSide().append(this.getCorrect(), this.getIncorrect());
 
     return this.element;
   }

@@ -21,8 +21,8 @@ export class Input extends BaseComponent {
   }
 
   initializeLabel() {
-    this.label.element.setAttribute('for', this.attributeValue);
-    this.label.element.innerText = this.text;
+    this.getLabel().setAttribute('for', this.attributeValue);
+    this.getLabel().innerText = this.text;
   }
 
   initializeInput() {
@@ -33,8 +33,16 @@ export class Input extends BaseComponent {
     this.input.setAttribute('name', this.attributeValue);
   }
 
+  getLabel() {
+    return this.label.element;
+  }
+
+  getError() {
+    return this.error.element;
+  }
+
   render() {
-    this.element.append(this.label.element, this.input, this.error.element);
+    this.element.append(this.getLabel(), this.input, this.getError());
     return this.element;
   }
 }

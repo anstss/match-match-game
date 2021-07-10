@@ -11,10 +11,11 @@ export class Validator {
     this.registerForm = registerForm;
     this.inputs = registerForm.inputs;
     this.inputs.forEach((inputElem) => {
-      inputElem.input.addEventListener('input', () => Validator.validate(inputElem));
-      inputElem.input.addEventListener('input', () => this.checkValidityForm(this.inputs));
+      const { input } = inputElem;
+      input.addEventListener('input', () => Validator.validate(inputElem));
+      input.addEventListener('input', () => this.checkValidityForm(this.inputs));
     });
-    this.registerForm.buttonCancel.element.addEventListener('click', () => {
+    this.registerForm.getButtonCancel().addEventListener('click', () => {
       Validator.clearForm(this.inputs);
       this.checkValidityForm(this.inputs);
     });
@@ -22,51 +23,53 @@ export class Validator {
 
   static validate(inputElem: Input | InputPhoto) {
     const currentInput = inputElem;
-    const currentInpuName = inputElem.input.name;
-    const currentInputValue = inputElem.input.value;
+    const currentInnerInput = inputElem.input;
+    const currentInputName = currentInnerInput.name;
+    const currentInputValue = currentInnerInput.value;
+    const currentError = currentInput.getError();
     if (currentInputValue.length > 30
-      && currentInpuName !== 'user-photo') {
+      && currentInputName !== 'user-photo') {
       currentInput.isValid = false;
-      currentInput.input.classList.remove('valid');
-      currentInput.error.element.innerText = 'The value or name cannot be longer than 30 characters.';
+      currentInnerInput.classList.remove('valid');
+      currentError.innerText = 'The value or name cannot be longer than 30 characters.';
       return;
     }
-    if (currentInpuName === 'first-name' || currentInpuName === 'last-name') {
+    if (currentInputName === 'first-name' || currentInputName === 'last-name') {
       if (currentInputValue === ''
       || currentInputValue.match(/[^0-9]/g) === null
       || currentInputValue.match(REGEXP_SPECIAL_CHARACTERS) !== null) {
         currentInput.isValid = false;
-        currentInput.input.classList.remove('valid');
-        currentInput.error.element.innerText = `Incorrect value.
+        currentInnerInput.classList.remove('valid');
+        currentError.innerText = `Incorrect value.
         Cannot be empty, contain only numbers, or contain service characters.`;
         return;
       }
     }
-    if (currentInpuName === 'email') {
+    if (currentInputName === 'email') {
       if (currentInputValue === ''
       || currentInputValue.match(REGEXP_EMAIL) === null) {
         currentInput.isValid = false;
-        currentInput.input.classList.remove('valid');
-        currentInput.error.element.innerText = 'Incorrect value. Please enter a valid email.';
+        currentInnerInput.classList.remove('valid');
+        currentError.innerText = 'Incorrect value. Please enter a valid email.';
         return;
       }
     }
-
     currentInput.isValid = true;
-    currentInput.input.classList.add('valid');
-    currentInput.error.element.innerText = '';
+    currentInnerInput.classList.add('valid');
+    currentError.innerText = '';
   }
 
   checkValidityForm(inputs: (Input | InputPhoto)[]) {
     const validationValues: boolean[] = [];
     inputs.forEach((inputElem) => validationValues.push(inputElem.isValid));
+    const buttonAddUser = this.registerForm.getButtonAddUser();
     if (validationValues.includes(false)) {
-      this.registerForm.buttonAddUser.element.setAttribute('disabled', 'disabled');
-      this.registerForm.buttonAddUser.element.classList.add('disabled');
+      buttonAddUser.setAttribute('disabled', 'disabled');
+      buttonAddUser.classList.add('disabled');
       return;
     }
-    this.registerForm.buttonAddUser.element.removeAttribute('disabled');
-    this.registerForm.buttonAddUser.element.classList.remove('disabled');
+    buttonAddUser.removeAttribute('disabled');
+    buttonAddUser.classList.remove('disabled');
   }
 
   static clearForm(inputs: (Input | InputPhoto)[]) {
@@ -75,14 +78,13 @@ export class Validator {
       if (currentInput instanceof InputPhoto) {
         currentInput.isValid = true;
         currentInput.imgValue = '';
-        currentInput.userImg.element.removeAttribute('src');
-        currentInput.error.element.innerText = '';
+        currentInput.getUserImg().removeAttribute('src');
       } else {
         currentInput.isValid = false;
         currentInput.input.value = '';
         currentInput.input.classList.remove('valid');
-        currentInput.error.element.innerText = '';
       }
+      currentInput.getError().innerText = '';
     });
   }
 }

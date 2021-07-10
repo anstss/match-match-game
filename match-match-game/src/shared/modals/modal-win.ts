@@ -28,24 +28,52 @@ export class ModalWin extends BaseComponent {
   }
 
   initializeButtonNo() {
-    this.buttonNo.element.setAttribute('href', '#score');
-    this.buttonNo.element.innerText = 'No, thanks';
+    this.getButtonNo().setAttribute('href', '#score');
+    this.getButtonNo().innerText = 'No, thanks';
   }
 
   initializeButtonYes() {
-    this.buttonYes.element.setAttribute('type', 'button');
-    this.buttonYes.element.setAttribute('data-dismiss', 'modal');
-    this.buttonYes.element.setAttribute('data-toggle', 'modal');
-    this.buttonYes.element.setAttribute('data-target', '#register-modal');
-    this.buttonYes.element.innerText = 'Yes, register me';
+    this.getButtonYes().setAttribute('type', 'button');
+    this.getButtonYes().setAttribute('data-dismiss', 'modal');
+    this.getButtonYes().setAttribute('data-toggle', 'modal');
+    this.getButtonYes().setAttribute('data-target', '#register-modal');
+    this.getButtonYes().innerText = 'Yes, register me';
+  }
+
+  getButtonNo() {
+    return this.buttonNo.element;
+  }
+
+  getButtonYes() {
+    return this.buttonYes.element;
+  }
+
+  getModalDialog() {
+    return this.modalDialog.element;
+  }
+
+  getModalContent() {
+    return this.modalContent.element;
+  }
+
+  getModalWin() {
+    return this.modalWin.element;
+  }
+
+  getModalText() {
+    return this.modalText.element;
+  }
+
+  getModalButtons() {
+    return this.modalButtons.element;
   }
 
   render() {
-    this.element.appendChild(this.modalDialog.element);
-    this.modalDialog.element.appendChild(this.modalContent.element);
-    this.modalContent.element.appendChild(this.modalWin.element);
-    this.modalWin.element.append(this.modalText.element, this.modalButtons.element);
-    this.modalButtons.element.append(this.buttonNo.element, this.buttonYes.element);
+    this.element.appendChild(this.getModalDialog());
+    this.getModalDialog().appendChild(this.getModalContent());
+    this.getModalContent().appendChild(this.getModalWin());
+    this.getModalWin().append(this.getModalText(), this.getModalButtons());
+    this.getModalButtons().append(this.getButtonNo(), this.getButtonYes());
 
     return this.element;
   }

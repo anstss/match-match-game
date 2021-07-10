@@ -14,8 +14,12 @@ export class App {
     this.page = new Page();
   }
 
+  getPage() {
+    return this.page.element;
+  }
+
   render(): HTMLElement {
-    this.rootElement.append(this.header.render(), this.registerModal.render(), this.page.element);
+    this.rootElement.append(this.header.render(), this.registerModal.render(), this.getPage());
 
     return this.rootElement;
   }

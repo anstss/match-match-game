@@ -5,4 +5,8 @@ export class DropdownItem extends BaseComponent {
     super('div', ['dropdown-item']);
     this.element.innerText = `${option}`;
   }
+
+  getDropdownItem() {
+    return this.element;
+  }
 }

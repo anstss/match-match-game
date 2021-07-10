@@ -45,35 +45,71 @@ export class ModalRegister extends BaseComponent {
   }
 
   initializeForm() {
-    this.form.element.setAttribute('id', 'register-form');
+    this.getForm().setAttribute('id', 'register-form');
   }
 
   initializeFormTitle() {
-    this.formTitle.element.innerText = 'Register new Player';
+    this.getFormTitle().innerText = 'Register new Player';
   }
 
   initializeButtonAddUser() {
-    this.buttonAddUser.element.setAttribute('type', 'submit');
-    this.buttonAddUser.element.setAttribute('disabled', 'disabled');
-    this.buttonAddUser.element.innerText = 'Add user';
+    this.getButtonAddUser().setAttribute('type', 'submit');
+    this.getButtonAddUser().setAttribute('disabled', 'disabled');
+    this.getButtonAddUser().innerText = 'Add user';
   }
 
   initializeButtonCancel() {
-    this.buttonCancel.element.setAttribute('type', 'button');
-    this.buttonCancel.element.setAttribute('data-dismiss', 'modal');
-    this.buttonCancel.element.setAttribute('onclick', 'window.location.href="#score"');
-    this.buttonCancel.element.innerText = 'Cancel';
+    this.getButtonCancel().setAttribute('type', 'button');
+    this.getButtonCancel().setAttribute('data-dismiss', 'modal');
+    this.getButtonCancel().setAttribute('onclick', 'window.location.href="#score"');
+    this.getButtonCancel().innerText = 'Cancel';
+  }
+
+  getModalRegister() {
+    return this.element;
+  }
+
+  getModalDialog() {
+    return this.modalDialog.element;
+  }
+
+  getModalContent() {
+    return this.modalContent.element;
+  }
+
+  getButtonCancel() {
+    return this.buttonCancel.element;
+  }
+
+  getButtonAddUser() {
+    return this.buttonAddUser.element;
+  }
+
+  getForm() {
+    return this.form.element;
+  }
+
+  getFormTitle() {
+    return this.formTitle.element;
+  }
+
+  getFormBody() {
+    return this.formBody.element;
+  }
+
+  getFormButtons() {
+    return this.formButtons.element;
   }
 
   render() {
-    this.element.appendChild(this.modalDialog.element);
-    this.modalDialog.element.appendChild(this.modalContent.element);
-    this.modalContent.element.appendChild(this.form.element);
-    this.form.element.append(this.formTitle.element, this.formBody.element,
-      this.inputUserPhoto.render(), this.formButtons.element);
-    this.formBody.element.append(this.inputFirstName.render(),
+    this.element.appendChild(this.getModalDialog());
+    this.getModalDialog().appendChild(this.getModalContent());
+    this.getModalContent().appendChild(this.getForm());
+    this.getForm().append(this.getFormTitle(), this.getFormBody(),
+      this.inputUserPhoto.render(), this.getFormButtons());
+    this.getFormBody().append(this.inputFirstName.render(),
       this.inputLastName.render(), this.inputEmail.render());
-    this.formButtons.element.append(this.buttonAddUser.element, this.buttonCancel.element);
+    this.getFormButtons().append(this.getButtonAddUser(), this.getButtonCancel());
 
     return this.element;
   }

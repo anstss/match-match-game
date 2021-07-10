@@ -3,11 +3,8 @@ import { DropdownMenu } from './dropdown-menu';
 
 export class DropMenuGameCards extends DropdownMenu {
   options: string[];
-
   dropItems: DropdownItem[];
-
   dropItemAnimals: DropdownItem;
-
   dropItemNature: DropdownItem;
 
   constructor(options: string[]) {
@@ -18,9 +15,17 @@ export class DropMenuGameCards extends DropdownMenu {
     this.dropItems = [this.dropItemAnimals, this.dropItemNature];
   }
 
+  getDropItemAnimals() {
+    return this.dropItemAnimals.element;
+  }
+
+  getDropItemNature() {
+    return this.dropItemNature.element;
+  }
+
   render() {
-    this.element.appendChild(this.dropItemAnimals.element);
-    this.element.appendChild(this.dropItemNature.element);
+    this.element.appendChild(this.getDropItemAnimals());
+    this.element.appendChild(this.getDropItemNature());
 
     return this.element;
   }

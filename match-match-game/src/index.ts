@@ -19,7 +19,7 @@ window.onload = () => {
   const app = new App(rootElement);
   app.render();
 
-  const page = app.page.element;
+  const page = app.getPage();
 
   const aboutPage = new AboutPage(page);
   const gamePage = new GamePage(page);
@@ -27,8 +27,8 @@ window.onload = () => {
 
   const registerForm = app.registerModal;
 
-  registerForm.buttonCancel.element.addEventListener('click', () => {
-    registerForm.inputUserPhoto.label.element.classList.remove('no-bg');
+  registerForm.getButtonCancel().addEventListener('click', () => {
+    registerForm.inputUserPhoto.getLabel().classList.remove('no-bg');
   });
 
   const settingsController = new SettingsController(settingPage);
@@ -42,39 +42,41 @@ window.onload = () => {
     router.updateRoute();
   };
 
-  settingsController.dropItemsGameCards.forEach((option) => {
-    option.element.addEventListener('click', () => {
-      settingsController.buttonGameCards.element.innerHTML = option.element.innerText;
-      settingsController.setGameCards(option.element.innerText);
+  settingsController.dropItemsGameCards.forEach((dropdownItem) => {
+    const option = dropdownItem.getDropdownItem();
+    option.addEventListener('click', () => {
+      settingsController.getButtonGameCards().innerHTML = option.innerText;
+      settingsController.setGameCards(option.innerText);
     });
   });
 
-  settingsController.dropItemsDifficulty.forEach((option) => {
-    option.element.addEventListener('click', () => {
-      settingsController.buttonDifficulty.element.innerHTML = option.element.innerText;
-      let selectedDifficulty = Number(option.element.innerText.match(DIFFICULTY_REGEXP));
+  settingsController.dropItemsDifficulty.forEach((dropdownItem) => {
+    const option = dropdownItem.getDropdownItem();
+    option.addEventListener('click', () => {
+      settingsController.getButtonDifficulty().innerHTML = option.innerText;
+      let selectedDifficulty = Number(option.innerText.match(DIFFICULTY_REGEXP));
       selectedDifficulty = selectedDifficulty * selectedDifficulty / 2;
       settingsController.setDifficulty(selectedDifficulty);
     });
   });
 
-  const { buttonStart } = app.header;
-  const { buttonStop } = app.header;
+  const buttonStart = app.header.getButtonStart();
+  const buttonStop = app.header.getButtonStop();
 
-  buttonStart.element.addEventListener('click', () => {
+  buttonStart.addEventListener('click', () => {
     gameController.startGame();
-    buttonStart.element.classList.add('hidden');
-    buttonStop.element.classList.remove('hidden');
+    buttonStart.classList.add('hidden');
+    buttonStop.classList.remove('hidden');
   });
 
-  buttonStop.element.addEventListener('click', () => {
+  buttonStop.addEventListener('click', () => {
     gameController.stopGame();
-    buttonStop.element.classList.add('hidden');
-    buttonStart.element.classList.remove('hidden');
-    gameController.cardsField.element.innerHTML = '<div class="text-message">Click START GAME for a new game<div>';
+    buttonStop.classList.add('hidden');
+    buttonStart.classList.remove('hidden');
+    gameController.getCardsField().innerHTML = '<div class="text-message">Click START GAME for a new game<div>';
   });
 
-  registerForm.element.addEventListener('submit', (event) => {
+  registerForm.getModalRegister().addEventListener('submit', (event) => {
     event.preventDefault();
     try {
       usersData.addUser();
@@ -86,7 +88,7 @@ window.onload = () => {
     window.location.href = '#score';
   });
 
-  gamePage.modalWin.buttonNo.element.addEventListener('click', () => {
+  gamePage.modalWin.getButtonNo().addEventListener('click', () => {
     $('#modal-win').modal('hide');
   });
 };

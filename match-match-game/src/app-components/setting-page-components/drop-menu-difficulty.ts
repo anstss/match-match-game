@@ -3,11 +3,8 @@ import { DropdownMenu } from './dropdown-menu';
 
 export class DropMenuDifficulty extends DropdownMenu {
   options: string[];
-
   dropItems: DropdownItem[];
-
   dropItemEasy: DropdownItem;
-
   dropItemNormal: DropdownItem;
 
   constructor(options: string[]) {
@@ -18,9 +15,17 @@ export class DropMenuDifficulty extends DropdownMenu {
     this.dropItems = [this.dropItemEasy, this.dropItemNormal];
   }
 
+  getDropItemEasy() {
+    return this.dropItemEasy.element;
+  }
+
+  getDropItemNormal() {
+    return this.dropItemNormal.element;
+  }
+
   render() {
-    this.element.appendChild(this.dropItemEasy.element);
-    this.element.appendChild(this.dropItemNormal.element);
+    this.element.appendChild(this.getDropItemEasy());
+    this.element.appendChild(this.getDropItemNormal());
 
     return this.element;
   }

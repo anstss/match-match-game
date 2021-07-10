@@ -15,10 +15,18 @@ export class GamePage extends BaseComponent {
     this.modalWin = new ModalWin();
   }
 
+  getCardsField() {
+    return this.cardsField.element;
+  }
+
+  getContainer() {
+    return this.container.element;
+  }
+
   render(): HTMLElement {
     this.page.append(this.element, this.modalWin.render());
-    this.element.appendChild(this.container.element);
-    this.container.element.appendChild(this.cardsField.element);
+    this.element.appendChild(this.getContainer());
+    this.getContainer().appendChild(this.getCardsField());
 
     return this.element;
   }

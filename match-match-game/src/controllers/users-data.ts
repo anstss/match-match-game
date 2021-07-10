@@ -19,10 +19,11 @@ export class UsersData {
   }
 
   readImg() {
-    const file = this.registerForm.inputUserPhoto.input.files![0];
+    const { inputUserPhoto } = this.registerForm;
+    const file = inputUserPhoto.input.files![0];
     if (file === undefined) return;
     if (file.size > MAX_SIZE_IMG_BYTES) {
-      this.registerForm.inputUserPhoto.error.element.innerText = `Allowed extensions: .png .jpg .jpeg.
+      inputUserPhoto.getError().innerText = `Allowed extensions: .png .jpg .jpeg.
       Max file size is 0.1MB`;
       return;
     }
@@ -30,9 +31,9 @@ export class UsersData {
     reader.readAsDataURL(file);
     reader.addEventListener('load', () => {
       const result = reader.result!.toString();
-      this.registerForm.inputUserPhoto.imgValue = result;
-      this.registerForm.inputUserPhoto.label.element.classList.add('no-bg');
-      this.registerForm.inputUserPhoto.userImg.element.setAttribute('src', result);
+      inputUserPhoto.imgValue = result;
+      inputUserPhoto.getLabel().classList.add('no-bg');
+      inputUserPhoto.getUserImg().setAttribute('src', result);
     });
   }
 
@@ -74,9 +75,9 @@ export class UsersData {
     if (scorePage) {
       const currentScorePage = scorePage;
       if (allUsers.length === 0) {
-        currentScorePage.top.element.innerText = 'No registered users';
+        currentScorePage.getTop().innerText = 'No registered users';
       } else {
-        currentScorePage.top.element.innerText = '';
+        currentScorePage.getTop().innerText = '';
       }
     }
 

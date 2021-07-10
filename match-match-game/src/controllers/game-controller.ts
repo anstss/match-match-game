@@ -42,6 +42,18 @@ export class GameController {
     this.startTime = 0;
   }
 
+  getCardsField() {
+    return this.cardsField.element;
+  }
+
+  getTimer() {
+    return this.timer.element;
+  }
+
+  getGameTimer() {
+    return this.gameTimer.element;
+  }
+
   showTime() {
     const min = Math.floor((this.totalTime / 60));
     const sec = this.totalTime % 60;
@@ -58,7 +70,7 @@ export class GameController {
     } else {
       this.timer.sec = `${sec}`;
     }
-    this.timer.element.innerHTML = `${this.timer.min}:${this.timer.sec}`;
+    this.getTimer().innerHTML = `${this.timer.min}:${this.timer.sec}`;
   }
 
   startTimer() {
@@ -88,13 +100,13 @@ export class GameController {
 
   finishGame() {
     this.countScore();
-    this.gamePage.modalWin.modalText.element.innerHTML = `Congratulations!
+    this.gamePage.modalWin.getModalText().innerHTML = `Congratulations!
     You successfully found all matches on ${this.timer.min}.${this.timer.sec} minutes.
     Your score is ${this.score}.<br>Do you want to add your result to the high score table?`;
     clearInterval(this.timerId);
     $('#modal-win').modal('show');
-    this.app.header.buttonStop.element.classList.add('hidden');
-    this.app.header.buttonStart.element.classList.remove('hidden');
+    this.app.header.getButtonStop().classList.add('hidden');
+    this.app.header.getButtonStart().classList.remove('hidden');
   }
 
   countScore() {
@@ -108,15 +120,15 @@ export class GameController {
 
   clearField() {
     this.cardsField.cards = [];
-    this.cardsField.element.innerHTML = '';
+    this.getCardsField().innerHTML = '';
   }
 
   fillField(cards: Card[]) {
     this.cards = cards;
-    this.cardsField.element.innerHTML = '';
-    this.cardsField.element.appendChild(this.gameTimer.element);
-    this.gameTimer.element.appendChild(this.timer.element);
-    this.cards.forEach((card) => this.cardsField.element.appendChild(card.render()));
+    this.getCardsField().innerHTML = '';
+    this.getCardsField().appendChild(this.getGameTimer());
+    this.getGameTimer().appendChild(this.getTimer());
+    this.cards.forEach((card) => this.getCardsField().appendChild(card.render()));
     this.showCard = window.setTimeout(() => {
       this.cards.forEach((card) => GameController.flipCardToBack(card));
       this.cards.forEach((card) => card.element.classList.remove('card-hover-inactive'));
@@ -137,8 +149,9 @@ export class GameController {
 
   static flipCard(card: Card, isBackSide = false): Promise<void> {
     return new Promise((resolve) => {
-      card.element.classList.toggle(FLIP_CLASS, isBackSide);
-      card.element.addEventListener('transitionend', () => resolve(), {
+      const currentCard = card.element;
+      currentCard.classList.toggle(FLIP_CLASS, isBackSide);
+      currentCard.addEventListener('transitionend', () => resolve(), {
         once: true,
       });
     });
@@ -148,15 +161,15 @@ export class GameController {
     this.stopGame();
     let cards = images.concat(images).map((url) => new Card(url));
     if (currentDifficulty !== DEFAULT_DIFFICULTY) {
-      cards.forEach((card) => card.card.element.classList.add('card--small'));
+      cards.forEach((card) => card.getCard().classList.add('card--small'));
     } else {
-      cards.forEach((card) => card.card.element.classList.remove('card--small'));
+      cards.forEach((card) => card.getCard().classList.remove('card--small'));
     }
     cards = _.shuffle(cards);
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));
 
     this.fillField(cards);
-    this.timer.element.innerHTML = '00:00';
+    this.getTimer().innerHTML = '00:00';
     this.startTime = Date.now();
     this.startTimer();
   }
@@ -194,24 +207,24 @@ export class GameController {
   }
 
   static match(activeCard: Card, card: Card) {
-    const activeMatch = activeCard.correct;
-    const cardMath = card.correct;
-    activeMatch?.element.classList.remove('hidden');
-    cardMath?.element.classList.remove('hidden');
+    const activeMatch = activeCard.getCorrect();
+    const cardMath = card.getCorrect();
+    activeMatch?.classList.remove('hidden');
+    cardMath?.classList.remove('hidden');
   }
 
   static notMatch(activeCard: Card, card: Card) {
-    const activeMatch = activeCard.incorrect;
-    const cardMath = card.incorrect;
-    activeMatch?.element.classList.remove('hidden');
-    cardMath?.element.classList.remove('hidden');
+    const activeMatch = activeCard.getIncorrect();
+    const cardMath = card.getIncorrect();
+    activeMatch?.classList.remove('hidden');
+    cardMath?.classList.remove('hidden');
   }
 
   static removeClassIncorrect(activeCard: Card, card: Card) {
-    const activeMatch = activeCard.incorrect;
-    const cardMath = card.incorrect;
-    activeMatch?.element.classList.add('hidden');
-    cardMath?.element.classList.add('hidden');
+    const activeMatch = activeCard.getIncorrect();
+    const cardMath = card.getIncorrect();
+    activeMatch?.classList.add('hidden');
+    cardMath?.classList.add('hidden');
   }
 
   async startGame(currentCategory = this.settingsController.category,

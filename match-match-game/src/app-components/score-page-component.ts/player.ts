@@ -31,30 +31,58 @@ export class Player extends BaseComponent {
   }
 
   initializePlayerPhoto() {
-    this.playerPhoto.element.setAttribute('alt', 'Avatar');
-    this.playerPhoto.element.setAttribute('src', this.photoSRC.toString());
+    this.getPlayerPhoto().setAttribute('alt', 'Avatar');
+    this.getPlayerPhoto().setAttribute('src', this.photoSRC.toString());
   }
 
   initializePlayerName() {
-    this.playerName.element.innerText = `${this.firstName} ${this.lastName}`;
+    this.getPlayerName().innerText = `${this.firstName} ${this.lastName}`;
   }
 
   initializePlayerEmail() {
-    this.playerEmail.element.innerText = `${this.email}`;
+    this.getPlayerEmail().innerText = `${this.email}`;
   }
 
   initializeScoreLabel() {
-    this.scoreLabel.element.innerText = 'Score: ';
+    this.getScoreLabel().innerText = 'Score: ';
   }
 
   initializeScoreValue() {
-    this.scoreValue.element.innerText = `${this.score}`;
+    this.getScoreValue().innerText = `${this.score}`;
+  }
+
+  getPlayerPhoto() {
+    return this.playerPhoto.element;
+  }
+
+  getPlayerName() {
+    return this.playerName.element;
+  }
+
+  getPlayerEmail() {
+    return this.playerEmail.element;
+  }
+
+  getScoreLabel() {
+    return this.scoreLabel.element;
+  }
+
+  getScoreValue() {
+    return this.scoreValue.element;
+  }
+
+  getPlayerInfo() {
+    return this.playerInfo.element;
+  }
+
+  getPlayerScore() {
+    return this.playerScore.element;
   }
 
   render() {
-    this.element.append(this.playerPhoto.element, this.playerInfo.element, this.playerScore.element);
-    this.playerInfo.element.append(this.playerName.element, this.playerEmail.element);
-    this.playerScore.element.append(this.scoreLabel.element, this.scoreValue.element);
+    this.element.append(this.getPlayerPhoto(), this.getPlayerInfo(), this.getPlayerScore());
+    this.getPlayerInfo().append(this.getPlayerName(), this.getPlayerEmail());
+    this.getPlayerScore().append(this.getScoreLabel(), this.getScoreValue());
 
     return this.element;
   }

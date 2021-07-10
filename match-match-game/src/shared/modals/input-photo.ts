@@ -34,12 +34,24 @@ export class InputPhoto extends BaseComponent {
   }
 
   initializeLabel() {
-    this.label.element.setAttribute('for', 'add-user-photo');
+    this.getLabel().setAttribute('for', 'add-user-photo');
+  }
+
+  getLabel() {
+    return this.label.element;
+  }
+
+  getUserImg() {
+    return this.userImg.element;
+  }
+
+  getError() {
+    return this.error.element;
   }
 
   render() {
-    this.label.element.appendChild(this.userImg.element);
-    this.element.append(this.input, this.label.element, this.error.element);
+    this.getLabel().appendChild(this.getUserImg());
+    this.element.append(this.input, this.getLabel(), this.getError());
     return this.element;
   }
 }
